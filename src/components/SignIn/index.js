@@ -1,16 +1,21 @@
 import React, { useContext } from "react";
+import { withRouter } from "react-router-dom";
 import firebaseContext from "../Firebase/context";
+import authContext from "../Auth/context";
 
-export default () => {
+const SignIn = ({ history }) => {
   const firebase = useContext(firebaseContext);
-  console.log(firebase);
+  const { auth, dispatch } = useContext(authContext);
+
   function logIn() {
-    let provider = new firebase.auth.GoogleAuthProvider();
+    dispatch({ type: "LOADING" });
     firebase
-      .auth()
-      .signInWithPopUp(provider)
-      .then(result => console.log(result));
+      .signInWithGoogle()
+      .then(result => console.log(result))
+      .then(() => history.push("/dashboard"))
+      .catch(err => console.log(err));
   }
+  console.log("auth from signin: ", auth);
   return (
     <React.Fragment>
       <div
@@ -24,8 +29,11 @@ export default () => {
           alignItems: "center"
         }}
       >
+        <h2>Sign In</h2>
         <button onClick={logIn}>Sign In</button>
       </div>
     </React.Fragment>
   );
 };
+
+export default withRouter(SignIn);

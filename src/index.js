@@ -4,10 +4,13 @@ import * as serviceWorker from "./serviceWorker";
 
 import App from "./components/App/index";
 import { FirebaseProvider } from "./components/Firebase/context";
+import { AuthProvider } from "./components/Auth/context";
 
 ReactDOM.render(
   <FirebaseProvider>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </FirebaseProvider>,
   document.getElementById("root")
 );

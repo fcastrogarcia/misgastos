@@ -1,14 +1,13 @@
-import React, { createContext, useEffect } from "react";
-import app from "./config";
+import React, { createContext } from "react";
+import Firebase from "./firebase";
 
 const FirebaseContext = createContext(null);
 
 export const FirebaseProvider = ({ children }) => {
-  useEffect(() => {
-    app();
-  }, []);
   return (
-    <FirebaseContext.Provider value={app}>{children}</FirebaseContext.Provider>
+    <FirebaseContext.Provider value={new Firebase()}>
+      {children}
+    </FirebaseContext.Provider>
   );
 };
 

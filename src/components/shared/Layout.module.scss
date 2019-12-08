@@ -1,0 +1,6 @@
+@import "../../styles/mixins.scss";
+
+.layout {
+  @include fullPageLayout;
+  @include flexContainer;
+}

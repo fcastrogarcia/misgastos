@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.layout {
+  @include fullPageLayout;
+  @include flexContainer;
+  background-color: $gray-100;
+}
+.wrapper {
+  @include flexContainer;
+  flex-direction: column;
+  justify-content: space-around;
+  background: transparent;
+  border-radius: 20px;
+  height: 50vh;
+}
+.button {
+  outline: none;
+  background: none;
+  border: 3px solid $indigo-600;
+  border-radius: 20px;
+  padding: 10px 13px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $indigo-600;
+  margin: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: $shadow-xl;
+    background: $indigo-600;
+    color: $gray-100;
+  }
+}
+.title {
+  text-align: center;
+  color: $gray-800;
+  font-size: 2.5rem;
+  margin: 10px;
+  @media (max-width: 320px) {
+    font-size: 2rem;
+  }
+}

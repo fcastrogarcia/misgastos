@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import firebaseContext from "../Firebase/context";
 import authContext from "../Auth/context";
 import SignIn from "./SignIn";
-import styles from "./signIn.module.scss";
+import styles from "./SignIn.module.scss";
 
 const SignInPage = ({ history }) => {
   const firebase = useContext(firebaseContext);
@@ -13,7 +13,12 @@ const SignInPage = ({ history }) => {
     dispatch({ type: "LOADING" });
     firebase
       .signInWithGoogle()
-      .then(result => console.log(result))
+      .then(socialAuthUser => {
+        return firebase.user(socialAuthUser.user.uid).set({
+          username: socialAuthUser.user.displayName,
+          email: socialAuthUser.user.email
+        });
+      })
       .then(() => history.push("/dashboard"))
       .catch(err => console.log(err));
   }

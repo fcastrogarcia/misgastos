@@ -1,18 +1,32 @@
 import React from "react";
-import { FaGoogle } from "react-icons/fa";
-import { MdAttachMoney } from "react-icons/md";
-import styles from "./signIn.module.scss";
+import GoogleButton from "react-google-button";
+import styles from "./SignIn.module.scss";
 
-export default ({ clickHandler }) => (
-  <div className={styles.wrapper}>
-    <h1 className={styles.title}>Keep account of your expenses.</h1>
-    <button
-      className={styles.button}
-      onClick={clickHandler}
-      arial-labelledby="google sign in"
-    >
-      Sign In with {"  "}
-      <FaGoogle />
-    </button>
-  </div>
-);
+export default ({ clickHandler }) => {
+  const { wrapper, title, card, form, input, label, field } = styles;
+  return (
+    <div className={wrapper}>
+      <h1 className={title}>Keep account of your expenses.</h1>
+      <div className={card}>
+        <form className={form}>
+          <div className={field}>
+            <label className={label} for="email">
+              Email
+            </label>
+            <input className={input} name="email" type="text"></input>
+          </div>
+          <div className={field}>
+            <label className={label} for="password">
+              Password
+            </label>
+            <input className={input} name="password" type="password"></input>
+          </div>
+        </form>
+        <GoogleButton
+          onClick={clickHandler}
+          style={{ margin: "1em", gridArea: "google" }}
+        />
+      </div>
+    </div>
+  );
+};

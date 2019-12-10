@@ -14,24 +14,6 @@
   border-radius: 20px;
   height: 50vh;
 }
-.button {
-  outline: none;
-  background: none;
-  border: 3px solid $indigo-600;
-  border-radius: 20px;
-  padding: 10px 13px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: $indigo-600;
-  margin: 20px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    box-shadow: $shadow-xl;
-    background: $indigo-600;
-    color: $gray-100;
-  }
-}
 .title {
   text-align: center;
   color: $gray-800;
@@ -40,4 +22,47 @@
   @media (max-width: 320px) {
     font-size: 2rem;
   }
+}
+.card {
+  @include flexContainer;
+  flex-direction: column;
+  // grid-template: repeat(3, 1fr) / 1fr;
+  grid-template-areas:
+    "email"
+    "password"
+    "google";
+  width: 20em;
+  padding: 1em;
+  // height: 10em;
+  border-radius: 20px;
+  box-shadow: $shadow;
+  background-color: #fff;
+}
+.form {
+}
+.field {
+  // background: cyan;
+  margin: 1em 0;
+  &:nth-child(1) {
+    grid-area: email;
+  }
+  &:nth-child(2) {
+    grid-area: password;
+  }
+}
+.input {
+  padding: 13px;
+  width: 100%;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid $gray-400;
+  border-radius: 20px;
+  color: $gray-800;
+  font-size: 1rem;
+  font-family: "Archivo", sans-serif;
+  font-weight: 600;
+}
+.label {
+  color: $gray-800;
+  font-weight: 600;
 }

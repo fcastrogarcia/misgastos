@@ -1,0 +1,31 @@
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/variables.scss";
+
+.dropdown {
+  position: absolute;
+  top: 4em;
+  // height: 150px;
+  // width: 150px;
+  background: $gray-200;
+  box-shadow: $shadow-md;
+}
+
+.li,
+.li button {
+  font-size: 1rem;
+  color: $gray-800;
+}
+.li {
+  @include flexContainer;
+  justify-content: start;
+  padding: 15px 20px;
+  width: 10em;
+  &:hover {
+    background: $gray-400;
+  }
+}
+.icon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: $gray-600;
+}

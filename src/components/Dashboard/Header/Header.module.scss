@@ -1,0 +1,26 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/variables.scss";
+
+header {
+  @include gridContainer;
+  position: relative;
+  grid-template: 1fr / repeat(2, 1fr);
+  grid-template-areas: "logo menu";
+  justify-content: space-evenly;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: 4em;
+  padding: 0 10px;
+  box-sizing: border-box;
+  box-shadow: $shadow-md;
+  background: $gray-200;
+}
+.logo {
+  grid-area: logo;
+  color: $indigo-700;
+  font-size: 2.5rem;
+}

@@ -10,6 +10,7 @@
 }
 @mixin flexContainer {
   display: flex;
+  position: relative;
   @include centerAlignment;
 }
 @mixin gridContainer {

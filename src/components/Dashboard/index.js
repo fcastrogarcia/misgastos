@@ -6,7 +6,7 @@ import Loader from "../shared/Loader";
 
 const ProtectedDashboard = () => {
   const { auth } = useContext(authContext);
-  console.log(auth)
+
   return auth === "loading" ? (
     <Loader loading={auth} />
   ) : !auth ? (

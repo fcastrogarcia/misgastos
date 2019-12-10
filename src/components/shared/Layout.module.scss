@@ -1,6 +1,11 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
 .layout {
   @include fullPageLayout;
+  @include fullPageLayout;
+  background-color: $gray-100;
+}
+.flex {
   @include flexContainer;
 }

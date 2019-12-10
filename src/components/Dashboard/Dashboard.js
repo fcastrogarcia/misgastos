@@ -1,26 +1,13 @@
-import React, { useContext } from "react";
-import firebaseContext from "../Firebase/context";
-import { withRouter } from "react-router-dom";
-import styles from "./Dashboard.module.scss";
+import React from "react";
 import Header from "./Header/index";
+import Layout from "../shared/Layout";
 
-const Dashboard = ({ history }) => {
-  const firebase = useContext(firebaseContext);
-
-  function logOut() {
-    firebase
-      .signOut()
-      .then(() => history.push("/signin"))
-      .catch(err => console.log(err));
-  }
+const Dashboard = () => {
   return (
-    <React.Fragment>
+    <Layout>
       <Header />
-      <button onClick={logOut} className={styles.button}>
-        Sign out
-      </button>
-    </React.Fragment>
+    </Layout>
   );
 };
 
-export default withRouter(Dashboard);
+export default Dashboard;

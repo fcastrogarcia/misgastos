@@ -22,7 +22,6 @@ const SignInPage = ({ history }) => {
       .then(() => history.push("/dashboard"))
       .catch(err => console.log(err));
   }
-  console.log("auth from signin: ", auth);
   return (
     <div className={styles.layout}>
       <SignIn clickHandler={handleSignIn} />

@@ -4,6 +4,6 @@ import { RotateLoader } from "react-spinners";
 
 export default ({ loading }) => (
   <div className={styles.layout}>
-    <RotateLoader size={55} loading={loading} color={"#4FD1C5"} />
+    <RotateLoader size={18} loading={loading} color={"#4FD1C5"} />
   </div>
 );

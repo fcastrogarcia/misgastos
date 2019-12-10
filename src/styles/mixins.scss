@@ -4,8 +4,15 @@
   max-height: 100%;
   max-width: 100%;
 }
+@mixin centerAlignment {
+  align-items: center;
+  justify-content: center;
+}
 @mixin flexContainer {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  @include centerAlignment;
+}
+@mixin gridContainer {
+  display: grid;
+  @include centerAlignment;
 }

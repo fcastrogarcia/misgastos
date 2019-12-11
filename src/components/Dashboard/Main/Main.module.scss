@@ -1,0 +1,33 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
+main {
+  // background: cyan;
+  position: relative;
+  width: 85%;
+  min-height: calc(100vh - 4em);
+  // padding: 20px;
+  box-sizing: border-box;
+}
+.container {
+  margin: 30px;
+}
+.month {
+  font-size: 2rem;
+  margin: 10px;
+  // color: $gray-800;
+}
+.item {
+  @include flexContainer;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 30%;
+  background: $gray-300;
+  border: 2px solid $gray-400;
+  margin: 5px 0;
+  border-radius: 4px;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background: $gray-400;
+  }
+}

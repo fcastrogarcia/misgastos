@@ -1,0 +1,14 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
+aside {
+  width: 15%;
+  min-height: calc(100vh - 4em);
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: cornsilk;
+  padding: 30px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,19 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/variables.scss";
+
+.floatingActionButton {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: $teal-300;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  box-shadow: $shadow-md;
+  z-index: 700;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}

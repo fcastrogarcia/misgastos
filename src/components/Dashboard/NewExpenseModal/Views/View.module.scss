@@ -1,0 +1,12 @@
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/variables.scss";
+
+.view {
+  @include flexContainer;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.button {
+  margin: 15px;
+}

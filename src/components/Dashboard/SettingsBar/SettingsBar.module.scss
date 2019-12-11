@@ -1,0 +1,13 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/variables.scss";
+
+.bar {
+  @include flexContainer;
+  width: 100%;
+  background-color: pink;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3em;
+}

@@ -1,19 +1,18 @@
-import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
-import authContext from "../Auth/context";
-import Dashboard from "./Dashboard";
-import Loader from "../shared/Loader";
+import React from "react";
+import Layout from "../Layout/Layout";
+import Main from "./Main/index";
+import Sidebar from "./Sidebar/index";
+import styles from "./Dashboard.module.scss";
 
-const ProtectedDashboard = () => {
-  const { auth } = useContext(authContext);
-
-  return auth === "loading" ? (
-    <Loader loading={auth} />
-  ) : !auth ? (
-    <Redirect to="/signin" />
-  ) : (
-    <Dashboard />
+const Dashboard = () => {
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <Sidebar></Sidebar>
+        <Main />
+      </div>
+    </Layout>
   );
 };
 
-export default ProtectedDashboard;
+export default Dashboard;

@@ -13,7 +13,6 @@ class Firebase {
   signInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
   signOut = () => this.auth.signOut();
   user = uid => this.db.ref(`users/${uid}`);
-  users = () => this.db.ref("users");
 }
 
 export default Firebase;

@@ -1,22 +1,24 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import Loader from "../Layout/Loader";
 
 export default ({ component: Component, auth, ...rest }) => {
-  console.log("auth from private route: ", auth);
   return (
     <Route
       {...rest}
-      render={props =>
-        auth ? (
-          <Component {...props} />
-        ) : (
+      render={props => {
+        return auth === "loading" ? (
+          <Loader />
+        ) : !auth ? (
           <Redirect
             to={{
               pathname: "/signin"
             }}
           />
-        )
-      }
+        ) : (
+          <Component />
+        );
+      }}
     />
   );
 };

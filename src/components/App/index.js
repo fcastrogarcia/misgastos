@@ -8,12 +8,12 @@ import {
 import SignIn from "../SignIn/index";
 // import SignUp from "../SignUp/index";
 import Dashboard from "../Dashboard/index";
-// import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 import authContext from "../Auth/context";
 import "./App.scss";
 
 export default () => {
-  const auth = useContext(authContext);
+  const { auth } = useContext(authContext);
   return (
     <React.Fragment>
       <Router>
@@ -21,7 +21,12 @@ export default () => {
           <Route exact path="/" render={() => <Redirect to="/signin" />} />
           <Route exact path="/signin" component={SignIn} />
           {/* <Route exact path="/signup" component={SignUp} /> */}
-          <Route exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute
+            exact
+            path="/dashboard"
+            auth={auth}
+            component={Dashboard}
+          />
           <Route render={() => <Redirect to="/dashboard" />} />
         </Switch>
       </Router>

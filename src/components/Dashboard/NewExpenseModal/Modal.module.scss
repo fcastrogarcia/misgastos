@@ -10,7 +10,7 @@
   box-sizing: border-box;
   border-radius: 20px;
   box-shadow: $shadow-lg;
-  background: #fff;
+  background: $gray-100;
 }
 .background {
   @include flexContainer;
@@ -19,7 +19,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 600;
   transition: all 0.2s ease-in-out;
 }

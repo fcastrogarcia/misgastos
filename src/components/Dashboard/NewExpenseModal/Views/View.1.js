@@ -2,32 +2,36 @@ import React from "react";
 import styles from "./View.module.scss";
 import cn from "classnames";
 
-export default ({ setIndex, setExpense }) => {
-  function handleClick(event) {
-    const { singlePayment } = event.target.dataset;
-    setExpense(prevState => {
-      return { ...prevState, singlePayment: singlePayment };
+export default ({ setPayment, setIndex }) => {
+  let singlePayment;
+
+  function handleClick(_, singlePayment) {
+    setPayment(prevState => {
+      return {
+        ...prevState,
+        single_payment: singlePayment
+      };
     });
     setIndex(1);
   }
 
   return (
     <div className={styles.view}>
-      <h3>Elegí el tipo de gasto</h3>
-      <button
-        className={styles.button}
-        data-single-payment={false}
-        onClick={handleClick}
-      >
-        Servicio
-      </button>
-      <button
-        className={styles.button}
-        data-single-payment={true}
-        onClick={handleClick}
-      >
-        Pago único
-      </button>
+      <h3 className={styles.title}>Seleccioná una opción</h3>
+      <div className={styles.buttonsWrapper}>
+        <button
+          className={styles.option}
+          onClick={e => handleClick(e, (singlePayment = false))}
+        >
+          Servicio / Pago mensual
+        </button>
+        <button
+          className={styles.option}
+          onClick={e => handleClick(e, (singlePayment = true))}
+        >
+          Pago único
+        </button>
+      </div>
     </div>
   );
 };

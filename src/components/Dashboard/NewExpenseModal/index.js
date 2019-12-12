@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React from "react";
 import styles from "./Modal.module.scss";
 import SwipeableViews from "react-swipeable-views";
 import View1 from "./Views/View.1";
@@ -6,21 +6,11 @@ import View2 from "./Views/View.2";
 import View3 from "./Views/View.3";
 import View4 from "./Views/View.4";
 
-export default ({ open, setOpen }) => {
-  const initialState = {
-    singlePayment: null,
-    category: "",
-    date: null,
-    amount: null
-  };
-
-  const [expense, setExpense] = useState(initialState);
-  const [index, setIndex] = useState(0);
-
+export default ({ open, setOpen, payment, setPayment, index, setIndex }) => {
   const containerStyle = { height: "100%", width: "100%" };
   const swipeableStyle = { height: "100%", width: "100%", overflow: "hidden" };
-  console.log(expense);
-  console.log("index: ", index);
+
+  console.log(payment);
 
   return (
     open && (
@@ -30,29 +20,12 @@ export default ({ open, setOpen }) => {
             containerStyle={containerStyle}
             style={swipeableStyle}
             index={index}
-            // disabled
-            enableMouseEvents
+            disabled
           >
-            <View1
-              setIndex={setIndex}
-              expense={expense}
-              setExpense={setExpense}
-            />
-            <View2
-              setIndex={setIndex}
-              expense={expense}
-              setExpense={setExpense}
-            />
-            <View3
-              setIndex={setIndex}
-              expense={expense}
-              setExpense={setExpense}
-            />
-            <View4
-              setIndex={setIndex}
-              expense={expense}
-              setExpense={setExpense}
-            />
+            <View1 {...{ setPayment, setIndex }} />
+            <View2 {...{ payment, setPayment, setIndex }} />
+            <View3 {...{ payment, setPayment, setIndex }} />
+            <View4 {...{ payment, setPayment, setOpen, setIndex }} />
           </SwipeableViews>
         </div>
       </div>

@@ -4,7 +4,7 @@ import cx from "classnames";
 import Header from "./Header/index";
 
 export default ({ children }) => (
-  <div className={cx(styles.layout)}>
+  <div className={cx(styles.layout, styles.grid)}>
     <Header />
     {children}
   </div>

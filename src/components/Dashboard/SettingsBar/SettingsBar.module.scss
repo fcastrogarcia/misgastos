@@ -3,11 +3,6 @@
 
 .bar {
   @include flexContainer;
-  width: 100%;
   background-color: $gray-500;
-  position: relative;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 3em;
+  grid-area: settings;
 }

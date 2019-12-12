@@ -8,3 +8,11 @@
 .flex {
   @include flexContainer;
 }
+.grid {
+  display: grid;
+  grid-template: 4em 3em auto / 15% auto;
+  grid-template-areas:
+    "header header"
+    "sidebar settings"
+    "sidebar main";
+}

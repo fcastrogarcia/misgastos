@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Fab.module.scss";
 
-export default ({ open, modalToggler, setPayment, setIndex }) => {
+export default ({ open, setOpen, setPayment, setIndex }) => {
   function handleClick() {
     const defaultState = {
       single_payment: null,
@@ -13,7 +13,7 @@ export default ({ open, modalToggler, setPayment, setIndex }) => {
     };
     setPayment(defaultState);
     setIndex(0);
-    modalToggler(!open);
+    setOpen(!open);
   }
   return (
     <button className={styles.floatingActionButton} onClick={handleClick}>

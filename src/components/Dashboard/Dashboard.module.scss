@@ -1,9 +1,0 @@
-@import "../../styles/mixins.scss";
-@import "../../styles/variables.scss";
-
-.container {
-  @include flexContainer;
-  top: 4em;
-  width: 100%;
-  min-height: calc(100vh - 4em); 
-}

@@ -10,13 +10,13 @@ export default ({ clickHandler }) => {
       <div className={card}>
         <form className={form}>
           <div className={field}>
-            <label className={label} for="email">
+            <label className={label} htmlFor="email">
               Email
             </label>
             <input className={input} name="email" type="text"></input>
           </div>
           <div className={field}>
-            <label className={label} for="password">
+            <label className={label} htmlFor="password">
               Password
             </label>
             <input className={input} name="password" type="password"></input>

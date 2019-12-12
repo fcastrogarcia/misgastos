@@ -5,8 +5,10 @@ export default () => {
   return (
     <aside>
       <ul>
-        <li>Bills</li>
-        <li>Budget</li>
+        <li>General</li>
+        <li>Pagos</li>
+        <li>Gastos</li>
+        <li>Presupuesto</li>
       </ul>
     </aside>
   );

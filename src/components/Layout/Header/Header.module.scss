@@ -17,11 +17,11 @@ header {
   padding: 0 10px;
   box-sizing: border-box;
   box-shadow: $shadow-md;
-  background: $gray-200;
+  background: $gray-100;
   z-index: 500;
 }
 .logo {
   grid-area: logo;
-  color: $indigo-700;
+  color: $teal-600;
   font-size: 2.5rem;
 }

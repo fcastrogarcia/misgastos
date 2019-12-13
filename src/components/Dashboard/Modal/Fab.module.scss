@@ -2,6 +2,7 @@
 @import "../../../styles/variables.scss";
 
 .floatingActionButton {
+  @include flexContainer;
   border-radius: 50%;
   width: 55px;
   height: 55px;
@@ -12,8 +13,19 @@
   margin: 20px;
   box-shadow: $shadow-md;
   z-index: 700;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   &:hover {
     box-shadow: $shadow-xl;
+  }
+  &.open {
+    background: $red-500;
+  }
+}
+.icon {
+  font-size: 1.6rem;
+  color: $gray-900;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  &.open {
+    transform: rotate(45deg);
   }
 }

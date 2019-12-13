@@ -1,23 +1,15 @@
 import React from "react";
+import cx from "classnames";
 import styles from "./Fab.module.scss";
+import { MdAdd } from "react-icons/md";
 
-export default ({ open, setOpen, setPayment, setIndex }) => {
-  function handleClick() {
-    const defaultState = {
-      single_payment: null,
-      category: null,
-      provider: null,
-      due_date: null,
-      amount: null,
-      months_paid: []
-    };
-    setPayment(defaultState);
-    setIndex(0);
-    setOpen(!open);
-  }
+export default ({ open, setOpen }) => {
   return (
-    <button className={styles.floatingActionButton} onClick={handleClick}>
-      +
+    <button
+      className={cx(styles.floatingActionButton, { [styles.open]: open })}
+      onClick={() => setOpen(!open)}
+    >
+      <MdAdd className={cx(styles.icon, { [styles.open]: open })} />
     </button>
   );
 };

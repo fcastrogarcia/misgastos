@@ -12,6 +12,7 @@
   box-shadow: $shadow-lg;
   background: $gray-100;
 }
+
 .background {
   @include flexContainer;
   position: fixed;
@@ -23,3 +24,4 @@
   z-index: 600;
   transition: all 0.2s ease-in-out;
 }
+

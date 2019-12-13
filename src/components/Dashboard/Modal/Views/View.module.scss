@@ -6,14 +6,13 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  // background: red;
 }
 .title {
-  margin-bottom: 30px;
   font-size: 1.7rem;
 }
 .buttonsWrapper {
   @include flexContainer;
+  margin-top: 30px;
 }
 .option {
   margin: 15px;
@@ -29,21 +28,54 @@
     color: $gray-900;
   }
 }
-.input {
-  border: none;
+.wrapper {
   width: 45%;
+}
+.input {
+  position: relative;
+  border: none;
+  width: 100%;
+  max-width: 320px;
   height: 50px;
   font-size: 1.2rem;
-  margin: 20px;
+  margin: 15px 0;
   padding-left: 10px;
+  border-radius: 5px;
+  border: 3px solid $gray-200;
+  &::placeholder {
+    color: $gray-500;
+  }
+  &.error {
+    border: 3px solid $red-500;
+  }
+  &.v3 {
+    margin-bottom: 20px;
+  }
+}
+.message {
+  position: absolute;
+  bottom: 0;
+  &.error {
+    color: $red-600;
+    font-size: 13px;
+  }
 }
 //navigation
 @mixin navigation {
+  @include flexContainer;
   position: absolute;
   bottom: 0;
   margin: 15px;
   font-size: 1.5rem;
   color: $teal-500;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    background: $teal-500;
+    color: #fff;
+  }
 }
 .next {
   @include navigation();

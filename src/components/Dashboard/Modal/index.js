@@ -1,34 +1,31 @@
-import React from "react";
-import styles from "./Modal.module.scss";
-import SwipeableViews from "react-swipeable-views";
-import View1 from "./Views/View.1";
-import View2 from "./Views/View.2";
-import View3 from "./Views/View.3";
-import View4 from "./Views/View.4";
+import React, { useState, useEffect } from "react";
+import Modal from "./Modal";
+import Fab from "./Fab";
 
-export default ({ open, setOpen, payment, setPayment, index, setIndex }) => {
-  const containerStyle = { height: "100%", width: "100%" };
-  const swipeableStyle = { height: "100%", width: "100%", overflow: "hidden" };
+export default () => {
+  const initialState = {
+    single_payment: null,
+    category: null,
+    provider: null,
+    due_date: null,
+    amount: null,
+    months_paid: []
+  };
+  const [payment, setPayment] = useState(initialState);
+  const [open, setOpen] = useState(true);
+  const [index, setIndex] = useState(2);
 
-  console.log(payment);
+  useEffect(() => {
+    if (!open) {
+      setPayment(initialState);
+      setIndex(0);
+    }
+  }, [open]);
 
   return (
-    open && (
-      <div className={styles.background}>
-        <div className={styles.modal}>
-          <SwipeableViews
-            containerStyle={containerStyle}
-            style={swipeableStyle}
-            index={index}
-            disabled
-          >
-            <View1 {...{ setPayment, setIndex }} />
-            <View2 {...{ payment, setPayment, setIndex }} />
-            <View3 {...{ payment, setPayment, setIndex }} />
-            <View4 {...{ payment, setPayment, setOpen, setIndex }} />
-          </SwipeableViews>
-        </div>
-      </div>
-    )
+    <React.Fragment>
+      <Modal {...{ open, setOpen, payment, setPayment, index, setIndex }} />
+      <Fab {...{ open, setOpen }} />
+    </React.Fragment>
   );
 };

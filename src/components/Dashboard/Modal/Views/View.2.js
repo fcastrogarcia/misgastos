@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styles from "./View.module.scss";
-import cn from "classnames";
+import cx from "classnames";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default ({ payment, setPayment, setIndex }) => {
   const [category, setCategory] = useState("");
   const [provider, setProvider] = useState("");
+  const [error, setError] = useState(null);
 
   const { single_payment } = payment;
 
@@ -32,43 +33,48 @@ export default ({ payment, setPayment, setIndex }) => {
           provider: provider
         };
       });
+      setError(false);
       return setIndex(2);
     } else {
-      alert("No ingresaste una categoría");
+      setError(true);
     }
   }
 
   return (
     <div className={styles.view}>
       {single_payment ? (
-        <React.Fragment>
+        <div className={styles.wrapper}>
           <h3 htmlFor="category" className={styles.title}>
             ¿Qué tenés que pagar?
           </h3>
           <input
-            className={styles.input}
+            className={cx(styles.input, { [styles.error]: error })}
             name="category"
             type="text"
             onChange={handleChange}
           ></input>
-        </React.Fragment>
+        </div>
       ) : (
-        <React.Fragment>
+        <div className={styles.wrapper}>
           <h3 className={styles.title}>Elegí el servicio</h3>
           <input
-            className={styles.input}
+            className={cx(styles.input, { [styles.error]: error })}
             type="text"
             name="category"
+            placeholder="Ej.: Internet"
             onChange={handleChange}
           />
-          <label htmlFor="provider">Ingresá el proveedor (opcional)</label>
-          <input
-            className={styles.input}
-            name="provider"
-            type="text"
-            onChange={handleChange}
-          ></input>
-        </React.Fragment>
+          <div style={{ marginTop: "15px" }}>
+            <label htmlFor="provider">Ingresá el proveedor (opcional)</label>
+            <input
+              className={styles.input}
+              name="provider"
+              type="text"
+              placeholder="Ej.: Fibertel"
+              onChange={handleChange}
+            ></input>
+          </div>
+        </div>
       )}
       <button className={styles.prev} onClick={() => setIndex(0)}>
         <FaArrowLeft />

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styles from "./View.module.scss";
-import cn from "classnames";
+import cx from "classnames";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default ({ payment, setPayment, setOpen, setIndex }) => {
   const [amount, setAmount] = useState(null);
+  // const [error, setError] = useState(null)
 
   function handleChange(e) {
     setAmount(e.target.value);
@@ -23,11 +24,12 @@ export default ({ payment, setPayment, setOpen, setIndex }) => {
       alert("Ingresá el monto a pagar");
     }
   }
+  //validar monto
   return (
     <div className={styles.view}>
-      <h3>¿Cuánto tenés que pagar?</h3>
-      <p>(Ingresá un valor estimado en su defecto)</p>
-      <input type="number" onChange={handleChange} />
+      <h3 className={styles.title}>¿Cuánto tenés que pagar?</h3>
+      <p>(Ingresá un valor aproximado en su defecto)</p>
+      <input className={styles.input} type="number" onChange={handleChange} />
       <button className={styles.prev} onClick={() => setIndex(2)}>
         <FaArrowLeft />
       </button>

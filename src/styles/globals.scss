@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "./variables.scss";
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -36,26 +36,9 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 .react-calendar {
   border: 3px solid $gray-200;
   border-radius: 5px;
   padding: 10px 20px;
-  margin-top: 15px;
+  transform: scale(0.93);
 }

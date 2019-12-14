@@ -6,7 +6,7 @@ import { MdAdd } from "react-icons/md";
 export default ({ open, setOpen }) => {
   return (
     <button
-      className={cx(styles.floatingActionButton, { [styles.open]: open })}
+      className={cx(styles["floating-action-button"], { [styles.open]: open })}
       onClick={() => setOpen(!open)}
     >
       <MdAdd className={cx(styles.icon, { [styles.open]: open })} />

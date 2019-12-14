@@ -1,36 +1,30 @@
 import React, { useState } from "react";
 import styles from "./View.module.scss";
 import cx from "classnames";
-import { FaArrowRight } from "react-icons/fa";
-import { FaArrowLeft } from "react-icons/fa";
+import Navigation from "./Navigation";
 
 export default ({ payment, setPayment, setIndex }) => {
-  const [category, setCategory] = useState("");
-  const [provider, setProvider] = useState("");
+  const [state, setState] = useState({ category: "", provider: "" });
   const [error, setError] = useState(null);
 
   const { single_payment } = payment;
 
-  function handleClick(event) {
-    const { category } = event.target.dataset;
-    setCategory(category);
-  }
   function handleChange(e) {
     const { name, value } = e.target;
-    if (name === "category") {
-      setCategory(value);
-    }
-    if (name === "provider") {
-      setProvider(value);
-    }
+    setState(prevState => {
+      return {
+        ...prevState,
+        [name]: value
+      };
+    });
+    name && name === "category" && setError(false);
   }
-  function handleNavigation() {
-    if (category) {
+  function handleForward() {
+    if (state.category) {
       setPayment(prevState => {
         return {
           ...prevState,
-          category: category,
-          provider: provider
+          ...state
         };
       });
       setError(false);
@@ -41,9 +35,9 @@ export default ({ payment, setPayment, setIndex }) => {
   }
 
   return (
-    <div className={styles.view}>
+    <div className={styles["full-space-container"]}>
       {single_payment ? (
-        <div className={styles.wrapper}>
+        <div className={styles["half-width-wrapper"]}>
           <h3 htmlFor="category" className={styles.title}>
             ¿Qué tenés que pagar?
           </h3>
@@ -55,7 +49,7 @@ export default ({ payment, setPayment, setIndex }) => {
           ></input>
         </div>
       ) : (
-        <div className={styles.wrapper}>
+        <div className={styles["half-width-wrapper"]}>
           <h3 className={styles.title}>Elegí el servicio</h3>
           <input
             className={cx(styles.input, { [styles.error]: error })}
@@ -76,12 +70,10 @@ export default ({ payment, setPayment, setIndex }) => {
           </div>
         </div>
       )}
-      <button className={styles.prev} onClick={() => setIndex(0)}>
-        <FaArrowLeft />
-      </button>
-      <button className={styles.next} onClick={handleNavigation}>
-        <FaArrowRight />
-      </button>
+      <Navigation
+        handleBackward={() => setIndex(0)}
+        handleForward={handleForward}
+      />
     </div>
   );
 };

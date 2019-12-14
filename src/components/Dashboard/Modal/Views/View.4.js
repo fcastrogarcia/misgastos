@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import styles from "./View.module.scss";
-import cx from "classnames";
-import { FaArrowLeft } from "react-icons/fa";
+import NumberFormat from "react-number-format";
+import Navigation from "./Navigation";
+import { FaCheck } from "react-icons/fa";
 
-export default ({ payment, setPayment, setOpen, setIndex }) => {
-  const [amount, setAmount] = useState(null);
-  // const [error, setError] = useState(null)
+export default ({ setPayment, setOpen, setIndex }) => {
+  const [amount, setAmount] = useState(0);
 
   function handleChange(e) {
-    setAmount(e.target.value);
+    setAmount(e.floatValue);
   }
+
   function handleSubmit() {
     if (amount) {
       setPayment(prevState => {
@@ -19,23 +20,26 @@ export default ({ payment, setPayment, setOpen, setIndex }) => {
         };
       });
       setOpen(false);
-      setIndex(0);
-    } else {
-      alert("Ingresá el monto a pagar");
     }
   }
-  //validar monto
+
   return (
-    <div className={styles.view}>
-      <h3 className={styles.title}>¿Cuánto tenés que pagar?</h3>
-      <p>(Ingresá un valor aproximado en su defecto)</p>
-      <input className={styles.input} type="number" onChange={handleChange} />
-      <button className={styles.prev} onClick={() => setIndex(2)}>
-        <FaArrowLeft />
-      </button>
-      <button className={styles.next} onClick={handleSubmit}>
-        OK
-      </button>
+    <div className={styles["full-space-container"]}>
+      <div>
+        <h3 className={styles.title}>¿Cuánto tenés que pagar?</h3>
+        <p>(opcional)</p>
+        <NumberFormat
+          className={styles["input"]}
+          prefix={"$"}
+          allowNegative={false}
+          onValueChange={handleChange}
+        />
+      </div>
+      <Navigation
+        handleBackward={() => setIndex(2)}
+        handleForward={handleSubmit}
+        rightIcon={<FaCheck />}
+      />
     </div>
   );
 };

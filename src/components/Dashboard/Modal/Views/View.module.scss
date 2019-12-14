@@ -1,7 +1,7 @@
 @import "../../../../styles/mixins.scss";
 @import "../../../../styles/variables.scss";
 
-.view {
+.full-space-container {
   @include flexContainer;
   flex-direction: column;
   width: 100%;
@@ -10,11 +10,11 @@
 .title {
   font-size: 1.7rem;
 }
-.buttonsWrapper {
+.wrapper-margin-top {
   @include flexContainer;
   margin-top: 30px;
 }
-.option {
+.main-action-button {
   margin: 15px;
   font-size: 1rem;
   font-weight: 600;
@@ -28,10 +28,11 @@
     color: $gray-900;
   }
 }
-.wrapper {
-  width: 45%;
+.half-width-wrapper {
+  width: 50%;
 }
 .input {
+  font-family: "Archivo", sans-serif;
   position: relative;
   border: none;
   width: 100%;
@@ -48,18 +49,17 @@
   &.error {
     border: 3px solid $red-500;
   }
-  &.v3 {
-    margin-bottom: 20px;
-  }
 }
-.message {
+.extra-margin-bottom {
+  margin-bottom: 20px;
+}
+.error-message {
   position: absolute;
   bottom: 0;
-  &.error {
-    color: $red-600;
-    font-size: 13px;
-  }
+  color: $red-600;
+  font-size: 13px;
 }
+
 //navigation
 @mixin navigation {
   @include flexContainer;

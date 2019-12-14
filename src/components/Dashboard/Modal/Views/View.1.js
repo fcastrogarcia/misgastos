@@ -16,17 +16,17 @@ export default ({ setPayment, setIndex }) => {
   }
 
   return (
-    <div className={styles.view}>
+    <div className={styles["full-space-container"]}>
       <h3 className={styles.title}>Seleccioná una opción</h3>
-      <div className={styles.buttonsWrapper}>
+      <div className={styles["wrapper-margin-top"]}>
         <button
-          className={styles.option}
+          className={styles["main-action-button"]}
           onClick={e => handleClick(e, (singlePayment = false))}
         >
           Servicio / Pago mensual
         </button>
         <button
-          className={styles.option}
+          className={styles["main-action-button"]}
           onClick={e => handleClick(e, (singlePayment = true))}
         >
           Pago único

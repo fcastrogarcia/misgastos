@@ -4,16 +4,16 @@ import Fab from "./Fab";
 
 export default () => {
   const initialState = {
-    single_payment: null,
-    category: null,
-    provider: null,
-    due_date: null,
-    amount: null,
+    single_payment: undefined,
+    category: "",
+    provider: "",
+    due_date: undefined,
+    amount: undefined,
     months_paid: []
   };
   const [payment, setPayment] = useState(initialState);
   const [open, setOpen] = useState(true);
-  const [index, setIndex] = useState(2);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (!open) {

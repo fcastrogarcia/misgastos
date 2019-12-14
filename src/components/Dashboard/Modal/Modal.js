@@ -40,7 +40,7 @@ export default ({ open, setOpen, payment, setPayment, index, setIndex }) => {
             <View1 {...{ setPayment, setIndex }} />
             <View2 {...{ payment, setPayment, setIndex }} />
             <View3 {...{ payment, setPayment, setIndex }} />
-            <View4 {...{ payment, setPayment, setOpen, setIndex }} />
+            <View4 {...{ setPayment, setOpen, setIndex }} />
           </SwipeableViews>
         </div>
       </div>

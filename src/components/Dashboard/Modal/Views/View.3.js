@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import cx from "classnames";
 import styles from "./View.module.scss";
 import Calendar from "react-calendar";
-import Navigation from "./Navigation";
+import Navigation from "../Navigation";
 
 const SinglePaymentView = ({ handleCalendar }) => (
   <React.Fragment>
@@ -13,10 +13,10 @@ const SinglePaymentView = ({ handleCalendar }) => (
 );
 
 const MonthlyPaymentView = ({ handleChange, error }) => (
-  <div>
-    <h3 className={styles.title}>Ingresá el día del vencimiento</h3>
+  <div className={cx(styles["half-width-wrapper"])}>
+    <h3 className={styles["title-sm"]}>Ingresá el día del vencimiento</h3>
     <p>(opcional)</p>
-    <div style={{ position: "relative" }}>
+    <div className={styles["relative-container"]}>
       <input
         className={cx(styles.input, styles["extra-margin-bottom"], {
           [styles.error]: error
@@ -42,9 +42,8 @@ export default ({ payment, setPayment, setIndex }) => {
   const { single_payment } = payment;
 
   function validator(value) {
-    //number between 1-31
-    const regex = /^([1-9]|1\d|2\d|3[0-1])(\.\d{1,2})?$/g;
-    let validated = regex.test(value);
+    const numberBetween1and31 = /^([1-9]|1\d|2\d|3[0-1])(\.\d{1,2})?$/g;
+    let validated = numberBetween1and31.test(value);
     return validated;
   }
 
@@ -56,9 +55,8 @@ export default ({ payment, setPayment, setIndex }) => {
   function handleChange(event) {
     const { value } = event.target;
     const validated = validator(value);
-    if (!validated && value) {
-      setError(true);
-    } else {
+    if (!validated && value) setError(true);
+    else {
       setDate(value);
       setError(false);
     }

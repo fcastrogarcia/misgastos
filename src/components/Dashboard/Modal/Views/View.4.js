@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./View.module.scss";
 import NumberFormat from "react-number-format";
-import Navigation from "./Navigation";
+import Navigation from "../Navigation";
 import { FaCheck } from "react-icons/fa";
 
 export default ({ setPayment, setOpen, setIndex }) => {
@@ -19,14 +19,14 @@ export default ({ setPayment, setOpen, setIndex }) => {
           amount: amount
         };
       });
-      setOpen(false);
     }
+    setOpen(false);
   }
-
+  
   return (
     <div className={styles["full-space-container"]}>
-      <div>
-        <h3 className={styles.title}>¿Cuánto tenés que pagar?</h3>
+      <div className={styles["half-width-wrapper"]}>
+        <h3 className={styles["title-sm"]}>¿Cuánto tenés que pagar?</h3>
         <p>(opcional)</p>
         <NumberFormat
           className={styles["input"]}

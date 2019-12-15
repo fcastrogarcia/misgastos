@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./View.module.scss";
-import cn from "classnames";
 
 export default ({ setPayment, setIndex }) => {
   let singlePayment;

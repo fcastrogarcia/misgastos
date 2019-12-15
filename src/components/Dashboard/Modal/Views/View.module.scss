@@ -36,13 +36,15 @@
   position: relative;
   border: none;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   height: 50px;
   font-size: 1.2rem;
   margin: 15px 0;
   padding-left: 10px;
   border-radius: 5px;
   border: 3px solid $gray-200;
+  color: $gray-800;
+  box-sizing: border-box;
   &::placeholder {
     color: $gray-500;
   }
@@ -50,38 +52,51 @@
     border: 3px solid $red-500;
   }
 }
-.extra-margin-bottom {
-  margin-bottom: 20px;
-}
 .error-message {
   position: absolute;
   bottom: 0;
   color: $red-600;
   font-size: 13px;
 }
+.label {
+  font-weight: 500;
+}
 
-//navigation
-@mixin navigation {
-  @include flexContainer;
+//modifiers
+.extra-margin-bottom {
+  margin-bottom: 20px;
+}
+.extra-margin-top {
+  margin-top: 15px;
+}
+.relative-container {
+  position: relative;
+}
+.title-sm {
+  font-size: 1.45rem;
+}
+
+//dropdown options
+.dropdown-list {
   position: absolute;
-  bottom: 0;
-  margin: 15px;
-  font-size: 1.5rem;
-  color: $teal-500;
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  transition: all 0.15s ease-in-out;
+  top: calc(100% - 15px);
+  padding: 5px 0;
+  background: $white;
+  z-index: 100;
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: $shadow-md;
+}
+
+.list-item {
+  @include flexContainer;
+  justify-content: flex-start;
+  padding: 0px 25px;
+  height: 40px;
+  color: $gray-700;
+  font-weight: 500;
   &:hover {
-    background: $teal-500;
-    color: #fff;
+    background: $gray-200;
   }
-}
-.next {
-  @include navigation();
-  right: 0;
-}
-.prev {
-  @include navigation();
-  left: 0;
 }

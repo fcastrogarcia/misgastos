@@ -13,7 +13,7 @@ export default ({ open, setOpen, payment, setPayment, index, setIndex }) => {
     if (open) setRender(true);
   }, [open]);
 
-  const onAnimationEnd = () => {
+  const handleAnimationEnd = () => {
     if (!open) setRender(false);
   };
 
@@ -28,7 +28,7 @@ export default ({ open, setOpen, payment, setPayment, index, setIndex }) => {
       <div
         className={styles.background}
         style={animationStyle}
-        onAnimationEnd={onAnimationEnd}
+        onAnimationEnd={handleAnimationEnd}
       >
         <div className={styles.modal}>
           <SwipeableViews

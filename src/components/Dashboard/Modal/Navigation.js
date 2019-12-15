@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./View.module.scss";
+import styles from "./Navigation.module.scss";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 

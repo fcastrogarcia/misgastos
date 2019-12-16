@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./View.module.scss";
 import cx from "classnames";
 import { Scrollbars } from "react-custom-scrollbars";
 import Navigation from "../Navigation";
 import useSearchEngine from "../useSearchEngine";
+import { FaCaretDown, FaTimes } from "react-icons/fa";
 
 const SinglePaymentView = ({ error, handleChange }) => (
   <div className={styles["half-width-wrapper"]}>
@@ -22,43 +23,84 @@ const MonthlyPaymentView = ({
   error,
   handleChange,
   searchResults,
-  setData,
-  data
+  setCategory,
+  category
 }) => {
-  const [focus, setFocus] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [currentItem, setCurrentItem] = useState(-1);
+  const itemsRefs = [];
 
   function handleSelect(_, item) {
-    setData(prevState => {
-      return {
-        ...prevState,
-        category: item
-      };
-    });
+    setCategory(item);
+  }
+
+  function handleDelete() {
+    setCategory("");
+  }
+
+  function handleCaret() {
+    setShowDropdown(!showDropdown);
+    setCurrentItem(-1);
+  }
+
+  function handleBlur() {
+    setShowDropdown(false);
+    setCurrentItem(-1);
+  }
+
+  function handleKeyDown(e) {
+    const key = e.keyCode;
+    if (key === 40 && currentItem < searchResults.length - 1) {
+      setCurrentItem(prevState => prevState + 1);
+      currentItem > 2 && itemsRefs[currentItem + 1].scrollIntoView(false);
+    }
+    if (key === 38 && currentItem > -1) {
+      setCurrentItem(prevState => prevState - 1);
+      currentItem > 0 && itemsRefs[currentItem - 1].scrollIntoView();
+    }
+    if (key === 13 && searchResults.length - 1 < currentItem > -1) {
+      setCategory(searchResults[currentItem]);
+    }
   }
 
   return (
     <div className={styles["half-width-wrapper"]}>
       <h3 className={styles.title}>Elegí el servicio</h3>
       <div className={styles["relative-container"]}>
-        <input
-          className={cx(styles.input, { [styles.error]: error })}
-          type="text"
-          name="category"
-          placeholder="Ej.: Internet"
-          autoComplete="off"
-          onChange={handleChange}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          value={data.category}
-        />
-        {focus && searchResults.length > 0 && (
+        <div className={styles["input-wrapper"]}>
+          <input
+            className={cx(styles.input, { [styles.error]: error })}
+            type="text"
+            name="category"
+            placeholder="Ej.: Internet"
+            onChange={handleChange}
+            onFocus={() => setShowDropdown(true)}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            value={category}
+            autoComplete="off"
+          />
+          <span className={styles["icons-wrapper"]}>
+            {category && (
+              <FaTimes className={styles.clear} onClick={handleDelete} />
+            )}
+            <FaCaretDown className={styles.caret} onClick={handleCaret} />
+          </span>
+        </div>
+        {showDropdown && searchResults.length > 0 && (
           <ul className={cx(styles["dropdown-list"])}>
             <Scrollbars autoHeight autoHeightMax={160}>
               {searchResults.map((item, i) => (
                 <li
                   onMouseDown={e => handleSelect(e, item)}
                   key={i}
-                  className={styles["list-item"]}
+                  tabIndex={i}
+                  className={cx(styles["list-item"], {
+                    [styles.selected]: currentItem === i
+                  })}
+                  ref={li => {
+                    itemsRefs.push(li);
+                  }}
                 >
                   {item}
                 </li>
@@ -85,30 +127,31 @@ const MonthlyPaymentView = ({
 };
 
 export default ({ payment, setPayment, setIndex }) => {
-  const [data, setData] = useState({ category: "", provider: "" });
+  const [category, setCategory] = useState("");
+  const [provider, setProvider] = useState("");
   const [error, setError] = useState(null);
   const { handleSearch, searchResults } = useSearchEngine();
 
   const { single_payment } = payment;
 
+  useEffect(() => {
+    handleSearch(category);
+  }, [category]);
+
   function handleChange(e) {
     const { name, value } = e.target;
-    if (name === "category") handleSearch(value);
-    setData(prevState => {
-      return {
-        ...prevState,
-        [name]: value
-      };
-    });
+    if (name === "category") setCategory(value);
+    if (name === "provider") setProvider(value);
     if (value && name === "category") setError(false);
   }
 
   function handleForward() {
-    if (data.category) {
+    if (category) {
       setPayment(prevState => {
         return {
           ...prevState,
-          ...data
+          category: category,
+          provider: provider
         };
       });
       setError(false);
@@ -127,8 +170,8 @@ export default ({ payment, setPayment, setIndex }) => {
           handleChange={handleChange}
           error={error}
           searchResults={searchResults}
-          setData={setData}
-          data={data}
+          setCategory={setCategory}
+          category={category}
         />
       )}
       <Navigation

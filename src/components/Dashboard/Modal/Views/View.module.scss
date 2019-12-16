@@ -31,16 +31,18 @@
 .half-width-wrapper {
   width: 50%;
 }
+//inputs stuff
 .input {
   font-family: "Archivo", sans-serif;
+  font-size: 1.2rem;
+  // font-weight: 500;
   position: relative;
   border: none;
   width: 100%;
   max-width: 340px;
   height: 50px;
-  font-size: 1.2rem;
   margin: 15px 0;
-  padding-left: 10px;
+  padding: 0 50px 0 10px;
   border-radius: 5px;
   border: 3px solid $gray-200;
   color: $gray-800;
@@ -52,6 +54,13 @@
     border: 3px solid $red-500;
   }
 }
+.input-wrapper {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+  }
+}
 .error-message {
   position: absolute;
   bottom: 0;
@@ -61,7 +70,40 @@
 .label {
   font-weight: 500;
 }
-
+.icons-wrapper {
+  @include flexContainer;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -15px;
+  color: $gray-600;
+  height: 30px;
+}
+.clear {
+  margin: 0 8px 0 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    color: $red-500;
+  }
+}
+.caret {
+  font-size: 1rem;
+  margin: 0 8px 0 0;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: relative;
+    width: 2px;
+    background: $gray-200;
+    height: 100%;
+    left: 0;
+  }
+  &:active {
+    color: $teal-400;
+  }
+}
 //modifiers
 .extra-margin-bottom {
   margin-bottom: 20px;
@@ -79,7 +121,8 @@
 //dropdown options
 .dropdown-list {
   position: absolute;
-  top: calc(100% - 15px);
+  top: 100%;
+  margin-top: -10px;
   padding: 5px 0;
   background: $white;
   z-index: 100;
@@ -96,7 +139,9 @@
   height: 40px;
   color: $gray-700;
   font-weight: 500;
-  &:hover {
+  &.selected,
+  &:hover,
+  &:focus {
     background: $gray-200;
   }
 }

@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         : dispatch({ type: "UNAUTHENTICATED" });
     });
   }, []);
-
+  console.log(auth);
   const value = {
     auth,
     dispatch

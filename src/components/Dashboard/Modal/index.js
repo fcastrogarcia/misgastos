@@ -4,15 +4,15 @@ import Fab from "./Fab";
 
 export default () => {
   const initialState = {
-    single_payment: undefined,
+    single_payment: null,
     category: "",
     provider: "",
-    due_date: undefined,
-    amount: undefined,
+    due_date: null,
+    amount: null,
     months_paid: []
   };
   const [payment, setPayment] = useState(initialState);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {

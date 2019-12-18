@@ -9,14 +9,15 @@ main {
 .month {
   font-size: 2rem;
   margin: 10px;
+  color: $gray-800;
+  font-weight: 700;
 }
 .item {
   @include flexContainer;
   justify-content: flex-start;
   padding: 20px;
   width: 30%;
-  background: $gray-300;
-  border: 2px solid $gray-400;
+  background: $gray-200;
   margin: 5px 0;
   border-radius: 4px;
   transition: all 0.1s ease-in-out;

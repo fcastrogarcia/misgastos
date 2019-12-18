@@ -9,11 +9,12 @@ import SignIn from "../SignIn/index";
 // import SignUp from "../SignUp/index";
 import Dashboard from "../Dashboard/index";
 import PrivateRoute from "./PrivateRoute";
-import authContext from "../Auth/context";
+import authContext from "../Context/authContext";
 import "../../styles/index";
 
 export default () => {
   const { auth } = useContext(authContext);
+
   return (
     <React.Fragment>
       <Router>

@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 
 import App from "./components/App/index";
-import { FirebaseProvider } from "./components/Firebase/context";
-import { AuthProvider } from "./components/Auth/context";
+import { FirebaseProvider } from "./components/Context/firebaseContext";
+import { AuthProvider } from "./components/Context/authContext";
 
 ReactDOM.render(
   <FirebaseProvider>

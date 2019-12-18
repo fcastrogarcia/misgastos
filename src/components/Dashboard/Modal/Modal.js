@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Modal.module.scss";
 import SwipeableViews from "react-swipeable-views";
 import View1 from "./Views/View.1";
-import View2 from "./Views/View.2";
+import View2 from "./Views/View2/index";
 import View3 from "./Views/View.3";
 import View4 from "./Views/View.4";
 
@@ -40,7 +40,7 @@ export default ({ open, setOpen, payment, setPayment, index, setIndex }) => {
             <View1 {...{ setPayment, setIndex }} />
             <View2 {...{ payment, setPayment, setIndex }} />
             <View3 {...{ payment, setPayment, setIndex }} />
-            <View4 {...{ setPayment, setOpen, setIndex }} />
+            <View4 {...{ payment, setPayment, setOpen, setIndex }} />
           </SwipeableViews>
         </div>
       </div>

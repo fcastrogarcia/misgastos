@@ -3,9 +3,11 @@ import styles from "./View.module.scss";
 import NumberFormat from "react-number-format";
 import Navigation from "../Navigation";
 import { FaCheck } from "react-icons/fa";
+import useCombinedContexts from "../../../Context/useCombinedContexts";
 
-export default ({ setPayment, setOpen, setIndex }) => {
+export default ({ payment, setPayment, setOpen, setIndex }) => {
   const [amount, setAmount] = useState(0);
+  const { firebase, auth } = useCombinedContexts();
 
   function handleChange(e) {
     setAmount(e.floatValue);
@@ -20,9 +22,17 @@ export default ({ setPayment, setOpen, setIndex }) => {
         };
       });
     }
-    setOpen(false);
+    firebase
+      .payments()
+      .add({
+        ...payment,
+        userId: auth.uid,
+        createdAt: firebase.fieldValue.serverTimestamp()
+      })
+      .then(() => setOpen(false))
+      .catch(err => console.log(err));
   }
-  
+
   return (
     <div className={styles["full-space-container"]}>
       <div className={styles["half-width-wrapper"]}>

@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import styles from "./Dropdown.module.scss";
 import { MdExitToApp } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
-import firebaseContext from "../../../Firebase/context";
+import firebaseContext from "../../../Context/firebaseContext";
 
 const Dropdown = ({ history }) => {
   const firebase = useContext(firebaseContext);

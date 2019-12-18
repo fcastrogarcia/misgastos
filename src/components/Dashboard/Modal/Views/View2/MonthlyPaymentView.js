@@ -1,32 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
-import styles from "./View.module.scss";
+import React, { useState } from "react";
 import cx from "classnames";
+import styles from "../View.module.scss";
 import { Scrollbars } from "react-custom-scrollbars";
-import Navigation from "../Navigation";
-import useSearchEngine from "../useSearchEngine";
 import { FaCaretDown, FaTimes } from "react-icons/fa";
 
-const SinglePaymentView = ({ error, handleChange }) => (
-  <div className={styles["half-width-wrapper"]}>
-    <h3 className={styles.title}>¿Qué tenés que pagar?</h3>
-    <input
-      className={cx(styles.input, { [styles.error]: error })}
-      name="category"
-      type="text"
-      autoComplete="off"
-      onChange={handleChange}
-    ></input>
-  </div>
-);
-
-const MonthlyPaymentView = ({
+export default ({
   error,
   handleChange,
   searchResults,
   setCategory,
   category
 }) => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showSearchList, setSearchList] = useState(false);
   const [currentItem, setCurrentItem] = useState(-1);
   const itemsRefs = [];
 
@@ -39,12 +24,12 @@ const MonthlyPaymentView = ({
   }
 
   function handleCaret() {
-    setShowDropdown(!showDropdown);
+    setSearchList(!showSearchList);
     setCurrentItem(-1);
   }
 
   function handleBlur() {
-    setShowDropdown(false);
+    setSearchList(false);
     setCurrentItem(-1);
   }
 
@@ -74,7 +59,7 @@ const MonthlyPaymentView = ({
             name="category"
             placeholder="Ej.: Internet"
             onChange={handleChange}
-            onFocus={() => setShowDropdown(true)}
+            onFocus={() => setSearchList(true)}
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
             value={category}
@@ -87,8 +72,8 @@ const MonthlyPaymentView = ({
             <FaCaretDown className={styles.caret} onClick={handleCaret} />
           </span>
         </div>
-        {showDropdown && searchResults.length > 0 && (
-          <ul className={cx(styles["dropdown-list"])}>
+        {showSearchList && searchResults.length > 0 && (
+          <ul className={styles["dropdown-list"]}>
             <Scrollbars autoHeight autoHeightMax={160}>
               {searchResults.map((item, i) => (
                 <li
@@ -110,7 +95,7 @@ const MonthlyPaymentView = ({
         )}
       </div>
       <div className={styles["extra-margin-top"]}>
-        <label className={cx(styles.label)} htmlFor="provider">
+        <label className={styles.label} htmlFor="provider">
           Ingresá el proveedor (opcional)
         </label>
         <input
@@ -122,62 +107,6 @@ const MonthlyPaymentView = ({
           onChange={handleChange}
         ></input>
       </div>
-    </div>
-  );
-};
-
-export default ({ payment, setPayment, setIndex }) => {
-  const [category, setCategory] = useState("");
-  const [provider, setProvider] = useState("");
-  const [error, setError] = useState(null);
-  const { handleSearch, searchResults } = useSearchEngine();
-
-  const { single_payment } = payment;
-
-  useEffect(() => {
-    handleSearch(category);
-  }, [category]);
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    if (name === "category") setCategory(value);
-    if (name === "provider") setProvider(value);
-    if (value && name === "category") setError(false);
-  }
-
-  function handleForward() {
-    if (category) {
-      setPayment(prevState => {
-        return {
-          ...prevState,
-          category: category,
-          provider: provider
-        };
-      });
-      setError(false);
-      return setIndex(2);
-    } else {
-      setError(true);
-    }
-  }
-
-  return (
-    <div className={styles["full-space-container"]}>
-      {single_payment ? (
-        <SinglePaymentView handleChange={handleChange} error={error} />
-      ) : (
-        <MonthlyPaymentView
-          handleChange={handleChange}
-          error={error}
-          searchResults={searchResults}
-          setCategory={setCategory}
-          category={category}
-        />
-      )}
-      <Navigation
-        handleBackward={() => setIndex(0)}
-        handleForward={handleForward}
-      />
     </div>
   );
 };

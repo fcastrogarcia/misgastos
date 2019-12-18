@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styles from "./Menu.module.scss";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import authContext from "../../../Auth/context";
+import authContext from "../../../Context/authContext";
 import Dropdown from "./Dropdown";
 
 const Menu = () => {

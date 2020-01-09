@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Table.module.scss";
 import cx from "classnames";
-import keyGen from "../../../utils/keyGen";
 
 const th = ["Categoría", "Proveedor", "Vencimiento", "Monto", "Estado", ""];
 
@@ -19,8 +18,8 @@ export default ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map(item => (
-            <tr key={keyGen()} className={styles.tr}>
+          {data.map((item, index) => (
+            <tr key={index} className={styles.tr}>
               <td className={cx(styles.td)}>{item.category}</td>
               <td className={cx(styles.td)}>{item.provider}</td>
               <td className={cx(styles.td)}>{item.due_date}</td>

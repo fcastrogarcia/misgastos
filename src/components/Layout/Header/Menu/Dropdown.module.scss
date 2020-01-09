@@ -6,14 +6,17 @@
   top: 4em;
   // height: 150px;
   // width: 150px;
-  background: $gray-200;
+  background: $white;
   box-shadow: $shadow-md;
+  border-radius: 5px;
 }
 
 .li,
 .li button {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: $gray-800;
+  font-weight: bold;
+  letter-spacing: 0.8px;
 }
 .li {
   @include flexContainer;
@@ -21,7 +24,7 @@
   padding: 15px 20px;
   width: 10em;
   &:hover {
-    background: $gray-400;
+    background: $gray-200;
   }
 }
 .icon {

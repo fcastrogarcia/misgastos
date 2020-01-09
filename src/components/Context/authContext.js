@@ -14,6 +14,8 @@ const reducer = (state, action) => {
     case "UNAUTHENTICATED": {
       return null;
     }
+    default:
+      return state;
   }
 };
 

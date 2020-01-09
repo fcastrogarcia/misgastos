@@ -10,7 +10,9 @@ import SignIn from "../SignIn/index";
 import Dashboard from "../Dashboard/index";
 import PrivateRoute from "./PrivateRoute";
 import authContext from "../Context/authContext";
+
 import "../../styles/index";
+import "../../assets/font-icon/style.css";
 
 export default () => {
   const { auth } = useContext(authContext);

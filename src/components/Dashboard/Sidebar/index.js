@@ -1,14 +1,18 @@
 import React from "react";
 import styles from "./Sidebar.module.scss";
+import keyGen from "../../../utils/keyGen";
 
-export default () => {
+const sections = ["Overview", "Payments", "Expenses", "Budget"];
+
+export default ({ setSection }) => {
   return (
     <aside>
       <ul>
-        <li>General</li>
-        <li>Pagos</li>
-        <li>Gastos</li>
-        <li>Presupuesto</li>
+        {sections.map((item, i) => (
+          <li key={i} className={styles.li}>
+            {item}
+          </li>
+        ))}
       </ul>
     </aside>
   );

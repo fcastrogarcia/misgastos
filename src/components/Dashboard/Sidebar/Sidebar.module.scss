@@ -2,9 +2,23 @@
 @import "../../../styles/mixins.scss";
 
 aside {
+  @include flexContainer;
+  padding-top: calc(4em);
+  align-items: flex-start;
   grid-area: sidebar;
-  background: $gray-700;
-  padding: 30px;
+  background: $gray-100;
   box-sizing: border-box;
-  color: $gray-300;
+}
+
+.li {
+  margin: 3em;
+  font-size: 0.8rem;
+  color: $gray-600;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.12s ease-in-out;
+  &:hover {
+    color: $gray-800;
+  }
 }

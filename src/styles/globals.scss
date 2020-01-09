@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Archivo", sans-serif;
+  font-family: ".SF NS Display";
 }
 input {
   outline: none;
@@ -21,7 +21,7 @@ button {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: "Archivo", sans-serif;
+  font-family: ".SF NS Display";
   font-weight: 500;
 }
 h1,
@@ -29,6 +29,7 @@ h2,
 h3,
 h4 {
   color: $gray-900;
+  letter-spacing: 0.5px;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

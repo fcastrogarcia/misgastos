@@ -4,8 +4,8 @@
 .floating-action-button {
   @include flexContainer;
   border-radius: 50%;
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   background: $teal-300;
   position: fixed;
   bottom: 0;

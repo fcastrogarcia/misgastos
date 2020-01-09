@@ -5,7 +5,7 @@ import Menu from "./Menu/index";
 
 const Header = () => (
   <header>
-    <MdAttachMoney className={styles.logo} />
+    {/* <MdAttachMoney className={styles.logo} /> */}
     <Menu />
   </header>
 );

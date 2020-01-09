@@ -10,7 +10,9 @@ header {
   height: 4em;
   padding: 0 10px;
   box-sizing: border-box;
-  box-shadow: $shadow-md;
+  // box-shadow: $shadow;
+  border-bottom: 2px solid $gray-200;
+  font-weight: bold;
   background: $white;
   z-index: 500;
   grid-area: header;

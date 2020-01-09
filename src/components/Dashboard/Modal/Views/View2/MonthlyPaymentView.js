@@ -43,7 +43,11 @@ export default ({
       setCurrentItem(prevState => prevState - 1);
       currentItem > 0 && itemsRefs[currentItem - 1].scrollIntoView();
     }
-    if (key === 13 && searchResults.length - 1 < currentItem > -1) {
+    if (
+      key === 13 &&
+      searchResults.length - 1 > currentItem &&
+      currentItem > -1
+    ) {
       setCategory(searchResults[currentItem]);
     }
   }

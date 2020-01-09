@@ -1,0 +1,45 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.icon {
+  margin-right: 15px;
+  color: $gray-800;
+}
+
+.container {
+  width: min-content;
+  border: 2px solid $gray-200;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+
+.item {
+  @include flexContainer;
+  width: 75px;
+  border-right: 1px solid $gray-200;
+  border-left: 1px solid $gray-200;
+  font-weight: bold;
+  font-size: 0.9rem;
+  line-height: 25px;
+  color: $gray-800;
+  cursor: pointer;
+  &:nth-child(1) {
+    border-left: none;
+  }
+  &.active {
+    background: $gray-200;
+  }
+}
+
+.year {
+  cursor: auto;
+  background: $gray-200;
+}

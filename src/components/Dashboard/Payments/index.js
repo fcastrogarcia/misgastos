@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Payments.module.scss";
-import cx from "classnames";
+import styles from "./Index.module.scss";
+
+import ScheduleSelector from "./ScheduleSelector";
+import Table from "./Table";
+
+import { Provider as PaymentsProvider } from "../../Context/PaymentsContext";
 import useCombinedContexts from "../../Context/useCombinedContexts";
 
 export default () => {
@@ -8,15 +12,25 @@ export default () => {
   const { firebase, auth } = useCombinedContexts();
 
   useEffect(() => {
-    firebase
-      .payments()
-      .where("userId", "==", auth.uid)
-      .get()
-      .then(querySnapshot => {
-        const queryData = querySnapshot.docs.map(doc => doc.data());
-        if (queryData) setData(queryData);
-      });
-  }, []);
+    if (auth.uid) {
+      firebase
+        .payments()
+        .where("userId", "==", auth.uid)
+        .get()
+        .then(querySnapshot => {
+          const queryData = querySnapshot.docs.map(doc => doc.data());
+          if (queryData) setData(queryData);
+        });
+    }
+  }, [auth, auth.uid, firebase]);
+  console.log(data);
 
-  return <div>hola</div>;
+  return (
+    <PaymentsProvider>
+      <div className={styles.container}>
+        <ScheduleSelector />
+        <Table data={data} />
+      </div>
+    </PaymentsProvider>
+  );
 };

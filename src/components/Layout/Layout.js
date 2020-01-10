@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Layout.module.scss";
 import cx from "classnames";
 
-import Header from "./Header/index";
+import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 export default ({ children }) => (

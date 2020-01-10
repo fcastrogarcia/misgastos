@@ -1,0 +1,17 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+header {
+  grid-area: header;
+  @include gridContainer;
+  position: relative;
+  grid-template: 1fr / 60px 1fr;
+  grid-template-areas: "navigation menu";
+  justify-content: space-evenly;
+  height: 4em;
+  box-sizing: border-box;
+  border-bottom: 2px solid $gray-200;
+  font-weight: bold;
+  background: $white;
+  z-index: 500;
+}

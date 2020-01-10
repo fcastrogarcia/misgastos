@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import { MdAttachMoney } from "react-icons/md";
-import Menu from "./Menu/index";
+
+import Navigation from "./Header-navigation";
+import Menu from "./Header-menu";
 
 const Header = () => (
   <header>
-    {/* <MdAttachMoney className={styles.logo} /> */}
+    <Navigation />
     <Menu />
   </header>
 );

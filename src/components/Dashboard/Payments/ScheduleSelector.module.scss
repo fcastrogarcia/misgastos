@@ -2,9 +2,10 @@
 @import "../../../styles/mixins.scss";
 
 .wrapper {
+  grid-area: schedule;
+  align-self: start;
   display: flex;
   align-items: center;
-  margin-bottom: 60px;
 }
 
 .icon {

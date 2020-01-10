@@ -2,6 +2,8 @@
 @import "../../../styles/variables.scss";
 
 .table {
+  grid-area: table;
+  max-width: 1300px;
   width: 100%;
   border-radius: 5px;
   background: $white;

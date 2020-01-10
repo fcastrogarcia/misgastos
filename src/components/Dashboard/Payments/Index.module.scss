@@ -1,4 +1,11 @@
 .container {
-  max-width: 1300px;
+  margin-top: 20px;
+  display: grid;
   width: 100%;
+  grid-template: 35px 90px auto / 1fr auto;
+  // gap: 30px 0px;
+  grid-template-areas:
+    ". mab"
+    "schedule schedule"
+    "table table";
 }

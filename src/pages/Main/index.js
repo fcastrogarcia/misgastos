@@ -1,14 +1,9 @@
 import React from "react";
-import {
-  Route,
-  BrowserRouter as Router,
-  Link,
-  Redirect
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 
 import Layout from "../../components/Layout/Layout";
 import Payments from "./Payments";
-import Modal from "../../components/Dashboard/Modal/index";
+import NewPayment from "./NewPayment";
 
 const Main = () => {
   return (
@@ -18,7 +13,7 @@ const Main = () => {
         <Route path="/main/payments" component={Payments} />
         <Route path="/main/expenses" component={Payments} />
         <Route path="/main/budget" component={Payments} />
-        <Modal />
+        <Route path="/main/new-payment" component={NewPayment} />
         <Route
           exact
           path="/main"

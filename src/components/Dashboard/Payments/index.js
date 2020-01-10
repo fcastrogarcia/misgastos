@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Index.module.scss";
 
+import MainActionButton from "../../shared/MainActionButton";
 import ScheduleSelector from "./ScheduleSelector";
 import Table from "./Table";
 
@@ -28,6 +29,7 @@ export default () => {
   return (
     <PaymentsProvider>
       <div className={styles.container}>
+        <MainActionButton path="/main/new-payment" />
         <ScheduleSelector />
         <Table data={data} />
       </div>

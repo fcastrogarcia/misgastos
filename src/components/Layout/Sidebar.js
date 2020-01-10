@@ -3,7 +3,7 @@ import styles from "./Sidebar.module.scss";
 
 const sections = ["Overview", "Payments", "Expenses", "Budget"];
 
-export default ({ setSection }) => {
+export default () => {
   return (
     <aside>
       <ul>

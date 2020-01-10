@@ -8,6 +8,11 @@ aside {
   grid-area: sidebar;
   background: $gray-100;
   box-sizing: border-box;
+  position: sticky;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
 }
 
 .li {

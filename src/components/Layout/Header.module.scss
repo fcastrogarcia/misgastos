@@ -4,7 +4,7 @@
 header {
   grid-area: header;
   @include gridContainer;
-  position: relative;
+  position: sticky;
   grid-template: 1fr / 60px 1fr;
   grid-template-areas: "navigation menu";
   justify-content: space-evenly;
@@ -14,4 +14,5 @@ header {
   font-weight: bold;
   background: $white;
   z-index: 500;
+  top: 0;
 }

@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { withRouter } from "react-router-dom";
-import useCombinedContexts from "../Context/useCombinedContexts";
+
 import SignIn from "./SignIn";
 import styles from "./SignIn.module.scss";
+
+import useCombinedContexts from "../Context/useCombinedContexts";
 
 const SignInPage = ({ history }) => {
   const { firebase, dispatch } = useCombinedContexts();
@@ -22,7 +24,7 @@ const SignInPage = ({ history }) => {
           { merge: true }
         );
       })
-      .then(() => history.push("/dashboard"))
+      .then(() => history.push("/main"))
       .catch(err => console.log(err));
   }
   return (

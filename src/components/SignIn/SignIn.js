@@ -4,6 +4,7 @@ import styles from "./SignIn.module.scss";
 
 export default ({ clickHandler }) => {
   const { wrapper, title, card, form, input, label, field } = styles;
+
   return (
     <div className={wrapper}>
       <h1 className={title}>Keep account of your expenses.</h1>

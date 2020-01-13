@@ -4,23 +4,8 @@ import cx from "classnames";
 
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-import { getCurrentTime } from "../../../utils/getCurrentTime";
+import { getCurrentTime, months } from "../../../utils/time";
 import usePaymentsContext from "./usePaymentsContext";
-
-const months = [
-  "JAN",
-  "FEB",
-  "MAR",
-  "APR",
-  "MAY",
-  "JUN",
-  "JUL",
-  "AUG",
-  "SEP",
-  "OCT",
-  "NOV",
-  "DEC"
-];
 
 const Month = ({ month, index }) => {
   const { time, setTime } = usePaymentsContext();
@@ -30,14 +15,12 @@ const Month = ({ month, index }) => {
   }
 
   return (
-    <React.Fragment>
-      <div
-        className={cx(styles.item, { [styles.active]: index === time.month })}
-        onClick={handleClick}
-      >
-        {month}
-      </div>
-    </React.Fragment>
+    <div
+      className={cx(styles.item, { [styles.active]: index === time.month })}
+      onClick={handleClick}
+    >
+      {month}
+    </div>
   );
 };
 

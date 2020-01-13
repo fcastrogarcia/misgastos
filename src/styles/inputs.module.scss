@@ -1,54 +1,23 @@
-@import "../../../../styles/mixins.scss";
-@import "../../../../styles/variables.scss";
+@import "./mixins.scss";
+@import "./variables.scss";
 
-.full-space-container {
-  @include flexContainer;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-.title {
-  font-size: 1.7rem;
-}
-.wrapper-margin-top {
-  @include flexContainer;
-  margin-top: 30px;
-}
-.main-action-button {
-  margin: 15px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: 3px solid $teal-300;
-  padding: 20px 25px;
-  border-radius: 5px;
-  transition: all 0.15s ease-in-out;
-  color: $gray-800;
-  &:hover {
-    background: $teal-300;
-    color: $gray-900;
-  }
-}
-.half-width-wrapper {
-  width: 50%;
-}
-//inputs stuff
 .input {
-  font-family: "Archivo", sans-serif;
-  font-size: 1.2rem;
-  // font-weight: 500;
+  color: $gray-800;
+  font-size: 17px;
+  font-weight: 500;
   position: relative;
   border: none;
   width: 100%;
-  max-width: 340px;
-  height: 50px;
-  margin: 15px 0;
+  max-width: 100%;
+  min-width: 270px;
+  height: 45px;
   padding: 0 50px 0 10px;
   border-radius: 5px;
   border: 3px solid $gray-200;
-  color: $gray-800;
   box-sizing: border-box;
   &::placeholder {
-    color: $gray-500;
+    color: $gray-600;
+    font-size: medium;
   }
   &.error {
     border: 3px solid $red-500;
@@ -57,6 +26,7 @@
     border-color: $teal-300;
   }
 }
+
 .input-wrapper {
   position: relative;
   &::after {
@@ -64,15 +34,18 @@
     position: absolute;
   }
 }
+
 .error-message {
   position: absolute;
   bottom: 0;
   color: $red-600;
   font-size: 13px;
 }
+
 .label {
   font-weight: 500;
 }
+
 .icons-wrapper {
   @include flexContainer;
   position: absolute;
@@ -82,15 +55,18 @@
   color: $gray-600;
   height: 30px;
 }
+
 .clear {
   margin: 0 8px 0 0;
   cursor: pointer;
   font-size: 0.9rem;
+  color: var(--gray-600);
   transition: all 0.1s ease-in-out;
   &:hover {
     color: $red-500;
   }
 }
+
 .caret {
   font-size: 1rem;
   margin: 0 8px 0 0;
@@ -107,25 +83,35 @@
     color: $teal-400;
   }
 }
+
 //modifiers
 .extra-margin-bottom {
   margin-bottom: 20px;
 }
+
 .extra-margin-top {
-  margin-top: 15px;
+  margin-top: 35px;
 }
+
 .relative-container {
   position: relative;
 }
+
 .title-sm {
   font-size: 1.45rem;
+}
+
+.flex-container {
+  @include flexContainer;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 //dropdown options
 .dropdown-list {
   position: absolute;
   top: 100%;
-  margin-top: -10px;
+  margin-top: 5px;
   padding: 5px 0;
   background: $white;
   z-index: 100;

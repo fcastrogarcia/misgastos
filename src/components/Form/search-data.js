@@ -10,4 +10,4 @@ export const categories = [
   "ABL",
   "Netflix",
   "Spotify"
-];
+].sort();

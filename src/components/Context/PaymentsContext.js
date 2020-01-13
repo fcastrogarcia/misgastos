@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useEffect } from "react";
 
-import { getCurrentTime } from "../../utils/getCurrentTime";
+import { getCurrentTime } from "../../utils/time";
 
 const context = createContext();
 

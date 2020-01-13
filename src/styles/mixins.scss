@@ -17,3 +17,9 @@
   display: grid;
   @include centerAlignment;
 }
+@mixin text {
+  letter-spacing: 0.5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-800);
+}

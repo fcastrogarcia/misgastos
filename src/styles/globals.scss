@@ -41,7 +41,9 @@
   padding: 0;
 }
 
-body {
+body,
+input,
+button {
   font-family: ".SF NS Display";
 }
 input {
@@ -55,7 +57,6 @@ button {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: ".SF NS Display";
   font-weight: 500;
 }
 h1,
@@ -71,9 +72,47 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+//react-date-picker/calendar
 .react-calendar {
   border: 3px solid var(--gray-200);
   border-radius: 5px;
   padding: 10px 20px;
   transform: scale(0.93);
+  box-shadow: $shadow;
+  // border: none;
 }
+
+.react-date-picker__wrapper {
+  border: 3px solid $gray-200;
+  height: 45px;
+  border-radius: 5px;
+  padding: 0 10px;
+  color: $gray-800;
+}
+
+.react-date-picker__button {
+  color: var(--gray-700);
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--red-600);
+}
+
+.main-action-button {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 2px solid $teal-300;
+  overflow: hidden;
+  color: $teal-400;
+  font-weight: bold;
+  padding: 10px 15px;
+  letter-spacing: 0.8px;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background: $teal-300;
+    color: $white;
+  }
+}
+

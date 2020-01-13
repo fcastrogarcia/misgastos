@@ -7,14 +7,29 @@
   width: 320px;
 }
 
-.main-title {
-  font-size: x-large;
-  color: var(--gray-800);
+.wrapper {
+  margin-top: 15px;
+  height: min-content;
+  width: min-content;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid var(--teal-300);
+  overflow: hidden;
 }
 
-.field-title {
-  font-size: medium;
-  color: var(--gray-600);
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
+.option {
+  @include text;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+  width: 75px;
+  cursor: pointer;
+  transition: all 0.07s ease-in-out;
+  &:nth-child(1) {
+    border-right: 1px solid var(--teal-300);
+  }
+  &.selected {
+    background: var(--teal-300);
+  }
 }

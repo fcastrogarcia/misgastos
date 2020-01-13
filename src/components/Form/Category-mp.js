@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import cx from "classnames";
 import styles from "../../styles/inputs.module.scss";
-import formStyles from "./Form.module.scss";
 
 import { Scrollbars } from "react-custom-scrollbars";
 import { FaCaretDown, FaTimes } from "react-icons/fa";
@@ -104,7 +103,7 @@ const MonthlyPaymentInput = props => {
         )}
       </div>
       <div className={cx(styles["flex-container"], styles["extra-margin-top"])}>
-        <h3 className={formStyles["field-title"]} htmlFor="provider">
+        <h3 className="section-subheading" htmlFor="provider">
           Ingresá el proveedor (opcional)
         </h3>
         <input

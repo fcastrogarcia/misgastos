@@ -5,9 +5,10 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import SignIn from "../SignIn/index";
+
 // import SignUp from "../SignUp/index";
 
+import SignIn from "../SignIn/index";
 import Main from "../../pages/Main/index";
 import PrivateRoute from "./PrivateRoute";
 import authContext from "../Context/authContext";

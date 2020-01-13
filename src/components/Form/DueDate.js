@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Form.module.scss";
 
 import DatePicker from "react-date-picker";
 import { FaRegCalendarAlt } from "react-icons/fa";
@@ -15,9 +14,7 @@ const DueDate = ({ setPayment, date }) => {
 
   return (
     <div>
-      <h3 className={styles["field-title"]}>
-        Agendá el vencimiento (opcional)
-      </h3>
+      <h3 className="section-subheading">Agendá el vencimiento (opcional)</h3>
       <DatePicker
         value={date}
         onChange={handleChange}

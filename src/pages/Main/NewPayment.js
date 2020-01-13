@@ -1,11 +1,13 @@
 import React from "react";
 
+import defaultState from "../../components/Form/formInitialState";
+
 import Form from "../../components/Form/index";
 
 const NewPayment = () => {
   return (
     <div>
-      <Form />
+      <Form initialState={defaultState} />
     </div>
   );
 };

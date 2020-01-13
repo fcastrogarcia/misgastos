@@ -1,7 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import styles from "./PaymentType.module.scss";
-import formStyles from "./Form.module.scss";
+import styles from "./Form.module.scss";
 
 import formInitialState from "./formInitialState";
 
@@ -33,7 +32,7 @@ const Button = ({ text, payment, setPayment, singlePayment }) => {
 const PaymentType = ({ setPayment, payment }) => {
   return (
     <div>
-      <h3 className={formStyles["field-title"]}>Seleccioná el tipo de pago</h3>
+      <h3 className="section-subheading">Seleccioná el tipo de pago</h3>
       <div className={styles.wrapper}>
         <Button
           setPayment={setPayment}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import formStyles from "./Form.module.scss";
 
 import SinglePaymentInput from "./Category-sp";
 import MonthlyPaymentInput from "./Category-mp";
@@ -24,7 +23,7 @@ const Category = ({ payment, setPayment }) => {
 
   return (
     <div>
-      <h3 className={formStyles["field-title"]}>
+      <h3 className="section-subheading">
         Ingresá el nombre del pago o servicio
       </h3>
       {single_payment ? (

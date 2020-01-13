@@ -1,0 +1,15 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+//headings
+.section-heading {
+  font-size: x-large;
+  color: var(--gray-800);
+}
+
+.section-subheading {
+  font-size: medium;
+  color: var(--gray-600);
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}

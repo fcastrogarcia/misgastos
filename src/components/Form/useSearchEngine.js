@@ -1,5 +1,17 @@
 import { useState } from "react";
-import { categories } from "./search-data";
+
+export const categories = [
+  "Internet",
+  "Gas",
+  "Luz",
+  "Teléfono celular",
+  "Teléfono fijo",
+  "Agua",
+  "Alquiler",
+  "ABL",
+  "Netflix",
+  "Spotify"
+].sort();
 
 export default () => {
   const [searchResults, setResults] = useState(categories);

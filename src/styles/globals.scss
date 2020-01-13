@@ -109,10 +109,16 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: bold;
   padding: 10px 15px;
   letter-spacing: 0.8px;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  width: 88px;
   &:hover {
     background: $teal-300;
     color: $white;
   }
+  &.loading {
+    width: 73px;
+    &:hover {
+      background: none;
+    }
+  }
 }
-

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Form.module.scss";
 
-import useHandleSubmit from "./useHandleSubmit";
+import useSubmitForm from "./useSubmitForm";
 
 import PaymentType from "./PaymentType";
 import AutomaticPayment from "./AutomaticPayment";
@@ -12,8 +12,10 @@ import SubmitButton from "../shared/SubmitButton";
 
 const Form = ({ initialState }) => {
   const [payment, setPayment] = useState(initialState);
-  const { handleSubmit, isLoading } = useHandleSubmit(payment);
 
+  const submit = useSubmitForm(payment);
+
+  const { handleSubmit, isLoading, errors, doValidateInput } = submit;
   const { single_payment, due_date, automatic_payment, amount } = payment;
 
   useEffect(() => {
@@ -31,6 +33,7 @@ const Form = ({ initialState }) => {
   }
 
   console.log(payment);
+  console.log(errors);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -40,10 +43,19 @@ const Form = ({ initialState }) => {
         setPayment={updatePayment}
         isChecked={automatic_payment}
       />
-      <Category setPayment={updatePayment} payment={payment} />
+      <Category
+        setPayment={updatePayment}
+        payment={payment}
+        doValidateInput={doValidateInput}
+        errors={errors}
+      />
       {single_payment && <DueDate setPayment={updatePayment} date={due_date} />}
-
-      <Amount setPayment={updatePayment} amount={amount} />
+      <Amount
+        setPayment={updatePayment}
+        amount={amount}
+        doValidateInput={doValidateInput}
+        errors={errors}
+      />
       <SubmitButton isLoading={isLoading} text={"Guardar"} />
     </form>
   );

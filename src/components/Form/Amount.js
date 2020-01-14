@@ -1,20 +1,22 @@
 import React from "react";
-import inputStyles from "../../styles/inputs.module.scss";
+import cx from "classnames";
+import styles from "../../styles/inputs.module.scss";
 
 import NumberFormat from "react-number-format";
 
-const Amount = ({ setPayment, amount }) => {
+const Amount = ({ setPayment, amount, errors, doValidateInput }) => {
   function handleChange(e) {
     const value = e.floatValue;
-    const newData = { amount: value };
-    setPayment(newData);
+    const payload = { amount: value };
+    doValidateInput(payload);
+    setPayment(payload);
   }
 
   return (
     <div>
       <h3 className="section-subheading">Ingresá el monto (opcional)</h3>
       <NumberFormat
-        className={inputStyles["input"]}
+        className={cx(styles["input"], { [styles.error]: errors.amount })}
         prefix={"$"}
         allowNegative={false}
         onValueChange={handleChange}

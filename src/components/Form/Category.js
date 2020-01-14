@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import SinglePaymentInput from "./Category-sp";
 import MonthlyPaymentInput from "./Category-mp";
 
 import useSearchEngine from "./useSearchEngine";
 
-const Category = ({ payment, setPayment }) => {
-  const [error, setError] = useState(null);
+const Category = ({ payment, setPayment, errors, doValidateInput }) => {
   const { handleSearch, searchResults } = useSearchEngine();
 
   const { single_payment, category } = payment;
@@ -17,8 +16,9 @@ const Category = ({ payment, setPayment }) => {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    const newData = { [name]: value };
-    setPayment(newData);
+    const payload = { [name]: value };
+    if (name === "category") doValidateInput(payload);
+    setPayment(payload);
   }
 
   return (
@@ -27,14 +27,15 @@ const Category = ({ payment, setPayment }) => {
         Ingresá el nombre del pago o servicio
       </h3>
       {single_payment ? (
-        <SinglePaymentInput error={error} handleChange={handleChange} />
+        <SinglePaymentInput errors={errors} handleChange={handleChange} />
       ) : (
         <MonthlyPaymentInput
-          error={error}
-          category={category}
+          errors={errors}
           handleChange={handleChange}
+          category={category}
           searchResults={searchResults}
           setPayment={setPayment}
+          doValidateInput={doValidateInput}
         />
       )}
     </div>

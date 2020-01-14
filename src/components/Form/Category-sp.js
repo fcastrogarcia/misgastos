@@ -2,9 +2,9 @@ import React from "react";
 import cx from "classnames";
 import styles from "../../styles/inputs.module.scss";
 
-export default ({ error, handleChange }) => (
+export default ({ errors, handleChange }) => (
   <input
-    className={cx(styles.input, { [styles.error]: error })}
+    className={cx(styles.input, { [styles.error]: errors.category })}
     name="category"
     type="text"
     autoComplete="off"

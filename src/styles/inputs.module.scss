@@ -19,11 +19,11 @@
     color: $gray-600;
     font-size: medium;
   }
-  &.error {
-    border: 3px solid $red-500;
-  }
   &:focus {
     border-color: $teal-300;
+  }
+  &.error {
+    border: 3px solid $red-500;
   }
 }
 

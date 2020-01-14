@@ -6,7 +6,8 @@ import { Scrollbars } from "react-custom-scrollbars";
 import { FaCaretDown, FaTimes } from "react-icons/fa";
 
 const MonthlyPaymentInput = props => {
-  const { error, handleChange, searchResults, category, setPayment } = props;
+  const { errors, handleChange, searchResults, category, setPayment } = props;
+  const { doValidateInput } = props;
 
   const [showSearchList, setSearchList] = useState(false);
   const [currentItem, setCurrentItem] = useState(-1);
@@ -16,10 +17,14 @@ const MonthlyPaymentInput = props => {
 
   const setCategory = payload => setPayment({ category: payload });
 
-  const doSelectSearchItem = (_, item) => setCategory(item);
+  function doSelectSearchItem(_, item) {
+    doValidateInput({ category: item });
+    setCategory(item);
+  };
 
   function doClearInput(e) {
     e.preventDefault();
+    doValidateInput({ category: "" });
     setCategory("");
   }
 
@@ -62,7 +67,7 @@ const MonthlyPaymentInput = props => {
       <div className={styles["relative-container"]}>
         <div className={styles["input-wrapper"]}>
           <input
-            className={cx(styles.input, { [styles.error]: error })}
+            className={cx(styles.input, { [styles.error]: errors.category })}
             type="text"
             name="category"
             placeholder="Ej.: Internet"

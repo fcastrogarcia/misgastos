@@ -10,18 +10,18 @@ export default payment => {
   const { firebase, auth } = useCombinedContexts();
   const history = useHistory();
 
-  const isFormValid = () => Object.values(errors).every(error => !error);
+  const isFormValid = Object.values(errors).every(error => !error);
 
   const doValidateInput = payload => {
-    const errorsObj = {};
+    const nextState = {};
     const keys = Object.keys(payload);
 
     keys.forEach(key => {
-      if (!payload[key] && !errors[key]) errorsObj[key] = true;
-      if (payload[key] && errors[key]) errorsObj[key] = false;
+      if (!payload[key] && !errors[key]) nextState[key] = true;
+      if (payload[key] && errors[key]) nextState[key] = false;
     });
     setErrors(prevState => {
-      return { ...prevState, ...errorsObj };
+      return { ...prevState, ...nextState };
     });
   };
 
@@ -30,10 +30,10 @@ export default payment => {
   function handleSubmit(e) {
     e.preventDefault();
     doValidateInput(categoryAndAmount);
-    const validated = isFormValid();
 
-    if (validated) {
+    if (isFormValid) {
       setLoading(true);
+
       firebase
         .payments()
         .add({

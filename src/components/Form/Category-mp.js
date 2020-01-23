@@ -20,7 +20,7 @@ const MonthlyPaymentInput = props => {
   function doSelectSearchItem(_, item) {
     doValidateInput({ category: item });
     setCategory(item);
-  };
+  }
 
   function doClearInput(e) {
     e.preventDefault();
@@ -77,6 +77,7 @@ const MonthlyPaymentInput = props => {
             onKeyDown={handleKeyDown}
             value={category}
             autoComplete="off"
+            required
           />
           <span className={styles["icons-wrapper"]}>
             {category && (

@@ -9,5 +9,6 @@ export default ({ errors, handleChange }) => (
     type="text"
     autoComplete="off"
     onChange={handleChange}
+    required
   ></input>
 );

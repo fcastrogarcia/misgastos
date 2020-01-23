@@ -7,7 +7,7 @@ import PaymentType from "./PaymentType";
 import AutomaticPayment from "./AutomaticPayment";
 import Category from "./Category";
 import DueDate from "./DueDate";
-import Amount from "./Amount";
+import Amount from "../shared/AmountInput";
 import SubmitButton from "../shared/SubmitButton";
 
 const Form = ({ initialState }) => {
@@ -33,7 +33,6 @@ const Form = ({ initialState }) => {
   }
 
   console.log(payment);
-  console.log(errors);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -51,12 +50,12 @@ const Form = ({ initialState }) => {
       />
       {single_payment && <DueDate setPayment={updatePayment} date={due_date} />}
       <Amount
-        setPayment={updatePayment}
+        setter={updatePayment}
         amount={amount}
         doValidateInput={doValidateInput}
-        errors={errors}
+        error={errors.amount}
       />
-      <SubmitButton isLoading={isLoading} text={"Guardar"} />
+      <SubmitButton isLoading={isLoading} text="Guardar" />
     </form>
   );
 };

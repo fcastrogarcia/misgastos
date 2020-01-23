@@ -5,7 +5,8 @@ const defaultState = {
   provider: "",
   due_date: null,
   amount: null,
-  months_paid: []
+  months_paid: [],
+  active: true
 };
 
 export default defaultState;

@@ -9,12 +9,14 @@
   background: $white;
   border-collapse: collapse;
 }
+
 .tr {
   border-bottom: 1px solid $gray-300;
   &:hover {
     background: $gray-200;
   }
 }
+
 .header {
   &:hover {
     background: $white;
@@ -25,14 +27,16 @@
   text-align: start;
   color: $gray-800;
 }
+
 .th {
   @include cell;
   line-height: 40px;
   font-size: small;
   color: $gray-500;
-  width: 20%;
+  width: auto;
   letter-spacing: 1px;
 }
+
 .td {
   @include cell;
   color: $gray-800;
@@ -41,4 +45,8 @@
   height: 55px;
   font-weight: 600;
   letter-spacing: 0.5px;
+}
+
+.centered-content {
+  // text-align: center;
 }

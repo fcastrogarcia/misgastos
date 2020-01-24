@@ -5,14 +5,12 @@ import cx from "classnames";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
 import { getCurrentTime, months } from "../../../utils/time";
-import usePaymentsContext from "./usePaymentsContext";
+import usePayments from "./usePayments";
 
 const Month = ({ month, index }) => {
-  const { time, setTime } = usePaymentsContext();
+  const { time, updateTime } = usePayments();
 
-  function handleClick() {
-    setTime({ type: "MONTH", payload: index });
-  }
+  const handleClick = () => updateTime({ month: index });
 
   return (
     <div
@@ -25,7 +23,7 @@ const Month = ({ month, index }) => {
 };
 
 const Schedule = () => {
-  const { time } = usePaymentsContext();
+  const { time } = usePayments();
 
   const { month: currentMonth } = getCurrentTime();
   const hasMonthTranscurred = index => index < currentMonth + 1;
@@ -37,7 +35,7 @@ const Schedule = () => {
         {months.map(
           (month, index) =>
             hasMonthTranscurred(index) && (
-              <Month month={month} index={index} key={index} />
+              <Month key={index} month={month} index={index} />
             )
         )}
         <div className={cx(styles.item, styles.year)}>{time.year}</div>

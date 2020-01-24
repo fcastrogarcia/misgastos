@@ -1,49 +1,62 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 import { getCurrentTime } from "../../utils/time";
+import useAuthAndFirebase from "./useCombinedContexts";
 
-const context = createContext();
+const Context = createContext();
 
-const initialState = {
+const timeInitialState = {
   month: null,
   year: null
 };
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "MONTH_YEAR": {
-      return action.payload;
-    }
-    case "MONTH": {
-      return {
-        ...state,
-        month: action.payload
-      };
-    }
-    case "YEAR": {
-      return {
-        ...state,
-        year: action.payload
-      };
-    }
-    default:
-      return state;
-  }
-};
-
 const Provider = ({ children }) => {
-  const [time, setTime] = useReducer(reducer, initialState);
+  const [payments, setPayments] = useState({});
+  const [paymentId, setPaymentId] = useState(null);
+  const [time, setTime] = useState(timeInitialState);
+  const [isModalOpen, toggleModal] = useState(false);
+
+  const { firebase, auth } = useAuthAndFirebase();
+
+  function updateTime(payload) {
+    const nextState = { ...time };
+    const keys = Object.keys(payload);
+    keys.forEach(key => (nextState[key] = payload[key]));
+    setTime(nextState);
+  }
+
+  useEffect(() => {
+    if (auth.uid) {
+      firebase
+        .payments()
+        .where("userId", "==", auth.uid)
+        .get()
+        .then(querySnapshot => {
+          let data = {};
+          querySnapshot.docs.forEach(doc => (data[doc.id] = doc.data()));
+          if (data) setPayments(data);
+        });
+    }
+  }, [auth, auth.uid, firebase]);
 
   useEffect(() => {
     const payload = getCurrentTime();
-    setTime({ type: "MONTH_YEAR", payload });
+    updateTime(payload);
   }, []);
 
-  const value = { time, setTime };
+  console.log("time", time);
 
-  return <context.Provider value={value}>{children}</context.Provider>;
+  const value = {
+    payments,
+    time,
+    updateTime,
+    isModalOpen,
+    toggleModal,
+    paymentId,
+    setPaymentId
+  };
+
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-export { context, Provider };
-
-// { month: 2, year: 2020 }
+export { Context, Provider };

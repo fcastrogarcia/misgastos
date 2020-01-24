@@ -4,10 +4,10 @@ import { withRouter } from "react-router-dom";
 import SignIn from "./SignIn";
 import styles from "./SignIn.module.scss";
 
-import useCombinedContexts from "../Context/useCombinedContexts";
+import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 
 const SignInPage = ({ history }) => {
-  const { firebase, dispatch } = useCombinedContexts();
+  const { firebase, dispatch } = useAuthAndFirebase();
 
   async function handleSignIn() {
     dispatch({ type: "LOADING" });

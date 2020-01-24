@@ -5,7 +5,7 @@ import styles from "./Header-dropdown.module.scss";
 import { MdExitToApp } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
 
-import firebaseContext from "../Context/firebaseContext";
+import firebaseContext from "../../context/firebaseContext";
 
 const Dropdown = ({ history }) => {
   const firebase = useContext(firebaseContext);

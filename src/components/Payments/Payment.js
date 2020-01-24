@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import NumberFormat from "react-number-format";
 
-import { doFormatDate } from "../../../utils/masks";
+import { doFormatDate } from "../../utils/masks";
 import doCalculatePaymentState from "./doCalculatePaymentState";
 import usePayments from "./usePayments";
 

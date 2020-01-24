@@ -1,11 +1,11 @@
 import React from "react";
 
-import PaymentsComponent from "../../components/Dashboard/Payments/index";
+import PaymentsView from "../../components/Payments";
 
 const Payments = () => {
   return (
     <React.Fragment>
-      <PaymentsComponent />
+      <PaymentsView />
     </React.Fragment>
   );
 };

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import useCombinedContexts from "../Context/useCombinedContexts";
+import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import pick from "lodash/pick";
 
 export default payment => {
   const [isLoading, setLoading] = useState(false);
   const [errors, setErrors] = useState({ category: false, amount: false });
 
-  const { firebase, auth } = useCombinedContexts();
+  const { firebase, auth } = useAuthAndFirebase();
   const history = useHistory();
 
   const isFormValid = Object.values(errors).every(error => !error);

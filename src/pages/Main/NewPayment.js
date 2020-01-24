@@ -2,7 +2,7 @@ import React from "react";
 
 import defaultState from "../../components/Form/formInitialState";
 
-import Form from "../../components/Form/index";
+import Form from "../../components/Form";
 
 const NewPayment = () => {
   return (

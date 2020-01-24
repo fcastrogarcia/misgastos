@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import Firebase from "../Firebase/firebase";
+import Firebase from "../components/Firebase";
 
 const FirebaseContext = createContext(null);
 

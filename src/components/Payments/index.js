@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Index.module.scss";
 
-import CreateButton from "../../shared/CreateButton";
+import CreateButton from "../shared/CreateButton";
 import ScheduleSelector from "./ScheduleSelector";
 import Table from "./Table";
 import Modal from "./Payment-Modal";
 
-import { Provider as PaymentsProvider } from "../../Context/PaymentsContext";
+import { Provider as PaymentsProvider } from "../../context/PaymentsContext";
 import usePayments from "./usePayments";
 
 const Payments = () => {

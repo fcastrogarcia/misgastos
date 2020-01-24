@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-import { getCurrentTime, months } from "../../../utils/time";
+import { getCurrentTime, months } from "../../utils/time";
 import usePayments from "./usePayments";
 
 const Month = ({ month, index }) => {

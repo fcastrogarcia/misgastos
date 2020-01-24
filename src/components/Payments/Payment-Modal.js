@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Payment-Modal.module.scss";
 
-import Amount from "../../shared/AmountInput";
-import SubmitButton from "../../shared/SubmitButton";
+import Amount from "../shared/AmountInput";
+import SubmitButton from "../shared/SubmitButton";
 
-import { doFormatMonthAndYear } from "../../../utils/masks";
+import { doFormatMonthAndYear } from "../../utils/masks";
 import usePayments from "./usePayments";
 import useSubmitAmount from "./useSubmitAmount";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import useAuthAndFirebase from "../../Context/useCombinedContexts";
+import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import usePayments from "./usePayments";
 
 export default () => {

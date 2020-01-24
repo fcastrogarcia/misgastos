@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
-import { getCurrentTime } from "../../utils/time";
-import useAuthAndFirebase from "./useCombinedContexts";
+import { getCurrentTime } from "../utils/time";
+import useAuthAndFirebase from "./useAuthAndFirebase";
 
 const Context = createContext();
 

@@ -25,11 +25,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     dispatch({ type: "LOADING" });
-    firebase.auth.onAuthStateChanged(user => {
+    const cleanUp = firebase.auth.onAuthStateChanged(user => {
       user
         ? dispatch({ type: "AUTHENTICATED", payload: user })
         : dispatch({ type: "UNAUTHENTICATED" });
     });
+    return () => cleanUp();
   }, []);
 
   const value = {

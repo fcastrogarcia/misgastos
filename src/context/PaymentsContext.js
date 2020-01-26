@@ -28,15 +28,15 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     if (auth.uid) {
-      firebase
+      let cleanUp = firebase
         .payments()
         .where("userId", "==", auth.uid)
-        .get()
-        .then(querySnapshot => {
-          let data = {};
-          querySnapshot.docs.forEach(doc => (data[doc.id] = doc.data()));
+        .onSnapshot(snapshot => {
+          const data = {};
+          snapshot.forEach(doc => (data[doc.id] = doc.data()));
           if (data) setPayments(data);
         });
+      return () => cleanUp();
     }
   }, [auth, auth.uid, firebase]);
 

@@ -41,9 +41,10 @@ export default payment => {
           userId: auth.uid,
           createdAt: firebase.fieldValue.serverTimestamp()
         })
-        .then(() => setLoading(false))
-        .then(() => history.push("/main/payments"))
-        .catch(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          history.push("/main/payments");
+        });
     }
   }
 

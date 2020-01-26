@@ -1,36 +1,33 @@
 import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
-import styles from "./Header-dropdown.module.scss";
 
+import Dropdown from "../shared/Dropdown";
 import { MdExitToApp } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
 
 import firebaseContext from "../../context/firebaseContext";
 
-const Dropdown = ({ history }) => {
+const Menu = ({ history }) => {
   const firebase = useContext(firebaseContext);
 
   function logOut() {
-    firebase
-      .signOut()
-      .then(() => history.push("/signin"))
-      .catch(err => console.log(err));
+    firebase.signOut().finally(() => history.push("/signin"));
   }
 
-  return (
-    <div className={styles.dropdown}>
-      <ul className={styles.ul}>
-        <li className={styles.li}>
-          <FaUserCog className={styles.icon} />
-          <p>Profile</p>
-        </li>
-        <li className={styles.li}>
-          <MdExitToApp className={styles.icon} />
-          <button onClick={logOut}>Log Out</button>
-        </li>
-      </ul>
-    </div>
-  );
+  const items = [
+    {
+      label: "Profile",
+      icon: styles => <FaUserCog className={styles.icon} />,
+      clickHandler: null
+    },
+    {
+      label: "Log Out",
+      icon: styles => <MdExitToApp className={styles.icon} />,
+      clickHandler: logOut
+    }
+  ];
+
+  return <Dropdown items={items} />;
 };
 
-export default withRouter(Dropdown);
+export default withRouter(Menu);

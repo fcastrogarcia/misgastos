@@ -18,7 +18,7 @@ export default () => {
     paid: true
   };
 
-  function nextState(single_payment) {
+  function getNextState(single_payment) {
     if (single_payment) {
       return { active: false, ...amount };
     } else {
@@ -27,17 +27,13 @@ export default () => {
 
       const hasRegisteredMonth = months_paid.some(condition);
 
-      const monthsPaid = months_paid.map(item => {
-        if (condition) {
-          return currMonth;
-        } else {
-          return item;
-        }
-      });
+      const nextState = months_paid.map(item => (condition ? currMonth : item));
 
       return {
         ...amount,
-        months_paid: hasRegisteredMonth ? monthsPaid : currMonth
+        months_paid: hasRegisteredMonth
+          ? nextState
+          : [...months_paid, currMonth]
       };
     }
   }
@@ -47,9 +43,11 @@ export default () => {
     setLoading(true);
     firebase
       .payment(id)
-      .update(nextState(single_payment))
-      .then(() => setLoading(false))
-      .then(() => toggleModal(false));
+      .update(getNextState(single_payment))
+      .finally(() => {
+        setLoading(false);
+        toggleModal(false);
+      });
   }
 
   return {

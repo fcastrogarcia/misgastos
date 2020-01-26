@@ -20,3 +20,5 @@ export function doFormatMonthAndYear(time) {
 
   return `${month}/${year}`;
 }
+
+export const doFormatEmptyFields = value => (!value ? "-" : value);

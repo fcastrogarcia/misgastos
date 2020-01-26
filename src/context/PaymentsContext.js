@@ -15,6 +15,7 @@ const Provider = ({ children }) => {
   const [paymentId, setPaymentId] = useState(null);
   const [time, setTime] = useState(timeInitialState);
   const [isModalOpen, toggleModal] = useState(false);
+  const [menu, toggleMenu] = useState(null);
 
   const { firebase, auth } = useAuthAndFirebase();
 
@@ -53,7 +54,9 @@ const Provider = ({ children }) => {
     isModalOpen,
     toggleModal,
     paymentId,
-    setPaymentId
+    setPaymentId,
+    menu,
+    toggleMenu
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

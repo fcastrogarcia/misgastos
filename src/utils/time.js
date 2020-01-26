@@ -20,10 +20,11 @@ export const months = [
   "DIC"
 ];
 
+export const currTimestamp = Math.round(new Date().getTime() / 1000);
+
 // export const completeMonths = {
 //   'Enero',
 //   'Febrero',
 //   'Marzo',
 //   'Abril'
 // }
-

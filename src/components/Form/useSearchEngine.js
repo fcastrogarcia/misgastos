@@ -10,7 +10,8 @@ export const categories = [
   "Alquiler",
   "ABL",
   "Netflix",
-  "Spotify"
+  "Spotify",
+  "Tarjeta de crédito"
 ].sort();
 
 export default () => {

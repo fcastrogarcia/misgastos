@@ -1,0 +1,17 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.wrapper {
+  grid-area: selected-month;
+  padding: 15px 30px;
+}
+
+.month {
+  display: inline;
+  color: $gray-700;
+}
+
+.year {
+  display: inline;
+  color: $gray-500;
+}

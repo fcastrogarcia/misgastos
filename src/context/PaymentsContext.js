@@ -41,8 +41,8 @@ const Provider = ({ children }) => {
   }, [auth, auth.uid, firebase]);
 
   useEffect(() => {
-    const payload = getMonthAndYear(new Date());
-    updateTime(payload);
+    const nextState = getMonthAndYear(new Date());
+    updateTime(nextState);
   }, []);
 
   console.log("time", time);

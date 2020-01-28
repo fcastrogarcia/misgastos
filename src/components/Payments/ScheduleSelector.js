@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-import { getMonthAndYear, months } from "../../utils/time";
+import { months } from "../../utils/time";
 import usePayments from "./usePayments";
 
 const Month = ({ month, index }) => {
@@ -25,19 +25,13 @@ const Month = ({ month, index }) => {
 const Schedule = () => {
   const { time } = usePayments();
 
-  const { month: currentMonth } = getMonthAndYear(new Date());
-  const hasMonthTranscurred = index => index < currentMonth + 1;
-
   return (
     <div className={styles.wrapper}>
       <FaRegCalendarAlt className={styles.icon} />
       <div className={styles.container}>
-        {months.map(
-          (month, index) =>
-            hasMonthTranscurred(index) && (
-              <Month key={index} month={month} index={index} />
-            )
-        )}
+        {months.map((month, index) => (
+          <Month key={index} month={month} index={index} />
+        ))}
         <div className={cx(styles.item, styles.year)}>{time.year}</div>
       </div>
     </div>

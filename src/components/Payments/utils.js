@@ -1,19 +1,27 @@
 import { get, isEqual } from "lodash";
-import { currTimestamp, getMonthAndYear } from "../../utils/time";
+import {
+  currTimestamp,
+  getMonthAndYear,
+  getDateFromTimestamp
+} from "../../utils/time";
 
 const status = ["Pago automático", "Pendiente", "Vencido", "Pagado"];
 
 const currentTime = getMonthAndYear(new Date());
 const getTimestamp = date => get(date, "seconds", null);
 
-export const shouldPaymentRender = (paid_at, time, single_payment) => {
-  const timestamp = getTimestamp(paid_at);
+export const shouldPaymentRender = (item, time) => {
+  const { paid_at, due_date, single_payment } = item;
 
-  if (!single_payment || !timestamp) {
+  if (due_date) {
+    const date = getDateFromTimestamp(due_date.seconds);
+    const monthAndYear = getMonthAndYear(date);
+    return isEqual(monthAndYear, time);
+  } else if (!single_payment || !paid_at) {
     return true;
-  } else if (timestamp) {
-    const paidAt = new Date(timestamp * 1000);
-    let monthAndYearOfPayment = getMonthAndYear(paidAt);
+  } else if (paid_at) {
+    const date = getDateFromTimestamp(paid_at.seconds);
+    let monthAndYearOfPayment = getMonthAndYear(date);
     return isEqual(time, monthAndYearOfPayment);
   }
 };
@@ -38,7 +46,7 @@ export const getPaymentStatus = (payment, time) => {
     const currMonth = months_paid.find(
       item => item.year === time.year && item.month === time.month
     );
-    return currMonth.paid_at ? status[3] : status[1];
+    return !currMonth ? status[1] : status[3];
   }
 };
 

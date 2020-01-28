@@ -17,12 +17,11 @@ import usePayments from "./usePayments";
 
 const Payment = ({ index, item, timestamp, id }) => {
   const { time, menu, toggleMenu } = usePayments();
-  const { single_payment, paid_at } = item;
-
+  
   const status = getPaymentStatus(item, time);
   const cn = getStatusClassname(status);
   const isPending = isPendingFromPastMonths(status, time);
-  const shouldRender = shouldPaymentRender(paid_at, time, single_payment);
+  const shouldRender = shouldPaymentRender(item, time);
   const isMenuOpen = id === menu;
 
   const handleClick = () =>

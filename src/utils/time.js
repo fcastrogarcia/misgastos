@@ -23,9 +23,4 @@ export const months = [
 
 export const currTimestamp = Math.round(new Date().getTime() / 1000);
 
-// export const completeMonths = {
-//   'Enero',
-//   'Febrero',
-//   'Marzo',
-//   'Abril'
-// }
+export const getDateFromTimestamp = timestamp => new Date(timestamp * 1000);

@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-import { getCurrentTime, months } from "../../utils/time";
+import { getMonthAndYear, months } from "../../utils/time";
 import usePayments from "./usePayments";
 
 const Month = ({ month, index }) => {
@@ -25,7 +25,7 @@ const Month = ({ month, index }) => {
 const Schedule = () => {
   const { time } = usePayments();
 
-  const { month: currentMonth } = getCurrentTime();
+  const { month: currentMonth } = getMonthAndYear(new Date());
   const hasMonthTranscurred = index => index < currentMonth + 1;
 
   return (

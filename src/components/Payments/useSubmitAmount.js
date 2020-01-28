@@ -14,13 +14,12 @@ export default () => {
   const currMonth = {
     ...time,
     ...amount,
-    paid_at: new Date(),
-    paid: true
+    paid_at: new Date()
   };
 
   function getNextState(single_payment) {
     if (single_payment) {
-      return { active: false, ...amount };
+      return { ...amount, paid_at: new Date() };
     } else {
       const condition = item =>
         item.year === time.year && item.month === time.month;

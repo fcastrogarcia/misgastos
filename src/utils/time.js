@@ -1,8 +1,9 @@
-export function getCurrentTime() {
-  const date = new Date();
-  const month = date.getUTCMonth();
-  const year = date.getUTCFullYear();
-  return { month, year };
+export function getMonthAndYear(date) {
+  if (date) {
+    const month = date.getUTCMonth();
+    const year = date.getUTCFullYear();
+    return { month, year };
+  }
 }
 
 export const months = [

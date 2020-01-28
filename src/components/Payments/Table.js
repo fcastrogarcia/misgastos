@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./Table.module.scss";
 import cx from "classnames";
 import get from "lodash/get";
@@ -24,9 +24,6 @@ const TableHeader = () => (
 const Table = ({ data = {} }) => {
   const payments = Object.values(data);
   const ids = Object.keys(data);
-  // function shouldPaymentRender() {
-
-  // }
 
   return (
     <div className={styles["table-container"]}>

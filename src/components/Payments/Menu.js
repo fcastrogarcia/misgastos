@@ -6,14 +6,20 @@ import { FiDollarSign, FiEdit2 } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
 
 import usePayments from "./usePayments";
+import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 
 const Menu = ({ id, closeMenu }) => {
   const { setPaymentId, toggleModal } = usePayments();
+  const { firebase } = useAuthAndFirebase();
 
   function doRegisterPayment() {
     closeMenu();
     setPaymentId(id);
     toggleModal(true);
+  }
+
+  function doDeletePayment() {
+    firebase.deletePayment(id).finally(() => closeMenu());
   }
 
   const items = [
@@ -25,7 +31,7 @@ const Menu = ({ id, closeMenu }) => {
     {
       label: "Eliminar",
       icon: styles => <FaRegTrashAlt className={styles.icon} />,
-      clickHandler: null
+      clickHandler: doDeletePayment
     },
     {
       label: "Editar",

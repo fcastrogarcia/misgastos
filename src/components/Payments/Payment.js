@@ -8,18 +8,21 @@ import Menu from "./Menu";
 
 import { doFormatDate, doFormatEmptyFields } from "../../utils/masks";
 import {
-  getPaymentState,
-  getStateClassname,
+  shouldPaymentRender,
+  getPaymentStatus,
+  getStatusClassname,
   isPendingFromPastMonths
 } from "./utils";
 import usePayments from "./usePayments";
 
 const Payment = ({ index, item, timestamp, id }) => {
   const { time, menu, toggleMenu } = usePayments();
+  const { single_payment, paid_at } = item;
 
-  const paymentState = getPaymentState(item, time);
-  const cn = getStateClassname(paymentState);
-  const isPending = isPendingFromPastMonths(paymentState, time);
+  const status = getPaymentStatus(item, time);
+  const cn = getStatusClassname(status);
+  const isPending = isPendingFromPastMonths(status, time);
+  const shouldRender = shouldPaymentRender(paid_at, time, single_payment);
   const isMenuOpen = id === menu;
 
   const handleClick = () =>
@@ -27,41 +30,43 @@ const Payment = ({ index, item, timestamp, id }) => {
 
   return (
     <React.Fragment>
-      <tr key={index} className={styles.tr}>
-        <td className={cx(styles.td)}>{item.category}</td>
-        <td className={cx(styles.td)}>{doFormatEmptyFields(item.provider)}</td>
-        <td className={cx(styles.td)}>{doFormatDate(timestamp)}</td>
-        <td className={cx(styles.td)}>
-          <NumberFormat
-            displayType="text"
-            prefix="$"
-            value={item.amount}
-            decimalSeparator={","}
-            thousandSeparator={"."}
-          />
-        </td>
-        <td className={cx(styles.td)}>
-          <span
-            className={cx(styles.state, styles[cn], {
-              [styles.vencido]: isPending
-            })}
-          >
-            {paymentState}
-          </span>
-        </td>
-        <td className={cx(styles.td)}>
-          <button onClick={handleClick}>
-            <FiMoreVertical
-              className={cx(styles.ellipsis, { [styles.active]: isMenuOpen })}
+      {shouldRender && (
+        <tr key={index} className={styles.tr}>
+          <td className={cx(styles.td)}>{item.category}</td>
+          <td className={cx(styles.td)}>
+            {doFormatEmptyFields(item.provider)}
+          </td>
+          <td className={cx(styles.td)}>{doFormatDate(timestamp)}</td>
+          <td className={cx(styles.td)}>
+            <NumberFormat
+              displayType="text"
+              prefix="$"
+              value={item.amount}
+              decimalSeparator={","}
+              thousandSeparator={"."}
             />
-          </button>
-          {isMenuOpen && <Menu id={id} closeMenu={handleClick} />}
-        </td>
-      </tr>
+          </td>
+          <td className={cx(styles.td)}>
+            <span
+              className={cx(styles.state, styles[cn], {
+                [styles.vencido]: isPending
+              })}
+            >
+              {status}
+            </span>
+          </td>
+          <td className={cx(styles.td)}>
+            <button onClick={handleClick}>
+              <FiMoreVertical
+                className={cx(styles.ellipsis, { [styles.active]: isMenuOpen })}
+              />
+            </button>
+            {isMenuOpen && <Menu id={id} closeMenu={handleClick} />}
+          </td>
+        </tr>
+      )}
     </React.Fragment>
   );
 };
 
 export default Payment;
-
-//ponerle una sombra on hover al ellipsis

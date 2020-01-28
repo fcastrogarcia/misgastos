@@ -26,6 +26,7 @@ class Firebase {
   //  Payments API
   payments = () => this.db.collection("payments");
   payment = uid => this.db.doc(`payments/${uid}`);
+  deletePayment = uid => this.db.doc(`payments/${uid}`).delete();
 
   //  Expenses API
   expenses = () => this.db.collection("expenses");

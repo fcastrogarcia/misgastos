@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 
-import { getCurrentTime } from "../utils/time";
+import { getMonthAndYear } from "../utils/time";
 import useAuthAndFirebase from "./useAuthAndFirebase";
 
 const Context = createContext();
@@ -41,7 +41,7 @@ const Provider = ({ children }) => {
   }, [auth, auth.uid, firebase]);
 
   useEffect(() => {
-    const payload = getCurrentTime();
+    const payload = getMonthAndYear(new Date());
     updateTime(payload);
   }, []);
 

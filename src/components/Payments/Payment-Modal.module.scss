@@ -2,13 +2,19 @@
 @import "../../styles/variables.scss";
 
 .modal {
-  @include flexContainer;
+  display: grid;
+  grid-template: auto auto 40px / auto auto;
+  grid-template-areas:
+    "title title"
+    "input input"
+    "submit cancel";
   flex-direction: column;
-  height: 25em;
-  width: 35em;
-  padding: 20px;
+  height: 15em;
+  width: 25em;
+  padding: 25px;
   box-sizing: border-box;
   border-radius: 20px;
+  border: 2px solid $gray-300;
   box-shadow: $shadow-lg;
   background: $gray-100;
 }
@@ -23,4 +29,27 @@
   background: rgba(0, 0, 0, 0.6);
   z-index: 600;
   transition: all 0.2s ease-in-out;
+}
+
+.title {
+  grid-area: title;
+}
+
+.input {
+  grid-area: input;
+}
+
+.submit {
+  grid-area: submit;
+}
+
+.cancel {
+  grid-area: cancel;
+  font-weight: bold;
+  color: $gray-600;
+  font-size: 14px;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    color: $gray-700;
+  }
 }

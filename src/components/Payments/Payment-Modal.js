@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Payment-Modal.module.scss";
+import cx from "classnames";
 
 import Amount from "../shared/AmountInput";
 import SubmitButton from "../shared/SubmitButton";
 
-import { doFormatMonthAndYear } from "../../utils/masks";
-import usePayments from "./usePayments";
 import useSubmitAmount from "./useSubmitAmount";
 
 export default ({ isOpen, toggle }) => {
   const [shouldRender, setRender] = useState(isOpen);
-  const { time } = usePayments();
   const { isLoading, amount, setAmount, handleSubmit } = useSubmitAmount();
 
   useEffect(() => {
@@ -31,17 +29,21 @@ export default ({ isOpen, toggle }) => {
         onAnimationEnd={handleAnimationEnd}
       >
         <form className={styles.modal} onSubmit={handleSubmit}>
-          <h1 className="section-heading">Registrá el pago</h1>
-          <h3 className="section-subheading">
-            correspondiente al {doFormatMonthAndYear(time)}
-          </h3>
+          <h1 className={cx("section-heading", styles.title)}>
+            Registrá el pago
+          </h1>
           <Amount
+            containerStyle={styles.input}
             setter={setAmount}
             amount={amount.value}
             doValidateInput={false}
             required
           />
-          <SubmitButton isLoading={isLoading} text="Guardar" />
+          <SubmitButton
+            isLoading={isLoading}
+            text="Guardar"
+            style={styles.submit}
+          />
           <button className={styles.cancel} onClick={() => toggle(false)}>
             Cancelar
           </button>

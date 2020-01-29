@@ -5,10 +5,21 @@ import cx from "classnames";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
 import { months } from "../../utils/time";
+import { countPaymentStatus, paymentsPerMonth } from "./utils";
 import usePayments from "./usePayments";
 
 const Month = ({ month, index }) => {
-  const { time, updateTime } = usePayments();
+  const { time, updateTime, payments } = usePayments();
+
+  const currMonth = {
+    month: index,
+    year: time.year
+  };
+
+  const p = paymentsPerMonth(payments, currMonth);
+  const statusCount = countPaymentStatus(p, time);
+  const lapsed = statusCount["Vencido"];
+  const aboutToLapse = statusCount["Vence pronto"];
 
   const handleClick = () => updateTime({ month: index });
 
@@ -18,6 +29,14 @@ const Month = ({ month, index }) => {
       onClick={handleClick}
     >
       {month}
+      {lapsed > 0 && (
+        <div className={cx(styles.notification, styles.lapsed)}>{lapsed}</div>
+      )}
+      {aboutToLapse > 0 && (
+        <div className={cx(styles.notification, styles["about-to-lapse"])}>
+          {aboutToLapse}
+        </div>
+      )}
     </div>
   );
 };

@@ -4,7 +4,6 @@ import cx from "classnames";
 
 import CreateButton from "../shared/CreateButton";
 import ScheduleSelector from "./ScheduleSelector";
-import SelectedMonth from "./SelectedMonth";
 import Table from "./Table";
 import Modal from "./Payment-Modal";
 
@@ -12,7 +11,7 @@ import { Provider as PaymentsProvider } from "../../context/PaymentsContext";
 import usePayments from "./usePayments";
 
 const Payments = () => {
-  const { isModalOpen, toggleModal, payments } = usePayments();
+  const { isModalOpen, toggleModal, payments, loading } = usePayments();
 
   return (
     <div className={styles.container}>
@@ -21,8 +20,7 @@ const Payments = () => {
         pagos
       </h3>
       <ScheduleSelector />
-      <SelectedMonth />
-      <Table data={payments} />
+      <Table data={payments} loading={loading} />
       {isModalOpen && <Modal isOpen={isModalOpen} toggle={toggleModal} />}
     </div>
   );

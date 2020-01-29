@@ -5,10 +5,9 @@
   grid-area: table;
   border-radius: 20px;
   box-sizing: border-box;
-  padding: 30px;
+  padding: 25px 30px 30px 30px;
   max-width: 1300px;
   box-shadow: $shadow-xs;
-  border: 1px solid $gray-100;
 }
 
 .table {
@@ -85,24 +84,28 @@
   }
 }
 
-.state {
+.status {
   border-radius: 20px;
   padding: 3px 7px;
   &.pagado {
-    color: $green-500;
+    color: $green-600;
     background-color: $green-100;
   }
-  &.pendiente {
-    color: $orange-500;
+  &.vence-pronto {
+    color: $orange-600;
     background-color: $orange-100;
   }
   &.vencido {
-    color: $red-500;
+    color: $red-600;
     background-color: $red-100;
   }
   &.pago-automatico {
-    color: $blue-500;
+    color: $blue-600;
     background-color: $blue-100;
+  }
+  &.pendiente {
+    color: $yellow-600;
+    background-color: $yellow-100;
   }
 }
 
@@ -110,4 +113,10 @@
   top: 0;
   left: -160px;
   transform: scale(0.85);
+}
+
+.no-payments {
+  color: $gray-700;
+  font-size: 18px;
+  margin-top: 30px;
 }

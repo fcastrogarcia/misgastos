@@ -17,7 +17,7 @@ import usePayments from "./usePayments";
 
 const Payment = ({ index, item, timestamp, id }) => {
   const { time, menu, toggleMenu } = usePayments();
-  
+
   const status = getPaymentStatus(item, time);
   const cn = getStatusClassname(status);
   const isPending = isPendingFromPastMonths(status, time);
@@ -47,7 +47,7 @@ const Payment = ({ index, item, timestamp, id }) => {
           </td>
           <td className={cx(styles.td)}>
             <span
-              className={cx(styles.state, styles[cn], {
+              className={cx(styles.status, styles[cn], {
                 [styles.vencido]: isPending
               })}
             >

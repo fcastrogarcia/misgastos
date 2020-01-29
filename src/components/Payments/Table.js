@@ -5,6 +5,7 @@ import get from "lodash/get";
 
 import { FaSort } from "react-icons/fa";
 import Payment from "./Payment";
+import SelectedMonth from "./SelectedMonth";
 
 const th = ["Categoría", "Proveedor", "Vencimiento", "Monto", "Estado", ""];
 
@@ -21,12 +22,15 @@ const TableHeader = () => (
   </thead>
 );
 
-const Table = ({ data = {} }) => {
+const Table = ({ data = {}, loading }) => {
   const payments = Object.values(data);
   const ids = Object.keys(data);
 
+  const noPayments = !ids.length && !loading;
+
   return (
     <div className={styles["table-container"]}>
+      <SelectedMonth />
       <table className={styles.table}>
         <TableHeader />
         <tbody>
@@ -44,6 +48,9 @@ const Table = ({ data = {} }) => {
           })}
         </tbody>
       </table>
+      {noPayments && (
+        <h3 className={styles["no-payments"]}>No hay pagos registrados.</h3>
+      )}
     </div>
   );
 };

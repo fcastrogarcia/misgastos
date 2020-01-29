@@ -12,6 +12,7 @@ const timeInitialState = {
 
 const Provider = ({ children }) => {
   const [payments, setPayments] = useState({});
+  const [loading, setLoading] = useState(false);
   const [paymentId, setPaymentId] = useState(null);
   const [time, setTime] = useState(timeInitialState);
   const [isModalOpen, toggleModal] = useState(false);
@@ -28,14 +29,19 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     if (auth.uid) {
+      setLoading(true);
+
       let cleanUp = firebase
         .payments()
         .where("userId", "==", auth.uid)
         .onSnapshot(snapshot => {
           const data = {};
           snapshot.forEach(doc => (data[doc.id] = doc.data()));
+
           if (data) setPayments(data);
+          setLoading(false);
         });
+
       return () => cleanUp();
     }
   }, [auth, auth.uid, firebase]);
@@ -44,8 +50,6 @@ const Provider = ({ children }) => {
     const nextState = getMonthAndYear(new Date());
     updateTime(nextState);
   }, []);
-
-  console.log("time", time);
 
   const value = {
     payments,
@@ -56,7 +60,8 @@ const Provider = ({ children }) => {
     paymentId,
     setPaymentId,
     menu,
-    toggleMenu
+    toggleMenu,
+    loading
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

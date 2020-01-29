@@ -4,7 +4,7 @@
 //headings
 .section-heading {
   font-size: 1.4rem;
-  color: var(--gray-700);
+  color: var(--gray-800);
 }
 
 .section-subheading {
@@ -17,4 +17,17 @@
 .uppercase {
   text-transform: uppercase;
   letter-spacing: 1.5px;
+}
+
+select {
+  font-family: ".SF NS Display";
+
+  border: none;
+  border-radius: 20px;
+  outline: none;
+}
+
+option {
+  font-family: ".SF NS Display";
+  border: none;
 }

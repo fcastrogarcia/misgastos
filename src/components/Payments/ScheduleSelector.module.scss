@@ -14,12 +14,13 @@
 }
 
 .container {
+  position: relative;
+  z-index: 20;
   width: min-content;
   border: 2px solid $gray-200;
   border-radius: 20px;
   display: flex;
   justify-content: space-evenly;
-  overflow: hidden;
 }
 
 .item {
@@ -36,11 +37,43 @@
     border-left: none;
   }
   &.active {
+    &:nth-child(1) {
+      border-radius: 20px 0 0 20px;
+    }
     background: $gray-200;
+    z-index: 10;
   }
+}
+
+.relative-container {
+  position: relative;
 }
 
 .year {
   cursor: auto;
+  border-radius: 0 20px 20px 0;
   background: $gray-200;
+}
+
+.notification {
+  @include flexContainer;
+  position: absolute;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 10px;
+  color: $white;
+  top: 20px;
+}
+
+.lapsed {
+  background: $red-600;
+  right: 15px;
+  z-index: 100;
+}
+
+.about-to-lapse {
+  background: $orange-600;
+  right: 0px;
+  z-index: 99;
 }

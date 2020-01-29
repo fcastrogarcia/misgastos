@@ -5,9 +5,16 @@ import {
   getDateFromTimestamp
 } from "../../utils/time";
 
-const status = ["Pago automático", "Pendiente", "Vencido", "Pagado"];
+const status = [
+  "Pago automático",
+  "Pendiente",
+  "Vencido",
+  "Pagado",
+  "Vence pronto"
+];
 
 const currentTime = getMonthAndYear(new Date());
+
 const getTimestamp = date => get(date, "seconds", null);
 
 export const shouldPaymentRender = (item, time) => {
@@ -39,7 +46,15 @@ export const getPaymentStatus = (payment, time) => {
 
   if (automatic_payment) return status[0];
   if (single_payment && paid_at) return status[3];
-  if (timestamp) return timestamp < currTimestamp ? status[2] : status[1];
+  if (timestamp) {
+    const timestampMinusThreeDays = timestamp - 259200;
+
+    return timestamp < currTimestamp
+      ? status[2]
+      : currTimestamp > timestampMinusThreeDays
+      ? status[4]
+      : status[1];
+  }
   if (single_payment && !paid_at) return status[1];
   if (!single_payment && !months_paid.length) return status[1];
   if (!single_payment && months_paid.length) {
@@ -68,4 +83,21 @@ export const isPendingFromPastMonths = (status, selectedTime) => {
   return hasSelectedTimeTranscurred && isPaymentPending;
 };
 
-//cuando estemos en febrero printear hasSelectedTimeTranscurred a ver si funciona bien
+export const countPaymentStatus = (payments, time) => {
+  const statusArr = Object.values(payments).map(payment =>
+    getPaymentStatus(payment, time)
+  );
+
+  return statusArr.reduce((acc, curr) => {
+    if (curr === "Vencido" || curr === "Vence pronto") {
+      acc[curr] = ++acc[curr] || 1;
+    }
+    return acc;
+  }, {});
+};
+
+export const paymentsPerMonth = (payments, time) => {
+  return Object.values(payments).filter(payment =>
+    shouldPaymentRender(payment, time)
+  );
+};

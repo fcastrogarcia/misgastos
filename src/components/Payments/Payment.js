@@ -11,7 +11,8 @@ import {
   shouldPaymentRender,
   getPaymentStatus,
   getStatusClassname,
-  isPendingFromPastMonths
+  isPendingFromPastMonths,
+  getAmount
 } from "./utils";
 import usePayments from "./usePayments";
 
@@ -23,6 +24,8 @@ const Payment = ({ index, item, timestamp, id }) => {
   const isPending = isPendingFromPastMonths(status, time);
   const shouldRender = shouldPaymentRender(item, time);
   const isMenuOpen = id === menu;
+  const amount = getAmount(item, time);
+  console.log(item, amount);
 
   const handleClick = () =>
     !menu || !isMenuOpen ? toggleMenu(id) : toggleMenu(null);
@@ -40,7 +43,7 @@ const Payment = ({ index, item, timestamp, id }) => {
             <NumberFormat
               displayType="text"
               prefix="$"
-              value={item.amount}
+              value={amount}
               decimalSeparator={","}
               thousandSeparator={"."}
             />

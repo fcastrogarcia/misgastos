@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isEqual } from "lodash";
 
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import usePayments from "./usePayments";
@@ -22,14 +23,26 @@ export default () => {
       return { ...amount, paid_at: new Date() };
     } else {
       const condition = item =>
-        item.year === time.year && item.month === time.month;
+        isEqual({ month: item.month, year: item.year }, time);
 
       const hasRegisteredMonth = months_paid.some(condition);
 
-      const nextState = months_paid.map(item => (condition ? currMonth : item));
+      const nextState = months_paid.map(item =>
+        condition(item) ? currMonth : item
+      );
+
+      const isLastPrice = months_paid.some(
+        item =>
+          item.year === time.year &&
+          (item.month > time.month || item.month === time.month)
+      );
+
+      const getAmount = () => {
+        return isLastPrice ? amount.amount : payments[id].amount;
+      };
 
       return {
-        ...amount,
+        amount: getAmount(),
         months_paid: hasRegisteredMonth
           ? nextState
           : [...months_paid, currMonth]

@@ -13,6 +13,12 @@ const status = [
   "Vence pronto"
 ];
 
+const hasPaidCurrentMonth = (months_paid, time) => {
+  return months_paid.find(item =>
+    isEqual({ month: item.month, year: item.year }, time)
+  );
+};
+
 const currentTime = getMonthAndYear(new Date());
 
 const getTimestamp = date => get(date, "seconds", null);
@@ -58,9 +64,7 @@ export const getPaymentStatus = (payment, time) => {
   if (single_payment && !paid_at) return status[1];
   if (!single_payment && !months_paid.length) return status[1];
   if (!single_payment && months_paid.length) {
-    const currMonth = months_paid.find(
-      item => item.year === time.year && item.month === time.month
-    );
+    const currMonth = hasPaidCurrentMonth(months_paid, time);
     return !currMonth ? status[1] : status[3];
   }
 };
@@ -100,4 +104,10 @@ export const paymentsPerMonth = (payments, time) => {
   return Object.values(payments).filter(payment =>
     shouldPaymentRender(payment, time)
   );
+};
+
+export const getAmount = (payment, time) => {
+  const { amount, months_paid } = payment;
+  const monthPaid = hasPaidCurrentMonth(months_paid, time);
+  return !monthPaid ? amount : monthPaid.amount;
 };

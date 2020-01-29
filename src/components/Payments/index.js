@@ -16,9 +16,7 @@ const Payments = () => {
   return (
     <div className={styles.container}>
       <CreateButton path="/main/new-payment" text="Pago" />
-      <h3 className={cx(styles.title, "section-heading", "uppercase")}>
-        pagos
-      </h3>
+      <h3 className={cx(styles.title, "section-heading")}>Pagos</h3>
       <ScheduleSelector />
       <Table data={payments} loading={loading} />
       {isModalOpen && <Modal isOpen={isModalOpen} toggle={toggleModal} />}

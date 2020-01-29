@@ -111,3 +111,31 @@ export const getAmount = (payment, time) => {
   const monthPaid = hasPaidCurrentMonth(months_paid, time);
   return !monthPaid ? amount : monthPaid.amount;
 };
+
+export function getMaxVal(arr, val) {
+  if (arr.length === 1) {
+    return arr[val];
+  } else if (arr.length > 1) {
+    return arr.reduce((acc, curr) =>
+      acc[val] > curr[val] ? acc[val] : curr[val]
+    );
+  }
+}
+
+export function getLastAmountPaid(arr) {
+  if (!arr.length) {
+    return null;
+  } else {
+    const maxYear = getMaxVal(arr, "year");
+    const monthsPaidInMaxYear = arr.filter(item => item.year === maxYear);
+
+    const maxMonth = getMaxVal(monthsPaidInMaxYear, "month");
+    const lastPeriodPaid = monthsPaidInMaxYear.find(
+      item => item.month === maxMonth
+    );
+
+    const lastAmountPaid = get(lastPeriodPaid, "amount", null);
+
+    return lastAmountPaid;
+  }
+}

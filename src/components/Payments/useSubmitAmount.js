@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { isEqual } from "lodash";
 
+import { getLastAmountPaid } from "./utils";
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import usePayments from "./usePayments";
 
@@ -31,14 +32,14 @@ export default () => {
         condition(item) ? currMonth : item
       );
 
-      const isLastPrice = months_paid.some(
-        item =>
-          item.year === time.year &&
-          (item.month > time.month || item.month === time.month)
+      const isThereAnOlderPayment = months_paid.some(
+        item => item.year === time.year && item.month > time.month
       );
 
       const getAmount = () => {
-        return isLastPrice ? amount.amount : payments[id].amount;
+        return !isThereAnOlderPayment
+          ? amount.amount
+          : getLastAmountPaid(months_paid);
       };
 
       return {

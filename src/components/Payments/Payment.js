@@ -25,7 +25,6 @@ const Payment = ({ index, item, timestamp, id }) => {
   const shouldRender = shouldPaymentRender(item, time);
   const isMenuOpen = id === menu;
   const amount = getAmount(item, time);
-  console.log(item, amount);
 
   const handleClick = () =>
     !menu || !isMenuOpen ? toggleMenu(id) : toggleMenu(null);

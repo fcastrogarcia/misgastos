@@ -9,6 +9,7 @@ export default () => {
   const [amount, setAmount] = useState({ value: null });
   const [date, setDate] = useState(new Date());
   const [isLoading, setLoading] = useState(false);
+
   const { firebase } = useAuthAndFirebase();
   const { paymentId: id, toggleModal, payments, time } = usePayments();
 

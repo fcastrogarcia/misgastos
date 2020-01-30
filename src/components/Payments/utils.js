@@ -69,8 +69,8 @@ export const getPaymentStatus = (payment, time) => {
   }
 };
 
-export const getStatusClassname = state => {
-  return state
+export const getStatusClassname = status => {
+  return status
     .toLowerCase()
     .normalize("NFD")
     .replace(" ", "-")
@@ -93,9 +93,7 @@ export const countPaymentStatus = (payments, time) => {
   );
 
   return statusArr.reduce((acc, curr) => {
-    if (curr === "Vencido" || curr === "Vence pronto") {
-      acc[curr] = ++acc[curr] || 1;
-    }
+    acc[curr] = ++acc[curr] || 1;
     return acc;
   }, {});
 };

@@ -1,7 +1,7 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 
-.table-container {
+.table-wrapper {
   grid-area: table;
   display: grid;
   gap: 20px;

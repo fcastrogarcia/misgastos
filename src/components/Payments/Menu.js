@@ -24,7 +24,7 @@ const Menu = ({ id, closeMenu }) => {
 
   const items = [
     {
-      label: "Registrar Pago",
+      label: "Ingresar pago",
       icon: styles => <FiDollarSign className={styles.icon} />,
       clickHandler: doRegisterPayment
     },

@@ -6,6 +6,10 @@ import get from "lodash/get";
 import { FaSort } from "react-icons/fa";
 import Payment from "./Payment";
 import SelectedMonth from "./SelectedMonth";
+import Dashboard from "./Table-Dashboard";
+
+import { shouldPaymentRender } from "./utils";
+import usePayments from "./usePayments";
 
 const th = ["Categoría", "Proveedor", "Vencimiento", "Monto", "Estado", ""];
 
@@ -23,14 +27,20 @@ const TableHeader = () => (
 );
 
 const Table = ({ data = {}, loading }) => {
-  const payments = Object.values(data);
-  const ids = Object.keys(data);
+  const { time } = usePayments();
 
-  const noPayments = !ids.length && !loading;
+  const ids = Object.keys(data);
+  const payments = Object.values(data);
+  const shouldPaymentsRender = payments.map(payment =>
+    shouldPaymentRender(payment, time)
+  );
+
+  const noPayments = !shouldPaymentsRender.length && !loading;
 
   return (
     <div className={styles["table-container"]}>
       <SelectedMonth />
+      <Dashboard />
       <table className={styles.table}>
         <TableHeader />
         <tbody>
@@ -43,6 +53,7 @@ const Table = ({ data = {}, loading }) => {
                 index={index}
                 timestamp={timestamp}
                 id={ids[index]}
+                shouldRender={shouldPaymentsRender[index]}
               />
             );
           })}

@@ -3,13 +3,14 @@
 
 .modal {
   display: grid;
-  grid-template: auto auto 40px / auto auto;
+  grid-template: auto auto auto 40px / auto auto;
   grid-template-areas:
     "title title"
     "input input"
+    "date date"
     "submit cancel";
   flex-direction: column;
-  height: 15em;
+  height: 25em;
   width: 25em;
   padding: 25px;
   box-sizing: border-box;
@@ -41,6 +42,10 @@
 
 .submit {
   grid-area: submit;
+}
+
+.date {
+  grid-area: date;
 }
 
 .cancel {

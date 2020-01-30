@@ -4,12 +4,21 @@ import cx from "classnames";
 
 import Amount from "../shared/AmountInput";
 import SubmitButton from "../shared/SubmitButton";
+import DatePicker from "../shared/DatePicker";
 
 import useSubmitAmount from "./useSubmitAmount";
 
 export default ({ isOpen, toggle }) => {
   const [shouldRender, setRender] = useState(isOpen);
-  const { isLoading, amount, setAmount, handleSubmit } = useSubmitAmount();
+
+  const {
+    isLoading,
+    amount,
+    setAmount,
+    handleSubmit,
+    date,
+    setDate
+  } = useSubmitAmount();
 
   useEffect(() => {
     if (isOpen) setRender(true);
@@ -18,6 +27,8 @@ export default ({ isOpen, toggle }) => {
   const handleAnimationEnd = () => {
     if (!isOpen) setRender(false);
   };
+
+  const handleChange = date => setDate(date);
 
   const animationStyle = { animation: `${isOpen ? "fadeIn" : "fadeOut"} .2s` };
 
@@ -37,6 +48,13 @@ export default ({ isOpen, toggle }) => {
             setter={setAmount}
             amount={amount.value}
             doValidateInput={false}
+            required
+          />
+          <DatePicker
+            text="Registrá la fecha"
+            style={styles.date}
+            date={date}
+            handleChange={handleChange}
             required
           />
           <SubmitButton

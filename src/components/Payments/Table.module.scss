@@ -3,25 +3,36 @@
 
 .table-container {
   grid-area: table;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 2fr 5fr;
+  grid-template-areas:
+    "selected-month dashboard"
+    "table table";
   border-radius: 20px;
   box-sizing: border-box;
   padding: 25px 30px 30px 30px;
   max-width: 1300px;
-  box-shadow: $shadow-xs;
 }
 
 .table {
+  box-shadow: $shadow;
+  border: 1px solid $gray-100;
+  grid-area: table;
   width: 100%;
   border-radius: 5px;
   background: $white;
   border-collapse: collapse;
-  border-top: 2px solid $gray-200;
+  // border-top: 2px solid $gray-200;
 }
 
 .tr {
   border-bottom: 2px solid $gray-200;
   &:hover {
     background: $gray-100;
+  }
+  &:last-child {
+    border-bottom: none;
   }
 }
 
@@ -43,11 +54,12 @@
   position: relative;
   text-align: start;
   color: $gray-800;
-  line-height: 45px;
 }
 
 .th {
+  border-bottom: 2px solid $gray-200;
   @include cell;
+  line-height: 45px;
   font-size: small;
   color: $gray-600;
   width: auto;
@@ -62,6 +74,7 @@
 
 .td {
   @include cell;
+  line-height: 52px;
   color: $gray-700;
   font-size: 14px;
   font-weight: 600;

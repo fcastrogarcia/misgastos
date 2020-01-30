@@ -1,0 +1,9 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.container {
+  grid-area: dashboard;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

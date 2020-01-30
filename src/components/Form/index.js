@@ -6,7 +6,7 @@ import useSubmitForm from "./useSubmitForm";
 import PaymentType from "./PaymentType";
 import AutomaticPayment from "./AutomaticPayment";
 import Category from "./Category";
-import DueDate from "./DueDate";
+import DueDate from "../shared/DatePicker";
 import Amount from "../shared/AmountInput";
 import SubmitButton from "../shared/SubmitButton";
 
@@ -20,7 +20,6 @@ const Form = ({ initialState }) => {
 
   useEffect(() => {
     setPayment(initialState);
-    console.log("useEffect from Form. If this prints too much call a lawyer");
   }, [initialState]);
 
   function updatePayment(newData) {
@@ -30,6 +29,11 @@ const Form = ({ initialState }) => {
         ...newData
       };
     });
+  }
+
+  function handleDueDateChange(date) {
+    const newData = { due_date: date };
+    updatePayment(newData);
   }
 
   console.log(payment);
@@ -48,7 +52,13 @@ const Form = ({ initialState }) => {
         doValidateInput={doValidateInput}
         errors={errors}
       />
-      {single_payment && <DueDate setPayment={updatePayment} date={due_date} />}
+      {single_payment && (
+        <DueDate
+          date={due_date}
+          handleChange={handleDueDateChange}
+          text="Agendá el vencimiento (opcional)"
+        />
+      )}
       <Amount
         setter={updatePayment}
         amount={amount}

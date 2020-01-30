@@ -8,7 +8,6 @@ import Menu from "./Menu";
 
 import { doFormatDate, doFormatEmptyFields } from "../../utils/masks";
 import {
-  shouldPaymentRender,
   getPaymentStatus,
   getStatusClassname,
   isPendingFromPastMonths,
@@ -16,13 +15,12 @@ import {
 } from "./utils";
 import usePayments from "./usePayments";
 
-const Payment = ({ index, item, timestamp, id }) => {
+const Payment = ({ index, item, timestamp, id, shouldRender }) => {
   const { time, menu, toggleMenu } = usePayments();
 
   const status = getPaymentStatus(item, time);
   const cn = getStatusClassname(status);
   const isPending = isPendingFromPastMonths(status, time);
-  const shouldRender = shouldPaymentRender(item, time);
   const isMenuOpen = id === menu;
   const amount = getAmount(item, time);
 

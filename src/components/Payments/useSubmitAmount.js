@@ -7,6 +7,7 @@ import usePayments from "./usePayments";
 
 export default () => {
   const [amount, setAmount] = useState({ value: null });
+  const [date, setDate] = useState(new Date());
   const [isLoading, setLoading] = useState(false);
   const { firebase } = useAuthAndFirebase();
   const { paymentId: id, toggleModal, payments, time } = usePayments();
@@ -16,12 +17,12 @@ export default () => {
   const currMonth = {
     ...time,
     ...amount,
-    paid_at: new Date()
+    paid_at: date
   };
 
   function getNextState(single_payment) {
     if (single_payment) {
-      return { ...amount, paid_at: new Date() };
+      return { ...amount, paid_at: date };
     } else {
       const condition = item =>
         isEqual({ month: item.month, year: item.year }, time);
@@ -67,6 +68,8 @@ export default () => {
     isLoading,
     amount,
     setAmount,
-    handleSubmit
+    handleSubmit,
+    date,
+    setDate
   };
 };

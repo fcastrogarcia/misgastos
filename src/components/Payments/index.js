@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Index.module.scss";
 import cx from "classnames";
 
-import CreateButton from "../shared/CreateButton";
 import ScheduleSelector from "./ScheduleSelector";
 import Table from "./Table";
 import Modal from "./Payment-Modal";
@@ -15,7 +14,6 @@ const Payments = () => {
 
   return (
     <div className={styles.container}>
-      <CreateButton path="/main/new-payment" text="Pago" />
       <h3 className={cx(styles.title, "section-heading")}>Pagos</h3>
       <ScheduleSelector />
       <Table data={payments} loading={loading} />

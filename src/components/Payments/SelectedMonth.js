@@ -6,7 +6,7 @@ import usePayments from "./usePayments";
 const SelectedMonth = () => {
   const { time } = usePayments();
 
-  const doMaskMonth = month => (month < 10 ? `0${month + 1}` : month + 1);
+  const doMaskMonth = month => (month < 9 ? `0${month + 1}` : month + 1);
 
   return (
     <div className={styles.wrapper}>

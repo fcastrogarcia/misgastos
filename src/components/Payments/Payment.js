@@ -28,44 +28,41 @@ const Payment = ({ index, item, timestamp, id, shouldRender }) => {
     !menu || !isMenuOpen ? toggleMenu(id) : toggleMenu(null);
 
   return (
-    <React.Fragment>
-      {shouldRender && (
-        <tr key={index} className={styles.tr}>
-          <td className={cx(styles.td)}>{item.category}</td>
-          <td className={cx(styles.td)}>
-            {doFormatEmptyFields(item.provider)}
-          </td>
-          <td className={cx(styles.td)}>{doFormatDate(timestamp)}</td>
-          <td className={cx(styles.td)}>
-            <NumberFormat
-              displayType="text"
-              prefix="$"
-              value={amount}
-              decimalSeparator={","}
-              thousandSeparator={"."}
+    shouldRender && (
+      <tr key={index} className={styles.tr}>
+        <td className={cx(styles.td)}>{item.category}</td>
+        <td className={cx(styles.td)}>{doFormatEmptyFields(item.provider)}</td>
+        <td className={cx(styles.td)}>{doFormatDate(timestamp)}</td>
+        <td className={cx(styles.td)}>
+          <NumberFormat
+            displayType="text"
+            prefix="$"
+            value={amount}
+            decimalSeparator={","}
+            thousandSeparator={"."}
+          />
+        </td>
+        <td className={cx(styles.td)}>
+          <span
+            className={cx(styles.status, styles[cn], {
+              [styles.vencido]: isPending
+            })}
+          >
+            {status}
+          </span>
+        </td>
+        <td className={cx(styles.td)}>
+          <button onClick={handleClick}>
+            <FiMoreVertical
+              className={cx(styles.ellipsis, { [styles.active]: isMenuOpen })}
             />
-          </td>
-          <td className={cx(styles.td)}>
-            <span
-              className={cx(styles.status, styles[cn], {
-                [styles.vencido]: isPending
-              })}
-            >
-              {status}
-            </span>
-          </td>
-          <td className={cx(styles.td)}>
-            <button onClick={handleClick}>
-              <FiMoreVertical
-                className={cx(styles.ellipsis, { [styles.active]: isMenuOpen })}
-              />
-            </button>
-            {isMenuOpen && <Menu id={id} closeMenu={handleClick} />}
-          </td>
-        </tr>
-      )}
-    </React.Fragment>
+          </button>
+          {isMenuOpen && <Menu id={id} closeMenu={handleClick} />}
+        </td>
+      </tr>
+    )
   );
 };
+
 
 export default Payment;

@@ -53,18 +53,22 @@ const Form = ({ initialState }) => {
         errors={errors}
       />
       {single_payment && (
-        <DueDate
-          date={due_date}
-          handleChange={handleDueDateChange}
-          text="Agendá el vencimiento (opcional)"
-        />
+        <div>
+          <h3 className="section-subheading">
+            Agendá el vencimiento (opcional)
+          </h3>
+          <DueDate date={due_date} handleChange={handleDueDateChange} />
+        </div>
       )}
-      <Amount
-        setter={updatePayment}
-        amount={amount}
-        doValidateInput={doValidateInput}
-        error={errors.amount}
-      />
+      <div>
+        <h3 className="section-subheading">Ingresá el monto</h3>
+        <Amount
+          setter={updatePayment}
+          amount={amount}
+          doValidateInput={doValidateInput}
+          error={errors.amount}
+        />
+      </div>
       <SubmitButton isLoading={isLoading} text="Guardar" />
     </form>
   );

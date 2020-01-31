@@ -2,19 +2,17 @@ import React from "react";
 
 import DatePicker from "react-date-picker";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaTimes } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 
-const DueDate = ({ handleChange, date, text, style, required }) => (
-  <div className={style}>
-    <h3 className="section-subheading">{text}</h3>
-    <DatePicker
-      value={date}
-      onChange={handleChange}
-      calendarIcon={<FaRegCalendarAlt />}
-      clearIcon={<FaTimes />}
-      required={required}
-    />
-  </div>
+const DueDate = ({ className, handleChange, date, required }) => (
+  <DatePicker
+    className={className}
+    value={date}
+    onChange={handleChange}
+    calendarIcon={<FaRegCalendarAlt />}
+    clearIcon={<IoMdClose />}
+    required={required}
+  />
 );
 
 export default DueDate;

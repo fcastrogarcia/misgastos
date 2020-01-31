@@ -6,7 +6,7 @@ import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import usePayments from "./usePayments";
 
 export default () => {
-  const [amount, setAmount] = useState({ value: null });
+  const [amount, setAmount] = useState({ amount: null });
   const [date, setDate] = useState(new Date());
   const [isLoading, setLoading] = useState(false);
 

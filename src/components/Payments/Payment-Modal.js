@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import styles from "./Payment-Modal.module.scss";
 import cx from "classnames";
 
-import Amount from "../shared/AmountInput";
 import SubmitButton from "../shared/SubmitButton";
 import DatePicker from "../shared/DatePicker";
+import Amount from "../shared/AmountInput";
+import { IoMdClose } from "react-icons/io";
 
 import useSubmitAmount from "./useSubmitAmount";
+import usePayments from "./usePayments";
+import { doFormatMonthAndYear } from "../../utils/masks";
 
 export default ({ isOpen, toggle }) => {
   const [shouldRender, setRender] = useState(isOpen);
 
+  const { time } = usePayments();
   const {
     isLoading,
     amount,
@@ -39,32 +43,37 @@ export default ({ isOpen, toggle }) => {
         style={animationStyle}
         onAnimationEnd={handleAnimationEnd}
       >
-        <form className={styles.modal} onSubmit={handleSubmit}>
-          <h1 className={cx("section-heading", styles.title)}>
-            Registrá el pago
-          </h1>
-          <Amount
-            containerStyle={styles.input}
-            setter={setAmount}
-            amount={amount.value}
-            doValidateInput={false}
-            required
-          />
-          <DatePicker
-            text="Registrá la fecha"
-            style={styles.date}
-            date={date}
-            handleChange={handleChange}
-            required
-          />
-          <SubmitButton
-            isLoading={isLoading}
-            text="Guardar"
-            style={styles.submit}
-          />
-          <button className={styles.cancel} onClick={() => toggle(false)}>
-            Cancelar
-          </button>
+        <form onSubmit={handleSubmit} className={styles.modal}>
+          <div className={styles.grid}>
+            <h1 className={cx(styles.title)}>Ingresá el pago</h1>
+            <button className={styles.cancel} onClick={() => toggle(false)}>
+              <IoMdClose size={19} />
+            </button>
+            <h3 className={styles.periodo}>
+              Período {doFormatMonthAndYear(time)}
+            </h3>
+            <Amount
+              className={styles.amount}
+              setter={setAmount}
+              amount={amount.value}
+              doValidateInput={false}
+              required
+              placeholder="Ingresá el monto pagado"
+            />
+            <DatePicker
+              className={styles.date}
+              date={date}
+              handleChange={handleChange}
+              required
+            />
+          </div>
+          <div className={styles["buttons-wrapper"]}>
+            <SubmitButton
+              isLoading={isLoading}
+              text="Guardar"
+              style={styles.submit}
+            />
+          </div>
         </form>
       </div>
     )

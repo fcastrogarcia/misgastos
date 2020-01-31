@@ -30,6 +30,8 @@ export const shouldPaymentRender = (item, time) => {
     const date = getDateFromTimestamp(due_date.seconds);
     const monthAndYear = getMonthAndYear(date);
     return isEqual(monthAndYear, time);
+  } else if (single_payment && !due_date && !paid_at) {
+    return isEqual(currentTime, time);
   } else if (!single_payment || !paid_at) {
     return true;
   } else if (paid_at) {
@@ -82,7 +84,8 @@ export const isPendingFromPastMonths = (status, selectedTime) => {
     selectedTime.year < currentTime.year ||
     (selectedTime.year === currentTime.year &&
       selectedTime.month < currentTime.month);
-
+  //esto hay que cambiarlo porque un periodo con mes más grande que el corriente
+  //pero con año más chico figuraría como sin vencer
   const isPaymentPending = status === "Pendiente";
   return hasSelectedTimeTranscurred && isPaymentPending;
 };

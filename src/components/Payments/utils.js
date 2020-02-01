@@ -41,6 +41,15 @@ export const shouldPaymentRender = (item, time) => {
   }
 };
 
+const hasTimeTranscurred = (currentTime, selectedTime) => {
+  const hasYearTranscurred = selectedTime.year < currentTime.year;
+  const hasMonthTranscurred =
+    selectedTime.year === currentTime.year &&
+    selectedTime.month < currentTime.month;
+
+  return hasYearTranscurred || hasMonthTranscurred;
+};
+
 export const getPaymentStatus = (payment, time) => {
   const {
     single_payment,
@@ -64,10 +73,11 @@ export const getPaymentStatus = (payment, time) => {
       : status[1];
   }
   if (single_payment && !paid_at) return status[1];
-  if (!single_payment && !months_paid.length) return status[1];
-  if (!single_payment && months_paid.length) {
-    const currMonth = hasPaidCurrentMonth(months_paid, time);
-    return !currMonth ? status[1] : status[3];
+  if (!single_payment) {
+    const isItPaid = hasPaidCurrentMonth(months_paid, time);
+    const isFromPastMonths = hasTimeTranscurred(currentTime, time);
+
+    return isItPaid ? status[3] : isFromPastMonths ? status[2] : status[1];
   }
 };
 
@@ -77,17 +87,6 @@ export const getStatusClassname = status => {
     .normalize("NFD")
     .replace(" ", "-")
     .replace(/[\u0300-\u036f]/g, "");
-};
-
-export const isPendingFromPastMonths = (status, selectedTime) => {
-  const hasSelectedTimeTranscurred =
-    selectedTime.year < currentTime.year ||
-    (selectedTime.year === currentTime.year &&
-      selectedTime.month < currentTime.month);
-  //esto hay que cambiarlo porque un periodo con mes más grande que el corriente
-  //pero con año más chico figuraría como sin vencer
-  const isPaymentPending = status === "Pendiente";
-  return hasSelectedTimeTranscurred && isPaymentPending;
 };
 
 export const countPaymentStatus = (payments, time) => {
@@ -113,12 +112,12 @@ export const getAmount = (payment, time) => {
   return !monthPaid ? amount : monthPaid.amount;
 };
 
-export function getMaxVal(arr, val) {
+export function getMaxVal(arr, key) {
   if (arr.length === 1) {
-    return arr[val];
+    return arr[key];
   } else if (arr.length > 1) {
     return arr.reduce((acc, curr) =>
-      acc[val] > curr[val] ? acc[val] : curr[val]
+      acc[key] > curr[key] ? acc[key] : curr[key]
     );
   }
 }
@@ -130,12 +129,9 @@ export function getLastAmountPaid(arr) {
     const maxYear = getMaxVal(arr, "year");
     const monthsPaidInMaxYear = arr.filter(item => item.year === maxYear);
 
-    const maxMonth = getMaxVal(monthsPaidInMaxYear, "month");
-    const lastPeriodPaid = monthsPaidInMaxYear.find(
-      item => item.month === maxMonth
-    );
-
-    const lastAmountPaid = get(lastPeriodPaid, "amount", null);
+    const lastAmountPaid = monthsPaidInMaxYear.reduce((acc, curr) =>
+      acc.month > curr.month ? acc : curr
+    ).amount;
 
     return lastAmountPaid;
   }

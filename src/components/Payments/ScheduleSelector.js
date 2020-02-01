@@ -11,13 +11,13 @@ import usePayments from "./usePayments";
 const Month = ({ month, index }) => {
   const { time, updateTime, payments } = usePayments();
 
-  const currMonth = {
+  const scheduleTime = {
     month: index,
     year: time.year
   };
 
-  const p = paymentsPerMonth(payments, currMonth);
-  const statusCount = countPaymentStatus(p, time);
+  const p = paymentsPerMonth(payments, scheduleTime);
+  const statusCount = countPaymentStatus(p, scheduleTime);
   const lapsed = statusCount["Vencido"];
   const aboutToLapse = statusCount["Vence pronto"];
 

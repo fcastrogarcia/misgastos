@@ -9,7 +9,7 @@ import usePayments from "./usePayments";
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 
 const Menu = ({ id, closeMenu }) => {
-  const { setPaymentId, toggleModal } = usePayments();
+  const { setPaymentId, toggleModal, payments } = usePayments();
   const { firebase } = useAuthAndFirebase();
 
   function doRegisterPayment() {
@@ -40,7 +40,13 @@ const Menu = ({ id, closeMenu }) => {
     }
   ];
 
-  return <Dropdown items={items} style={styles.menu} />;
+  const hasAutomaticPayment = payments[id].automatic_payment;
+
+  const i = items.filter((_, index) => index !== 0);
+
+  return (
+    <Dropdown items={hasAutomaticPayment ? i : items} style={styles.menu} />
+  );
 };
 
 export default Menu;

@@ -4,7 +4,7 @@ import get from "lodash/get";
 
 import Payment from "./Payment";
 import SelectedMonth from "./SelectedMonth";
-import Dashboard from "./Table-Dashboard";
+import CreatePayment from "./CreatePayment";
 import Header from "./Table-Header";
 
 import { shouldPaymentRender } from "./utils";
@@ -24,7 +24,7 @@ const Table = ({ data = {}, loading }) => {
   return (
     <div className={styles["table-wrapper"]}>
       <SelectedMonth />
-      <Dashboard />
+      <CreatePayment />
       <table className={styles.table}>
         <Header />
         <tbody>

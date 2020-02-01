@@ -7,12 +7,7 @@ import { FiMoreVertical } from "react-icons/fi";
 import Menu from "./Menu";
 
 import { doFormatDate, doFormatEmptyFields } from "../../utils/masks";
-import {
-  getPaymentStatus,
-  getStatusClassname,
-  isPendingFromPastMonths,
-  getAmount
-} from "./utils";
+import { getPaymentStatus, getStatusClassname, getAmount } from "./utils";
 import usePayments from "./usePayments";
 
 const Payment = ({ index, item, timestamp, id, shouldRender }) => {
@@ -20,7 +15,6 @@ const Payment = ({ index, item, timestamp, id, shouldRender }) => {
 
   const status = getPaymentStatus(item, time);
   const cn = getStatusClassname(status);
-  const isPending = isPendingFromPastMonths(status, time);
   const isMenuOpen = id === menu;
   const amount = getAmount(item, time);
 
@@ -43,13 +37,7 @@ const Payment = ({ index, item, timestamp, id, shouldRender }) => {
           />
         </td>
         <td className={cx(styles.td)}>
-          <span
-            className={cx(styles.status, styles[cn], {
-              [styles.vencido]: isPending
-            })}
-          >
-            {status}
-          </span>
+          <span className={cx(styles.status, styles[cn])}>{status}</span>
         </td>
         <td className={cx(styles.td)}>
           <button onClick={handleClick}>
@@ -63,6 +51,5 @@ const Payment = ({ index, item, timestamp, id, shouldRender }) => {
     )
   );
 };
-
 
 export default Payment;

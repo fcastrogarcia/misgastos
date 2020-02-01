@@ -9,7 +9,7 @@
 .grid {
   border-radius: 5px 5px 0 0;
   display: grid;
-  grid-template: auto auto auto / 3fr 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-template-areas:
     "title cancel"
     "period ."
@@ -66,8 +66,8 @@
   border-radius: 0 0 5px 5px;
 }
 
-.submit {
-}
+// .submit {
+// }
 
 .cancel {
   grid-area: cancel;

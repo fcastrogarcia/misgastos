@@ -2,12 +2,13 @@ import { useState } from "react";
 import { isEqual } from "lodash";
 
 import { getLastAmountPaid } from "./utils";
+import { getTimestampFromDate } from "../../utils/time";
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import usePayments from "./usePayments";
 
 export default () => {
   const [amount, setAmount] = useState({ amount: null });
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(getTimestampFromDate(new Date()));
   const [isLoading, setLoading] = useState(false);
 
   const { firebase } = useAuthAndFirebase();

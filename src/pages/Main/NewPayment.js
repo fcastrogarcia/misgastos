@@ -7,7 +7,7 @@ import Form from "../../components/Form";
 const NewPayment = () => {
   return (
     <div>
-      <Form initialState={defaultState} />
+      <Form initialState={defaultState} title="Registrá un nuevo pago" />
     </div>
   );
 };

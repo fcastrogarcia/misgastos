@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Form.module.scss";
 
-import useSubmitForm from "./useSubmitForm";
-
 import PaymentType from "./PaymentType";
 import AutomaticPayment from "./AutomaticPayment";
 import Category from "./Category";
@@ -10,7 +8,10 @@ import DueDate from "../shared/DatePicker";
 import Amount from "../shared/AmountInput";
 import SubmitButton from "../shared/SubmitButton";
 
-const Form = ({ initialState }) => {
+import useSubmitForm from "./useSubmitForm";
+import { getTimestampFromDate } from "../../utils/time";
+
+const Form = ({ initialState, title }) => {
   const [payment, setPayment] = useState(initialState);
 
   const submit = useSubmitForm(payment);
@@ -32,15 +33,14 @@ const Form = ({ initialState }) => {
   }
 
   function handleDueDateChange(date) {
-    const newData = { due_date: date };
+    const newData = { due_date: getTimestampFromDate(date) };
     updatePayment(newData);
   }
-
   console.log(payment);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h1 className="section-heading">Registrá un nuevo pago</h1>
+      <h1 className="section-heading">{title}</h1>
       <PaymentType setPayment={setPayment} payment={payment} />
       <AutomaticPayment
         setPayment={updatePayment}

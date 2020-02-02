@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
-import pick from "lodash/pick";
+import { pick, get } from "lodash";
 
 export default payment => {
   const [isLoading, setLoading] = useState(false);
@@ -9,6 +9,7 @@ export default payment => {
 
   const { firebase, auth } = useAuthAndFirebase();
   const history = useHistory();
+  const params = useParams();
 
   const isFormValid = Object.values(errors).every(error => !error);
 
@@ -30,21 +31,34 @@ export default payment => {
   function handleSubmit(e) {
     e.preventDefault();
     doValidateInput(categoryAndAmount);
+    const id = get(params, "id", "");
+
+    const endDbCall = () => {
+      setLoading(false);
+      history.push("/main/payments");
+    };
 
     if (isFormValid) {
       setLoading(true);
 
-      firebase
-        .payments()
-        .add({
-          ...payment,
-          userId: auth.uid,
-          createdAt: firebase.fieldValue.serverTimestamp()
-        })
-        .finally(() => {
-          setLoading(false);
-          history.push("/main/payments");
-        });
+      if (id) {
+        return firebase
+          .payments()
+          .doc(id)
+          .set({
+            ...payment
+          })
+          .finally(endDbCall);
+      } else {
+        firebase
+          .payments()
+          .add({
+            ...payment,
+            userId: auth.uid,
+            createdAt: firebase.fieldValue.serverTimestamp()
+          })
+          .finally(endDbCall);
+      }
     }
   }
 

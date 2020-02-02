@@ -6,7 +6,6 @@ import ScheduleSelector from "./ScheduleSelector";
 import Table from "./Table";
 import Modal from "./Payment-Modal";
 
-import { Provider as PaymentsProvider } from "../../context/PaymentsContext";
 import usePayments from "./usePayments";
 
 const Payments = () => {
@@ -22,8 +21,4 @@ const Payments = () => {
   );
 };
 
-export default () => (
-  <PaymentsProvider>
-    <Payments />
-  </PaymentsProvider>
-);
+export default Payments;

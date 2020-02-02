@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Table.module.scss";
-import get from "lodash/get";
 
 import Payment from "./Payment";
 import SelectedMonth from "./SelectedMonth";
@@ -28,19 +27,16 @@ const Table = ({ data = {}, loading }) => {
       <table className={styles.table}>
         <Header />
         <tbody>
-          {payments.map((item, index) => {
-            const timestamp = get(item, "due_date.seconds", null);
-            return (
-              <Payment
-                key={index}
-                item={item}
-                index={index}
-                timestamp={timestamp}
-                id={ids[index]}
-                shouldRender={shouldPaymentsRender[index]}
-              />
-            );
-          })}
+          {payments.map((item, index) => (
+            <Payment
+              key={index}
+              item={item}
+              index={index}
+              timestamp={item.due_date}
+              id={ids[index]}
+              shouldRender={shouldPaymentsRender[index]}
+            />
+          ))}
         </tbody>
       </table>
       {noPayments && (

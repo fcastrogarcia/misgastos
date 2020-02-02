@@ -2,14 +2,13 @@ import React from "react";
 import cx from "classnames";
 import styles from "./Form.module.scss";
 
-import formInitialState from "./formInitialState";
-
 const Button = ({ text, payment, setPayment, singlePayment }) => {
   function handleChange(_) {
-    setPayment({
-      ...formInitialState,
-      automatic_payment: payment.automatic_payment,
-      single_payment: singlePayment
+    setPayment(prevState => {
+      return {
+        ...prevState,
+        single_payment: singlePayment
+      };
     });
   }
 

@@ -7,10 +7,12 @@ import { FaRegTrashAlt } from "react-icons/fa";
 
 import usePayments from "./usePayments";
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
+import { useHistory } from "react-router-dom";
 
 const Menu = ({ id, closeMenu }) => {
   const { setPaymentId, toggleModal, payments } = usePayments();
   const { firebase } = useAuthAndFirebase();
+  const history = useHistory();
 
   function doRegisterPayment() {
     closeMenu();
@@ -21,6 +23,11 @@ const Menu = ({ id, closeMenu }) => {
   function doDeletePayment() {
     firebase.deletePayment(id).finally(() => closeMenu());
   }
+
+  const doEditPayment = () => {
+    history.push(`/main/edit-payment/${id}`);
+    closeMenu();
+  };
 
   const items = [
     {
@@ -36,7 +43,7 @@ const Menu = ({ id, closeMenu }) => {
     {
       label: "Editar",
       icon: styles => <FiEdit2 className={styles.icon} />,
-      clickHandler: null
+      clickHandler: doEditPayment
     }
   ];
 

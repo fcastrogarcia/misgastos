@@ -1,16 +1,18 @@
 import React from "react";
 import styles from "./Header-navigation.module.scss";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { IoIosArrowBack } from "react-icons/io";
 
-const paths = ["/main/new-payment", "/main/new-expense"];
+const paths = [
+  "/main/new-payment",
+  "/main/new-expense",
+  "/main/edit-payment/:id"
+];
 
 const Navigation = () => {
   const history = useHistory();
-  const location = useLocation();
-
-  const shouldRender = paths.some(path => path === location.pathname);
+  const match = useRouteMatch(paths);
 
   function goBack(e) {
     e.preventDefault();
@@ -18,7 +20,7 @@ const Navigation = () => {
   }
 
   return (
-    shouldRender && (
+    match && (
       <button className={styles.navigation} onClick={goBack}>
         <IoIosArrowBack className={styles.arrow} />
       </button>

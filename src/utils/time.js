@@ -6,6 +6,16 @@ export function getMonthAndYear(date) {
   }
 }
 
+export function doFormatDate(date) {
+  if (!date) {
+    return;
+  } else if (typeof date === "number") {
+    return getDateFromTimestamp(date);
+  } else if (typeof date === "object") {
+    return getDateFromTimestamp(date.seconds);
+  }
+}
+
 export const months = [
   "ENE",
   "FEB",
@@ -21,6 +31,6 @@ export const months = [
   "DIC"
 ];
 
-export const currTimestamp = Math.round(new Date().getTime() / 1000);
+export const getTimestampFromDate = date => Math.round(date.getTime() / 1000);
 
 export const getDateFromTimestamp = timestamp => new Date(timestamp * 1000);

@@ -1,6 +1,6 @@
-import { get, isEqual } from "lodash";
+import { isEqual } from "lodash";
 import {
-  currTimestamp,
+  getTimestampFromDate,
   getMonthAndYear,
   getDateFromTimestamp
 } from "../../utils/time";
@@ -19,15 +19,15 @@ const hasPaidCurrentMonth = (months_paid, time) => {
   );
 };
 
-const currentTime = getMonthAndYear(new Date());
+const currTimestamp = getTimestampFromDate(new Date());
 
-const getTimestamp = date => get(date, "seconds", null);
+const currentTime = getMonthAndYear(new Date());
 
 export const shouldPaymentRender = (item, time) => {
   const { paid_at, due_date, single_payment } = item;
 
   if (due_date) {
-    const date = getDateFromTimestamp(due_date.seconds);
+    const date = getDateFromTimestamp(due_date);
     const monthAndYear = getMonthAndYear(date);
     return isEqual(monthAndYear, time);
   } else if (single_payment && !due_date && !paid_at) {
@@ -59,14 +59,12 @@ export const getPaymentStatus = (payment, time) => {
     paid_at
   } = payment;
 
-  const timestamp = getTimestamp(due_date);
-
   if (automatic_payment) return status[0];
   if (single_payment && paid_at) return status[3];
-  if (timestamp) {
-    const timestampMinusThreeDays = timestamp - 259200;
+  if (due_date) {
+    const timestampMinusThreeDays = due_date - 259200;
 
-    return timestamp < currTimestamp
+    return due_date < currTimestamp
       ? status[2]
       : currTimestamp > timestampMinusThreeDays
       ? status[4]

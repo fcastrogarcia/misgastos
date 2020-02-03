@@ -10,6 +10,7 @@ import { IoMdClose } from "react-icons/io";
 import useSubmitAmount from "./useSubmitAmount";
 import usePayments from "./usePayments";
 import { doFormatMonthAndYear } from "../../utils/masks";
+import { getTimestampFromDate } from "../../utils/time";
 
 export default ({ isOpen, toggle }) => {
   const [shouldRender, setRender] = useState(isOpen);
@@ -32,7 +33,7 @@ export default ({ isOpen, toggle }) => {
     if (!isOpen) setRender(false);
   };
 
-  const handleChange = date => setDate(date);
+  const handleChange = date => setDate(getTimestampFromDate(date));
 
   const animationStyle = { animation: `${isOpen ? "fadeIn" : "fadeOut"} .2s` };
 

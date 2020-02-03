@@ -7,13 +7,13 @@ import { FiMoreVertical } from "react-icons/fi";
 import Menu from "./Menu";
 
 import { doFormatDate, doFormatEmptyFields } from "../../utils/masks";
-import { getPaymentStatus, getStatusClassname, getAmount } from "./utils";
+import { getStatusClassname, getAmount } from "./utils";
 import usePayments from "./usePayments";
 
-const Payment = ({ index, item, timestamp, id, shouldRender }) => {
+const Payment = ({ index, item, timestamp }) => {
   const { time, menu, toggleMenu } = usePayments();
+  const { status, shouldRender, id } = item;
 
-  const status = getPaymentStatus(item, time);
   const cn = getStatusClassname(status);
   const isMenuOpen = id === menu;
   const amount = getAmount(item, time);

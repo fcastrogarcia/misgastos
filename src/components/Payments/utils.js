@@ -35,7 +35,7 @@ export const shouldPaymentRender = (item, time) => {
   } else if (!single_payment || !paid_at) {
     return true;
   } else if (paid_at) {
-    const date = getDateFromTimestamp(paid_at.seconds);
+    const date = getDateFromTimestamp(paid_at);
     let monthAndYearOfPayment = getMonthAndYear(date);
     return isEqual(time, monthAndYearOfPayment);
   }
@@ -133,4 +133,8 @@ export function getLastAmountPaid(arr) {
 
     return lastAmountPaid;
   }
+}
+
+export function sortTable(arr, criteria) {
+  return arr.sort((a, b) => (a[criteria] > b[criteria] ? 1 : -1));
 }

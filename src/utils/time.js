@@ -31,6 +31,8 @@ export const months = [
   "DIC"
 ];
 
-export const getTimestampFromDate = date => Math.round(date.getTime() / 1000);
+export const getTimestampFromDate = date => {
+  return date ? Math.round(date.getTime() / 1000) : null;
+};
 
 export const getDateFromTimestamp = timestamp => new Date(timestamp * 1000);

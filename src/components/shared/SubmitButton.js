@@ -4,8 +4,8 @@ import styles from "./SubmitButton.module.scss";
 
 import { BeatLoader } from "react-spinners";
 
-const SubmitButton = ({ isLoading, text = "" }) => (
-  <div>
+const SubmitButton = ({ isLoading, text = "", style }) => (
+  <div className={style}>
     <button
       className={cx(styles["main-action-button"], {
         [styles.loading]: isLoading

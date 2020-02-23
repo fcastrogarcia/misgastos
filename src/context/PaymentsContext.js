@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
-import { getCurrentTime } from "../../utils/time";
-import useAuthAndFirebase from "./useCombinedContexts";
+import { getMonthAndYear } from "../utils/time";
+import useAuthAndFirebase from "./useAuthAndFirebase";
 
 const Context = createContext();
 
@@ -12,9 +12,11 @@ const timeInitialState = {
 
 const Provider = ({ children }) => {
   const [payments, setPayments] = useState({});
+  const [loading, setLoading] = useState(false);
   const [paymentId, setPaymentId] = useState(null);
   const [time, setTime] = useState(timeInitialState);
   const [isModalOpen, toggleModal] = useState(false);
+  const [menu, toggleMenu] = useState(null);
 
   const { firebase, auth } = useAuthAndFirebase();
 
@@ -27,24 +29,27 @@ const Provider = ({ children }) => {
 
   useEffect(() => {
     if (auth.uid) {
-      firebase
+      setLoading(true);
+
+      let cleanUp = firebase
         .payments()
         .where("userId", "==", auth.uid)
-        .get()
-        .then(querySnapshot => {
-          let data = {};
-          querySnapshot.docs.forEach(doc => (data[doc.id] = doc.data()));
+        .onSnapshot(snapshot => {
+          const data = {};
+          snapshot.forEach(doc => (data[doc.id] = doc.data()));
+
           if (data) setPayments(data);
+          setLoading(false);
         });
+
+      return () => cleanUp();
     }
   }, [auth, auth.uid, firebase]);
 
   useEffect(() => {
-    const payload = getCurrentTime();
-    updateTime(payload);
+    const nextState = getMonthAndYear(new Date());
+    updateTime(nextState);
   }, []);
-
-  console.log("time", time);
 
   const value = {
     payments,
@@ -53,7 +58,10 @@ const Provider = ({ children }) => {
     isModalOpen,
     toggleModal,
     paymentId,
-    setPaymentId
+    setPaymentId,
+    menu,
+    toggleMenu,
+    loading
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

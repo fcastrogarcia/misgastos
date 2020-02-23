@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 
-import SinglePaymentInput from "./Category-sp";
-import MonthlyPaymentInput from "./Category-mp";
+import InputsFields from "./Category-InputFields";
 
 import useSearchEngine from "./useSearchEngine";
 
 const Category = ({ payment, setPayment, errors, doValidateInput }) => {
   const { handleSearch, searchResults } = useSearchEngine();
 
-  const { single_payment, category } = payment;
+  const { category } = payment;
 
   useEffect(() => {
     handleSearch(category);
@@ -26,18 +25,14 @@ const Category = ({ payment, setPayment, errors, doValidateInput }) => {
       <h3 className="section-subheading">
         Ingresá el nombre del pago o servicio
       </h3>
-      {single_payment ? (
-        <SinglePaymentInput errors={errors} handleChange={handleChange} />
-      ) : (
-        <MonthlyPaymentInput
-          errors={errors}
-          handleChange={handleChange}
-          category={category}
-          searchResults={searchResults}
-          setPayment={setPayment}
-          doValidateInput={doValidateInput}
-        />
-      )}
+      <InputsFields
+        errors={errors}
+        handleChange={handleChange}
+        category={category}
+        searchResults={searchResults}
+        setPayment={setPayment}
+        doValidateInput={doValidateInput}
+      />
     </div>
   );
 };

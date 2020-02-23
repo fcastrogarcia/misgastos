@@ -4,7 +4,16 @@ import styles from "../../styles/inputs.module.scss";
 
 import NumberFormat from "react-number-format";
 
-const Amount = ({ setter, amount, error, doValidateInput }) => {
+const Amount = props => {
+  const {
+    setter,
+    amount,
+    error,
+    doValidateInput,
+    className,
+    placeholder
+  } = props;
+
   function handleChange(e) {
     const value = e.floatValue;
     const payload = { amount: value };
@@ -13,19 +22,17 @@ const Amount = ({ setter, amount, error, doValidateInput }) => {
   }
 
   return (
-    <div>
-      <h3 className="section-subheading">Ingresá el monto</h3>
-      <NumberFormat
-        className={cx(styles["input"], { [styles.error]: error })}
-        prefix={"$"}
-        allowNegative={false}
-        onValueChange={handleChange}
-        value={amount}
-        decimalSeparator={","}
-        thousandSeparator={"."}
-        required
-      />
-    </div>
+    <NumberFormat
+      className={cx(styles["input"], className, { [styles.error]: error })}
+      prefix={"$"}
+      allowNegative={false}
+      onValueChange={handleChange}
+      value={amount}
+      decimalSeparator={","}
+      thousandSeparator={"."}
+      required
+      placeholder={placeholder}
+    />
   );
 };
 

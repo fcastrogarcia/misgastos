@@ -1,9 +1,11 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
 
 .create-button {
   @include flexContainer;
   grid-area: mab;
-  width: 35px;
+  height: 31px;
+  padding: 0 7px;
   font-size: 22px;
   border-radius: 4px;
   border: 2px solid var(--teal-400);
@@ -18,13 +20,26 @@
   }
   &:hover {
     background: var(--teal-400);
-    & .icon {
+    box-shadow: $shadow;
+    & .icon,
+    .text {
       color: var(--white);
     }
   }
 }
 
-.icon {
+.icon,
+.text {
   color: var(--teal-400);
   transition: all 0.1s ease-in-out;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.icon {
+  font-size: 1.1rem;
+}
+
+.text {
+  letter-spacing: 0.8px;
 }

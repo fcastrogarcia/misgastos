@@ -3,7 +3,7 @@
 
 //headings
 .section-heading {
-  font-size: x-large;
+  font-size: 1.4rem;
   color: var(--gray-800);
 }
 
@@ -12,4 +12,13 @@
   color: var(--gray-600);
   letter-spacing: 0.5px;
   margin-bottom: 15px;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.pointer {
+  cursor: pointer;
 }

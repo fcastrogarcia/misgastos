@@ -1,0 +1,82 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.modal {
+  box-shadow: $shadow-lg;
+  border-radius: 5px;
+}
+
+.grid {
+  border-radius: 5px 5px 0 0;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-areas:
+    "title cancel"
+    "period ."
+    "amount date";
+  width: 30em;
+  gap: 25px;
+  padding: 20px;
+  background: $white;
+}
+
+.background {
+  @include flexContainer;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.title {
+  grid-area: title;
+  color: $gray-700;
+  font-size: 19px;
+  align-self: center;
+}
+
+.periodo {
+  grid-area: period;
+  font-size: 15px;
+  color: $gray-600;
+  align-self: center;
+}
+
+.amount {
+  grid-area: amount;
+}
+
+.date {
+  grid-area: date;
+}
+
+.buttons-wrapper {
+  grid-area: buttons;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 15px 20px;
+  border-top: 1px solid $gray-300;
+  background: $white;
+  box-sizing: border-box;
+  border-radius: 0 0 5px 5px;
+}
+
+// .submit {
+// }
+
+.cancel {
+  grid-area: cancel;
+  font-weight: bold;
+  justify-self: flex-end;
+  color: $gray-600;
+  font-size: 14px;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    color: $gray-800;
+  }
+}

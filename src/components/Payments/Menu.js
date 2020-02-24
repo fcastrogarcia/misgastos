@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Table.module.scss";
 
-import Dropdown from "../shared/Dropdown";
+import Dropdown from "../Dropdown";
 import { FiDollarSign, FiEdit2 } from "react-icons/fi";
 import { FaRegTrashAlt } from "react-icons/fa";
 

@@ -14,7 +14,7 @@ const Payments = () => {
   return (
     <div className={styles.container}>
       <h3 className={cx(styles.title, "section-heading")}>Pagos</h3>
-      <ScheduleSelector />
+      {/* <ScheduleSelector /> */}
       <Table data={payments} loading={loading} />
       {isModalOpen && <Modal isOpen={isModalOpen} toggle={toggleModal} />}
     </div>

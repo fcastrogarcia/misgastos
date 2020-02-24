@@ -10,9 +10,13 @@ aside {
   box-sizing: border-box;
   position: sticky;
   left: 0;
-  // top: 0;
   bottom: 0;
   height: 100vh;
+  @include responsive("md") {
+    // left: 300px;
+    // position: absolute;
+    display: none;
+  }
 }
 
 .li {

@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Header.module.scss";
 
-import Navigation from "./Header-navigation";
-import Menu from "./Header-menu";
+import Navigation from "./components/Navigation";
+import Menu from "./components/Menu";
 
 const Header = () => (
   <header>

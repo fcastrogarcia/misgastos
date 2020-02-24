@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Header-navigation.module.scss";
+import styles from "./Navigation.module.scss";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { IoIosArrowBack } from "react-icons/io";

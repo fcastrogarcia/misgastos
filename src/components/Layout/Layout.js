@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Layout.module.scss";
 import cx from "classnames";
 
-import Header from "./Header";
+import Header from "../Header";
 import Sidebar from "./Sidebar";
 import Logo from "./Logo";
 

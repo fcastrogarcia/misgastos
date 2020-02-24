@@ -17,6 +17,12 @@
     "logo header"
     "sidebar main"
     "sidebar main";
+  @include responsive("md") {
+    grid-template-areas:
+      "header header"
+      "main main"
+      "main main";
+  }
 }
 
 main {

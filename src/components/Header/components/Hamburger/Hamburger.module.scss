@@ -9,6 +9,7 @@
   justify-content: center;
   cursor: pointer;
   z-index: 1;
+  margin-left: 1rem;
   transform: scale(0.55);
   @include responsive("md", "min") {
     display: none;
@@ -16,7 +17,7 @@
 }
 
 .bar {
-  background: tomato;
+  background: var(--teal-400);
   height: 0.5em;
   margin: 0.2em 0;
   border-radius: 10px;
@@ -25,8 +26,8 @@
   transition: transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: auto;
   &:nth-child(2).toggle {
-    transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateX(-50px);
+    transition: all 50ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    // transform: translateX(-50px);
     opacity: 0;
   }
   &:first-child.toggle {
@@ -38,5 +39,3 @@
     transform-origin: left;
   }
 }
-
-

@@ -1,8 +1,12 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 
-.table-wrapper {
+.container {
   grid-area: table;
+  overflow-x: auto;
+}
+
+.table-wrapper {
   display: grid;
   gap: 20px;
   grid-template-columns: 2fr 5fr;
@@ -11,8 +15,12 @@
     "table table";
   border-radius: 20px;
   box-sizing: border-box;
-  padding: 25px 30px 30px 30px;
+  padding: 25px 5px 30px;
   max-width: 1300px;
+  min-width: 680px;
+  @include responsive("md") {
+    padding: 25px 5px 30px;
+  }
 }
 
 .table {
@@ -23,7 +31,6 @@
   border-radius: 5px;
   background: $white;
   border-collapse: collapse;
-  // border-top: 2px solid $gray-200;
 }
 
 .tr {

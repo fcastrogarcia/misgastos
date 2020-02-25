@@ -12,12 +12,13 @@
 
 .grid {
   display: grid;
-  grid-template: 4em auto / 13% auto;
+  grid-template: 4em auto / minmax(150px, 13%) auto;
   grid-template-areas:
     "logo header"
     "sidebar main"
     "sidebar main";
   @include responsive("md") {
+    grid-template-columns: minmax(100px, 13%) auto;
     grid-template-areas:
       "logo header"
       "main main"
@@ -25,8 +26,14 @@
   }
 }
 
-main {
+.main {
   grid-area: main;
   box-sizing: border-box;
-  margin: 0px 60px 30px 60px;
+  margin: 2rem 3.5rem 2rem;
+  @include responsive("md") {
+    margin: 2rem 2.5rem 2rem;
+  }
+  @include responsive("sm") {
+    margin: 2rem 1.5rem 2rem;
+  }
 }

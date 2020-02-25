@@ -12,7 +12,7 @@ export default ({ children }) => {
     <div className={cx(styles.layout, styles.grid)}>
       <Header open={open} setOpen={setOpen} />
       <Sidebar open={open} />
-      <main>{children}</main>
+      <main className={styles.main}>{children}</main>
     </div>
   );
 };

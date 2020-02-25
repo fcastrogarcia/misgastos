@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import { FaRegCalendarAlt } from "react-icons/fa";
 
-import { months } from "../../utils/time";
+import { months, monthsMobile } from "../../utils/time";
 import { countPaymentStatus, paymentsPerMonth } from "./utils";
 import usePayments from "./usePayments";
 
@@ -47,8 +47,14 @@ const Schedule = () => {
   return (
     <div className={styles.wrapper}>
       <FaRegCalendarAlt className={styles.icon} />
-      <div className={styles.container}>
+      <div className={cx(styles.container, styles["desktop"])}>
         {months.map((month, index) => (
+          <Month key={index} month={month} index={index} />
+        ))}
+        <div className={cx(styles.item, styles.year)}>{time.year}</div>
+      </div>
+      <div className={cx(styles.container, styles["mobile"])}>
+        {monthsMobile.map((month, index) => (
           <Month key={index} month={month} index={index} />
         ))}
         <div className={cx(styles.item, styles.year)}>{time.year}</div>

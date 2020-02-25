@@ -19,7 +19,7 @@
     "sidebar main";
   @include responsive("md") {
     grid-template-areas:
-      "header header"
+      "logo header"
       "main main"
       "main main";
   }

@@ -1,12 +1,18 @@
 import React from "react";
-import styles from "./styles.scss";
+import cx from "classnames";
+import styles from "./Hamburger.module.scss";
 
-const Hamburger = ({ handleClick }) => (
-  <div className="toggle-container">
-    <div className="bar"></div>
-    <div className="bar"></div>
-    <div className="bar"></div>
-  </div>
-);
+const Hamburger = ({ open, setOpen }) => {
+  return (
+    <div
+      className={cx(styles["toggle-container"])}
+      onClick={() => setOpen(!open)}
+    >
+      <div className={cx(styles.bar, { [styles.toggle]: open })}></div>
+      <div className={cx(styles.bar, { [styles.toggle]: open })}></div>
+      <div className={cx(styles.bar, { [styles.toggle]: open })}></div>
+    </div>
+  );
+};
 
 export default Hamburger;

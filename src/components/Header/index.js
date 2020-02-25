@@ -3,12 +3,16 @@ import styles from "./Header.module.scss";
 
 import Navigation from "./components/Navigation";
 import Menu from "./components/Menu";
+import Logo from "./components/Logo";
 
-const Header = () => (
-  <header>
-    <Navigation />
-    <Menu />
-  </header>
+const Header = props => (
+  <React.Fragment>
+    <Logo {...props} />
+    <header>
+      <Navigation />
+      <Menu />
+    </header>
+  </React.Fragment>
 );
 
 export default Header;

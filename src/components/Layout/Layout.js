@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Layout.module.scss";
 import cx from "classnames";
 
 import Header from "../Header";
 import Sidebar from "./Sidebar";
-import Logo from "./Logo";
 
-export default ({ children }) => (
-  <div className={cx(styles.layout, styles.grid)}>
-    <Logo />
-    <Header />
-    <Sidebar />
-    <main>{children}</main>
-  </div>
-);
+export default ({ children }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className={cx(styles.layout, styles.grid)}>
+      <Header open={open} setOpen={setOpen} />
+      <Sidebar open={open} />
+      <main>{children}</main>
+    </div>
+  );
+};

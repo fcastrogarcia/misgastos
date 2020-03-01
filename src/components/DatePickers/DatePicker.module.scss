@@ -1,0 +1,78 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 2px solid $teal-400;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  margin-left: 1rem;
+  @include responsive("md") {
+  }
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.months-list {
+  display: grid;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 500;
+  grid-template: 3em auto auto auto auto/ 1fr 1fr 1fr;
+  border-radius: 5px;
+  box-shadow: $shadow-md;
+  background: $white;
+  padding: 10px 15px 10px;
+}
+
+.year {
+  @include flexContainer;
+  justify-content: space-around;
+  grid-column: 1 / 4;
+  font-weight: bold;
+  color: $gray-500;
+  border-bottom: 1px solid $gray-200;
+  margin-bottom: 10px;
+}
+
+.month {
+  @include flexContainer;
+  width: 60px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background: $gray-200;
+  }
+}
+
+.chevron {
+  font-weight: bold;
+  cursor: pointer;
+  color: $teal-400;
+  font-size: 1.2rem;
+}
+
+.wrapper > span {
+  cursor: pointer;
+}
+
+.mobile {
+  @include responsive("md", "min") {
+    display: none;
+  }
+}

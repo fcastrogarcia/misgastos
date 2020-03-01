@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import styles from "./Header-menu.module.scss";
+import styles from "./Menu.module.scss";
 
 import { MdKeyboardArrowDown } from "react-icons/md";
-import authContext from "../../context/authContext";
-import Dropdown from "./Header-dropdown";
+import authContext from "../../../../context/authContext";
+import Dropdown from "../Dropdown";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);

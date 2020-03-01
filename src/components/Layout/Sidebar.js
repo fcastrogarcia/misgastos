@@ -1,11 +1,12 @@
 import React from "react";
+import cx from "classnames";
 import styles from "./Sidebar.module.scss";
 
 const sections = ["Overview", "Payments", "Expenses", "Budget"];
 
-export default () => {
+export default ({ open }) => {
   return (
-    <aside>
+    <aside className={cx(styles.sidebar, { [styles["--close"]]: !open })}>
       <ul>
         {sections.map((item, i) => (
           <li key={i} className={styles.li}>

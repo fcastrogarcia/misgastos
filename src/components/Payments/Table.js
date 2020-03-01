@@ -55,25 +55,27 @@ const Table = ({ data = {}, loading }) => {
   const noPayments = !shouldPaymentsRender.length && !loading;
 
   return (
-    <div className={styles["table-wrapper"]}>
-      <SelectedMonth />
-      <CreatePayment />
-      <table className={styles.table}>
-        <Header dispatch={dispatch} />
-        <tbody>
-          {sortedPayments.map((item, index) => (
-            <Payment
-              key={index}
-              item={item}
-              index={index}
-              timestamp={item.due_date}
-            />
-          ))}
-        </tbody>
-      </table>
-      {noPayments && (
-        <h3 className={styles["no-payments"]}>No hay pagos registrados.</h3>
-      )}
+    <div className={styles.container}>
+      <div className={styles["table-wrapper"]}>
+        <SelectedMonth />
+        <CreatePayment />
+        <table className={styles.table}>
+          <Header dispatch={dispatch} />
+          <tbody>
+            {sortedPayments.map((item, index) => (
+              <Payment
+                key={index}
+                item={item}
+                index={index}
+                timestamp={item.due_date}
+              />
+            ))}
+          </tbody>
+        </table>
+        {noPayments && (
+          <h3 className={styles["no-payments"]}>No hay pagos registrados.</h3>
+        )}
+      </div>
     </div>
   );
 };

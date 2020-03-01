@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { withRouter } from "react-router-dom";
 
-import Dropdown from "../shared/Dropdown";
+import Dropdown from "../../../Dropdown";
 import { MdExitToApp } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
 
-import firebaseContext from "../../context/firebaseContext";
+import firebaseContext from "../../../../context/firebaseContext";
 
 const Menu = ({ history }) => {
   const firebase = useContext(firebaseContext);

@@ -1,0 +1,16 @@
+@import "../../../../styles/mixins.scss";
+
+.logo {
+  grid-area: logo;
+  background: var(--gray-300);
+  z-index: 600;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  @include responsive("md") {
+    background: var(--white);
+    border-bottom: 2px solid var(--gray-200);
+  }
+}

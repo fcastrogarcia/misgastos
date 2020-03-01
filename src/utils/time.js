@@ -31,21 +31,6 @@ export const months = [
   "DIC"
 ];
 
-export const monthsMobile = [
-  "E",
-  "F",
-  "M",
-  "A",
-  "M",
-  "J",
-  "J",
-  "A",
-  "S",
-  "O",
-  "N",
-  "D"
-];
-
 export const getTimestampFromDate = date => {
   return date ? Math.round(date.getTime() / 1000) : null;
 };

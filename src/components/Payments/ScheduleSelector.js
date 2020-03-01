@@ -3,8 +3,9 @@ import styles from "./ScheduleSelector.module.scss";
 import cx from "classnames";
 
 import { FaRegCalendarAlt } from "react-icons/fa";
+import DatePicker from "../DatePickers";
 
-import { months, monthsMobile } from "../../utils/time";
+import { months } from "../../utils/time";
 import { countPaymentStatus, paymentsPerMonth } from "./utils";
 import usePayments from "./usePayments";
 
@@ -53,12 +54,7 @@ const Schedule = () => {
         ))}
         <div className={cx(styles.item, styles.year)}>{time.year}</div>
       </div>
-      <div className={cx(styles.container, styles["mobile"])}>
-        {monthsMobile.map((month, index) => (
-          <Month key={index} month={month} index={index} />
-        ))}
-        <div className={cx(styles.item, styles.year)}>{time.year}</div>
-      </div>
+      <DatePicker />
     </div>
   );
 };

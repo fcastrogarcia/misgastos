@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import styles from "./Sidebar.module.scss";
 
-const sections = ["Overview", "Payments", "Expenses", "Budget"];
+const sections = ["Pagos", "Gastos", "Presupuesto"];
 
 export default ({ open }) => {
   return (

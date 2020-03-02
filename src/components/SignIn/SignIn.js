@@ -7,20 +7,25 @@ export default ({ clickHandler }) => {
 
   return (
     <div className={wrapper}>
-      <h1 className={title}>Keep account of your expenses.</h1>
+      <h1 className={title}>Llevá la cuenta de tus gastos.</h1>
       <div className={card}>
         <form className={form}>
           <div className={field}>
             <label className={label} htmlFor="email">
               Email
             </label>
-            <input className={input} name="email" type="text"></input>
+            <input className={input} name="email" type="text" disabled></input>
           </div>
           <div className={field}>
             <label className={label} htmlFor="password">
-              Password
+              Contraseña
             </label>
-            <input className={input} name="password" type="password"></input>
+            <input
+              className={input}
+              name="password"
+              type="password"
+              disabled
+            ></input>
           </div>
         </form>
         <GoogleButton

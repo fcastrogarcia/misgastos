@@ -6,10 +6,10 @@
   @include flexContainer;
   padding-top: calc(4em);
   align-items: flex-start;
-  justify-content: center;
   background: $gray-100;
   box-sizing: border-box;
   position: sticky;
+  // z-index: 1000;
   left: 0;
   bottom: 0;
   height: 100vh;

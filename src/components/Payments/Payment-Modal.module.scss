@@ -18,6 +18,14 @@
   gap: 25px;
   padding: 20px;
   background: $white;
+  @include responsive("sm") {
+    width: 80vw;
+    grid-template-areas:
+      "title cancel"
+      "period ."
+      "amount ."
+      "date .";
+  }
 }
 
 .background {
@@ -48,10 +56,16 @@
 
 .amount {
   grid-area: amount;
+  @include responsive("sm") {
+    min-width: 70vw !important;
+  }
 }
 
 .date {
   grid-area: date;
+  @include responsive("sm") {
+    max-width: 70vw;
+  }
 }
 
 .buttons-wrapper {

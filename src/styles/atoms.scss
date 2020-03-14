@@ -3,8 +3,13 @@
 
 //headings
 .section-heading {
-  font-size: 1.4rem;
-  color: var(--gray-800);
+  font-size: 1.5rem;
+  color: var(--gray-700);
+  // font-family: "Roboto", sans-serif;
+  // font-family: "Inter", sans-serif;
+  font-family: "Rubik", sans-serif;
+  letter-spacing: 0px;
+  font-weight: 500;
 }
 
 .section-subheading {

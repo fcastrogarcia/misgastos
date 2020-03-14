@@ -9,7 +9,6 @@
   background: $gray-100;
   box-sizing: border-box;
   position: sticky;
-  // z-index: 1000;
   left: 0;
   bottom: 0;
   height: 100vh;
@@ -36,7 +35,7 @@
 
 .li {
   margin: 3em;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: $gray-600;
   font-weight: bold;
   letter-spacing: 1px;
@@ -49,3 +48,4 @@
     font-size: 1rem;
   }
 }
+

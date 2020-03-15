@@ -23,8 +23,11 @@
   justify-content: center;
   padding: 8px 0;
   width: 75px;
-  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-800);
   transition: all 0.07s ease-in-out;
+  cursor: pointer;
   &:nth-child(1) {
     border-right: 1px solid var(--teal-300);
   }

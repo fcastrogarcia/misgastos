@@ -5,8 +5,6 @@
 .section-heading {
   font-size: 1.5rem;
   color: var(--gray-700);
-  // font-family: "Roboto", sans-serif;
-  // font-family: "Inter", sans-serif;
   font-family: "Rubik", sans-serif;
   letter-spacing: 0px;
   font-weight: 500;
@@ -17,6 +15,15 @@
   color: var(--gray-600);
   letter-spacing: 0.5px;
   margin-bottom: 15px;
+}
+
+.modal-title {
+  @include rubik;
+  color: var(--gray-700);
+  font-weight: 500;
+  letter-spacing: 0px;
+  font-size: 20px;
+  align-self: center;
 }
 
 .uppercase {

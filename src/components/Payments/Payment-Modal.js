@@ -46,7 +46,7 @@ export default ({ isOpen, toggle }) => {
       >
         <form onSubmit={handleSubmit} className={styles.modal}>
           <div className={styles.grid}>
-            <h1 className={cx(styles.title)}>Ingresá el pago</h1>
+            <h1 className={cx(styles.title, "modal-title")}>Ingresá el pago</h1>
             <button className={styles.cancel} onClick={() => toggle(false)}>
               <IoMdClose size={19} />
             </button>

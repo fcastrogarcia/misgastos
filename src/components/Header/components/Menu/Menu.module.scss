@@ -4,15 +4,12 @@
 .wrapper {
   @include flexContainer;
   grid-area: menu;
-  padding: 0 15px;
+  padding: 0 2rem;
   height: 100%;
   justify-self: end;
-  // border-right: 1px solid $gray-400;
-  // border-left: 1px solid $gray-400;
   color: $gray-800;
   font-weight: 600;
   letter-spacing: 0.8px;
-  cursor: pointer;
 }
 .photo {
   width: 30px;

@@ -3,7 +3,7 @@ import styles from "./Layout.module.scss";
 import cx from "classnames";
 
 import Header from "../Header";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 
 export default ({ children }) => {
   const [open, setOpen] = useState(false);

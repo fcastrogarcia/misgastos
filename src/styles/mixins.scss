@@ -49,3 +49,7 @@ $breakpoints: (
     }
   }
 }
+
+@mixin rubik() {
+  font-family: "Rubik", sans-serif;
+}

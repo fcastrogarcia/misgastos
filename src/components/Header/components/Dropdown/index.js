@@ -16,12 +16,7 @@ const Menu = ({ history }) => {
 
   const items = [
     {
-      label: "Profile",
-      icon: styles => <FaUserCog className={styles.icon} />,
-      clickHandler: null
-    },
-    {
-      label: "Log Out",
+      label: "Salir",
       icon: styles => <MdExitToApp className={styles.icon} />,
       clickHandler: logOut
     }

@@ -5,6 +5,7 @@ import Payment from "./Payment";
 import SelectedMonth from "./SelectedMonth";
 import CreatePayment from "./CreatePayment";
 import Header from "./Table-Header";
+import Loader from "./Loader";
 
 import { shouldPaymentRender, getPaymentStatus } from "./utils";
 import { sortTable } from "./utils";
@@ -70,6 +71,7 @@ const Table = ({ data = {}, loading }) => {
                 timestamp={item.due_date}
               />
             ))}
+            {loading && <Loader />}
           </tbody>
         </table>
         {noPayments && (

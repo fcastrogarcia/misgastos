@@ -12,7 +12,7 @@ const style = {
 const CreatePayment = () => {
   return (
     <div style={style}>
-      <CreateButton path="/main/new-payment" text="Crear pago" />
+      <CreateButton path="/main/new-payment" text="Agregar pago" />
     </div>
   );
 };

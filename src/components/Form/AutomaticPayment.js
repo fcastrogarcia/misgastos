@@ -1,6 +1,6 @@
 import React from "react";
 
-import Checkbox from "../shared/Checkbox";
+import Checkbox from "../Checkbox/Checkbox";
 
 const AutomaticPayment = ({ setPayment, isChecked }) => {
   function handleChange() {

@@ -10,6 +10,8 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   cursor: pointer;
+  height: 22px;
+  position: relative;
 }
 
 .checkbox {
@@ -19,7 +21,6 @@ input[type="checkbox"] {
   margin-right: 10px;
   overflow: hidden;
   border-radius: 50%;
-  border: 0.5px solid $gray-300;
   box-shadow: $shadow;
   border: 1px solid $gray-300;
   &::before {
@@ -38,9 +39,9 @@ input[type="checkbox"] {
     transition: all 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
   &.checkbox--checked {
-    border: 1px solid $teal-300;
+    border: 2px solid $teal-300;
     &::before {
-      transform: scale(1);
+      transform: scale(0.85);
       opacity: 1;
       transition: all 0.1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
@@ -50,4 +51,6 @@ input[type="checkbox"] {
 .text {
   font-size: 16px;
   color: var(--gray-800);
+  position: absolute;
+  left: 30px;
 }

@@ -138,3 +138,7 @@ export function getLastAmountPaid(arr) {
 export function sortTable(arr, criteria) {
   return arr.sort((a, b) => (a[criteria] > b[criteria] ? 1 : -1));
 }
+
+export function getTotalAmount(payments) {
+  return Object.values(payments).reduce((acc, curr) => curr.amount + acc, 0);
+}

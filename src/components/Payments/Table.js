@@ -1,11 +1,13 @@
 import React, { useReducer } from "react";
 import styles from "./Table.module.scss";
+import { object, objectOf, bool } from "prop-types";
 
 import Payment from "./Payment";
 import SelectedMonth from "./SelectedMonth";
 import CreatePayment from "./CreatePayment";
 import Header from "./Table-Header";
-import Loader from "./Loader";
+import Loader from "./components/Loader";
+import Total from "./components/Total";
 
 import { shouldPaymentRender, getPaymentStatus } from "./utils";
 import { sortTable } from "./utils";
@@ -33,7 +35,7 @@ const reducer = (state, action) => {
   }
 };
 
-const Table = ({ data = {}, loading }) => {
+const Table = ({ data, loading }) => {
   const [sortBy, dispatch] = useReducer(reducer, "category");
   const { time } = usePayments();
 
@@ -71,6 +73,7 @@ const Table = ({ data = {}, loading }) => {
                 timestamp={item.due_date}
               />
             ))}
+            {!loading && <Total payments={p} />}
             {loading && <Loader />}
           </tbody>
         </table>
@@ -80,6 +83,15 @@ const Table = ({ data = {}, loading }) => {
       </div>
     </div>
   );
+};
+
+Table.propTypes = {
+  data: objectOf(object),
+  loading: bool
+};
+
+Table.defaultProps = {
+  data: {}
 };
 
 export default Table;

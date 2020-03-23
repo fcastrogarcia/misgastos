@@ -32,12 +32,13 @@
 .text {
   color: var(--teal-500);
   transition: all 0.1s ease-in-out;
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .icon {
   font-size: 1.1rem;
+  margin-right: 6px;
 }
 
 .text {

@@ -6,7 +6,7 @@ import AutomaticPayment from "./AutomaticPayment";
 import Category from "./Category";
 import DueDate from "../shared/DatePicker";
 import Amount from "../shared/AmountInput";
-import SubmitButton from "../shared/SubmitButton";
+import SubmitButton from "../SubmitButton";
 
 import useSubmitForm from "./useSubmitForm";
 import { getTimestampFromDate } from "../../utils/time";

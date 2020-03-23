@@ -6,26 +6,35 @@ import {
   Switch
 } from "react-router-dom";
 
-// import SignUp from "../SignUp/index";
-
-import SignIn from "../SignIn/index";
-import Main from "../../pages/Main/index";
+import SignIn from "../SignIn";
+import Main from "../../pages/Main";
 import PrivateRoute from "./PrivateRoute";
 import authContext from "../../context/authContext";
+import Loader from "../Layout/Loader";
 
 import "../../styles/index";
 import "../../assets/font-icon/style.css";
 
+const homeInRouting = auth =>
+  auth === "loading" ? (
+    <Loader />
+  ) : auth ? (
+    <Redirect to="/main" />
+  ) : (
+    <Redirect to="/signin" />
+  );
+
+const signInRouting = auth =>
+  auth === "loading" ? <Loader /> : auth ? <Redirect to="/main" /> : <SignIn />;
+
 export default () => {
   const { auth } = useContext(authContext);
-
   return (
     <React.Fragment>
       <Router>
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/signin" />} />
-          <Route exact path="/signin" component={SignIn} />
-          {/* <Route exact path="/signup" component={SignUp} /> */}
+          <Route exact path="/" render={() => homeInRouting(auth)} />
+          <Route exact path="/signin" render={() => signInRouting(auth)} />
           <PrivateRoute path="/main" auth={auth} component={Main} />
           <Route render={() => <Redirect to="/main" />} />
         </Switch>

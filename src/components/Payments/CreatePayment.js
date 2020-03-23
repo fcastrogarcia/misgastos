@@ -1,6 +1,6 @@
 import React from "react";
 
-import CreateButton from "../shared/CreateButton";
+import MainActionButton from "../MainActionButton";
 
 const style = {
   gridArea: "create-payment",
@@ -12,7 +12,7 @@ const style = {
 const CreatePayment = () => {
   return (
     <div style={style}>
-      <CreateButton path="/main/new-payment" text="Crear pago" />
+      <MainActionButton path="/main/new-payment" text="Agregar pago" />
     </div>
   );
 };

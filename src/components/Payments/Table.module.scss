@@ -141,3 +141,19 @@
   font-size: 18px;
   margin-top: 30px;
 }
+
+//loader
+.loader-wrapper {
+  @include flexContainer;
+}
+
+// total
+.total-tr {
+  background: var(--gray-100);
+}
+
+.total-td {
+  color: var(--gray-800);
+  letter-spacing: 1px;
+  font-size: 15px;
+}

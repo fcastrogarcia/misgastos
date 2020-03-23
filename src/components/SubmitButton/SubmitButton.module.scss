@@ -3,16 +3,16 @@
   align-items: center;
   border-radius: 20px;
   font-size: 14px;
-  border: 2px solid var(--teal-300);
+  border: 2px solid var(--teal-500);
   overflow: hidden;
-  color: var(--teal-400);
+  color: var(--teal-500);
   font-weight: bold;
   padding: 10px 15px;
   letter-spacing: 0.8px;
   transition: all 0.15s ease-in-out;
   width: 88px;
   &:hover {
-    background: var(--teal-300);
+    background: var(--teal-500);
     color: var(--white);
   }
   &.loading {

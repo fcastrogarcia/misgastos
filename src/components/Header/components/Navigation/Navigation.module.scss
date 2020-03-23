@@ -2,17 +2,20 @@
 
 .navigation {
   grid-area: navigation;
-  padding-left: 10px;
+  padding-left: 16px;
   @include flexContainer;
   justify-content: flex-start;
-  border-right: 2px solid var(--gray-200);
   &:hover .arrow {
-    color: var(--teal-400);
+    transition: all 0.15s ease-in-out;
+    background: var(--gray-200);
   }
 }
 
 .arrow {
   transition: all 0.1s ease-in-out;
-  font-size: 1.6rem;
-  color: var(--gray-800);
+  font-size: 1.5rem;
+  color: var(--gray-700);
+  background: var(--gray-100);
+  border-radius: 50%;
+  padding: 6px;
 }

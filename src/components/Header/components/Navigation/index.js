@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Navigation.module.scss";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import { IoIosArrowBack } from "react-icons/io";
+import { IoMdArrowBack } from "react-icons/io";
 
 const paths = [
   "/main/new-payment",
@@ -22,7 +22,7 @@ const Navigation = () => {
   return (
     match && (
       <button className={styles.navigation} onClick={goBack}>
-        <IoIosArrowBack className={styles.arrow} />
+        <IoMdArrowBack className={styles.arrow} />
       </button>
     )
   );

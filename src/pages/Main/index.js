@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Redirect } from "react-router-dom";
 
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../components/Layout";
 import Payments from "./Payments";
 import NewPayment from "./NewPayment";
 import EditPayment from "./EditPayment";

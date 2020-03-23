@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Payment-Modal.module.scss";
 import cx from "classnames";
 
-import SubmitButton from "../shared/SubmitButton";
+import SubmitButton from "../SubmitButton";
 import DatePicker from "../shared/DatePicker";
 import Amount from "../shared/AmountInput";
 import { IoMdClose } from "react-icons/io";

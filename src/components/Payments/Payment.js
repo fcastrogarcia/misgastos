@@ -7,7 +7,7 @@ import { FiMoreVertical } from "react-icons/fi";
 import Menu from "./Menu";
 
 import { doFormatDate, doFormatEmptyFields } from "../../utils/masks";
-import { getStatusClassname, getAmount } from "./utils";
+import { getStatusClassname, getAmount } from "../../utils/payments";
 import usePayments from "./usePayments";
 
 const Payment = ({ index, item, timestamp }) => {

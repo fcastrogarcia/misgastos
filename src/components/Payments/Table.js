@@ -9,8 +9,11 @@ import Header from "./Table-Header";
 import Loader from "./components/Loader";
 import Total from "./components/Total";
 
-import { shouldPaymentRender, getPaymentStatus } from "./utils";
-import { sortTable } from "./utils";
+import {
+  shouldPaymentRender,
+  getPaymentStatus,
+  sortTable
+} from "../../utils/payments";
 import usePayments from "./usePayments";
 
 const reducer = (state, action) => {

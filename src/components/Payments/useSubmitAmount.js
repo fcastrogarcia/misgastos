@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { isEqual } from "lodash";
 
-import { getLastAmountPaid } from "./utils";
+import { getLastAmountPaid } from "../../utils/payments";
 import { getTimestampFromDate } from "../../utils/time";
 import useAuthAndFirebase from "../../context/useAuthAndFirebase";
 import usePayments from "./usePayments";

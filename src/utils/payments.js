@@ -3,7 +3,7 @@ import {
   getTimestampFromDate,
   getMonthAndYear,
   getDateFromTimestamp
-} from "../../utils/time";
+} from "./time";
 
 const status = [
   "Pago automático",
@@ -13,7 +13,7 @@ const status = [
   "Vence pronto"
 ];
 
-const hasPaidCurrentMonth = (months, time) => {
+export const hasPaidCurrentMonth = (months, time) => {
   return months.find(item =>
     isEqual({ month: item.month, year: item.year }, time)
   );

@@ -5,7 +5,7 @@ import { object, arrayOf } from "prop-types";
 
 import NumberFormat from "react-number-format";
 
-import { getTotalAmount } from "../../utils";
+import { getTotalAmount } from "../../../../utils/payments";
 
 const Total = ({ payments }) => {
   const filteredPayments = payments.filter(payment => payment.shouldRender);

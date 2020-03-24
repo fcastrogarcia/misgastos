@@ -6,7 +6,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import DatePicker from "../DatePickers";
 
 import { months } from "../../utils/time";
-import { countPaymentStatus, paymentsPerMonth } from "./utils";
+import { countPaymentStatus, paymentsPerMonth } from "../../utils/payments";
 import usePayments from "./usePayments";
 
 const Month = ({ month, index }) => {

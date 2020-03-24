@@ -28,13 +28,17 @@ const Payment = ({ index, item, timestamp }) => {
         <td className={cx(styles.td)}>{doFormatEmptyFields(item.provider)}</td>
         <td className={cx(styles.td)}>{doFormatDate(timestamp)}</td>
         <td className={cx(styles.td)}>
-          <NumberFormat
-            displayType="text"
-            prefix="$"
-            value={amount}
-            decimalSeparator={","}
-            thousandSeparator={"."}
-          />
+          {amount ? (
+            <NumberFormat
+              displayType="text"
+              prefix="$"
+              value={amount}
+              decimalSeparator={","}
+              thousandSeparator={"."}
+            />
+          ) : (
+            "-"
+          )}
         </td>
         <td className={cx(styles.td)}>
           <span className={cx(styles.status, styles[cn])}>{status}</span>

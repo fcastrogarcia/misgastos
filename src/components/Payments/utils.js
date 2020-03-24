@@ -13,8 +13,8 @@ const status = [
   "Vence pronto"
 ];
 
-const hasPaidCurrentMonth = (months_paid, time) => {
-  return months_paid.find(item =>
+const hasPaidCurrentMonth = (months, time) => {
+  return months.find(item =>
     isEqual({ month: item.month, year: item.year }, time)
   );
 };
@@ -53,7 +53,7 @@ const hasTimeTranscurred = (currentTime, selectedTime) => {
 export const getPaymentStatus = (payment, time) => {
   const {
     single_payment,
-    months_paid,
+    months,
     automatic_payment,
     due_date,
     paid_at
@@ -72,7 +72,7 @@ export const getPaymentStatus = (payment, time) => {
   }
   if (single_payment && !paid_at) return status[1];
   if (!single_payment) {
-    const isItPaid = hasPaidCurrentMonth(months_paid, time);
+    const isItPaid = hasPaidCurrentMonth(months, time);
     const isFromPastMonths = hasTimeTranscurred(currentTime, time);
 
     return isItPaid ? status[3] : isFromPastMonths ? status[2] : status[1];
@@ -105,9 +105,9 @@ export const paymentsPerMonth = (payments, time) => {
 };
 
 export const getAmount = (payment, time) => {
-  const { amount, months_paid } = payment;
-  const monthPaid = hasPaidCurrentMonth(months_paid, time);
-  return !monthPaid ? amount : monthPaid.amount;
+  const { amount, months } = payment;
+  const monthPaid = hasPaidCurrentMonth(months, time);
+  return monthPaid ? monthPaid.amount : amount;
 };
 
 export function getMaxVal(arr, key) {

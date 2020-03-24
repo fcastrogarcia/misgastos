@@ -14,7 +14,7 @@ export default () => {
   const { firebase } = useAuthAndFirebase();
   const { paymentId: id, toggleModal, payments, time } = usePayments();
 
-  const { months_paid, single_payment } = payments[id];
+  const { months, single_payment } = payments[id];
 
   const currMonth = {
     ...time,
@@ -29,27 +29,25 @@ export default () => {
       const condition = item =>
         isEqual({ month: item.month, year: item.year }, time);
 
-      const hasRegisteredMonth = months_paid.some(condition);
+      const hasRegisteredMonth = months.some(condition);
 
-      const nextState = months_paid.map(item =>
+      const nextState = months.map(item =>
         condition(item) ? currMonth : item
       );
 
-      const isThereAnOlderPayment = months_paid.some(
+      const isThereAnOlderPayment = months.some(
         item => item.year === time.year && item.month > time.month
       );
 
       const getAmount = () => {
         return !isThereAnOlderPayment
           ? amount.amount
-          : getLastAmountPaid(months_paid);
+          : getLastAmountPaid(months);
       };
 
       return {
         amount: getAmount(),
-        months_paid: hasRegisteredMonth
-          ? nextState
-          : [...months_paid, currMonth]
+        months: hasRegisteredMonth ? nextState : [...months, currMonth]
       };
     }
   }

@@ -5,10 +5,10 @@ const defaultState = {
   provider: "",
   due_date: null,
   amount: null,
-  months_paid: [],
+  months: [],
   paid_at: null
   //paid at aplica únicamente a los pagos únicos, los mensuales
-  //se registran dentro de months_paid
+  //se registran dentro de months
 };
 
 export default defaultState;

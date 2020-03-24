@@ -36,3 +36,13 @@ export const getTimestampFromDate = date => {
 };
 
 export const getDateFromTimestamp = timestamp => new Date(timestamp * 1000);
+
+export function getMaxDayOfMonth(date) {
+  const { month, year } = getMonthAndYear(date);
+  return new Date(year, month + 1, 0);
+}
+
+export function getMinDayOfMonth(date) {
+  const { month, year } = getMonthAndYear(date);
+  return new Date(year, month, 1);
+}

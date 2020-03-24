@@ -9,7 +9,11 @@ import Amount from "../shared/AmountInput";
 import SubmitButton from "../SubmitButton";
 
 import useSubmitForm from "./useSubmitForm";
-import { getTimestampFromDate } from "../../utils/time";
+import {
+  getTimestampFromDate,
+  getMinDayOfMonth,
+  getMaxDayOfMonth
+} from "../../utils/time";
 
 const Form = ({ initialState, title }) => {
   const [payment, setPayment] = useState(initialState);
@@ -17,7 +21,7 @@ const Form = ({ initialState, title }) => {
   const submit = useSubmitForm(payment);
 
   const { handleSubmit, isLoading, errors, doValidateInput } = submit;
-  const { single_payment, due_date, automatic_payment, amount } = payment;
+  const { due_date, automatic_payment, amount, single_payment } = payment;
 
   useEffect(() => {
     setPayment(initialState);
@@ -36,7 +40,10 @@ const Form = ({ initialState, title }) => {
     const newData = { due_date: getTimestampFromDate(date) };
     updatePayment(newData);
   }
-  console.log(payment);
+
+  const currDate = new Date();
+  const maxDate = getMaxDayOfMonth(currDate);
+  const minDate = getMinDayOfMonth(currDate);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -52,14 +59,15 @@ const Form = ({ initialState, title }) => {
         doValidateInput={doValidateInput}
         errors={errors}
       />
-      {single_payment && (
-        <div>
-          <h3 className="section-subheading">
-            Agendá el vencimiento (opcional)
-          </h3>
-          <DueDate date={due_date} handleChange={handleDueDateChange} />
-        </div>
-      )}
+      <div>
+        <h3 className="section-subheading">Agendá el vencimiento (opcional)</h3>
+        <DueDate
+          date={due_date}
+          handleChange={handleDueDateChange}
+          maxDate={!single_payment ? maxDate : null}
+          minDate={!single_payment ? minDate : null}
+        />
+      </div>
       <div>
         <h3 className="section-subheading">Ingresá el monto</h3>
         <Amount

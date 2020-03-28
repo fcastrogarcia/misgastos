@@ -24,7 +24,13 @@ const currTimestamp = getTimestampFromDate(new Date());
 const currentTime = getMonthAndYear(new Date());
 
 export const shouldPaymentRender = (item, time) => {
-  const { paid_at, due_date, single_payment } = item;
+  const { paid_at, due_date, single_payment, createdAt } = item;
+
+  const createdAtDate =
+    !single_payment && getDateFromTimestamp(createdAt.seconds);
+  const createdAtMonthAndYear = getMonthAndYear(createdAtDate);
+  const wasPaymentCreatedAfter =
+    !single_payment && !hasTimeTranscurred(createdAtMonthAndYear, time);
 
   if (due_date) {
     const date = getDateFromTimestamp(due_date);
@@ -32,22 +38,27 @@ export const shouldPaymentRender = (item, time) => {
     return isEqual(monthAndYear, time);
   } else if (single_payment && !due_date && !paid_at) {
     return isEqual(currentTime, time);
-  } else if (!single_payment || !paid_at) {
+  } else if (wasPaymentCreatedAfter) {
     return true;
   } else if (paid_at) {
     const date = getDateFromTimestamp(paid_at);
     let monthAndYearOfPayment = getMonthAndYear(date);
     return isEqual(time, monthAndYearOfPayment);
+  } else {
+    return false;
   }
 };
 
 const hasTimeTranscurred = (currentTime, selectedTime) => {
-  const hasYearTranscurred = selectedTime.year < currentTime.year;
-  const hasMonthTranscurred =
-    selectedTime.year === currentTime.year &&
-    selectedTime.month < currentTime.month;
+  console.log("currentTime: ", currentTime, "selectedTime: ", selectedTime);
+  if (selectedTime) {
+    const hasYearTranscurred = selectedTime.year < currentTime.year;
+    const hasMonthTranscurred =
+      selectedTime.year === currentTime.year &&
+      selectedTime.month < currentTime.month;
 
-  return hasYearTranscurred || hasMonthTranscurred;
+    return hasYearTranscurred || hasMonthTranscurred;
+  }
 };
 
 export const getPaymentStatus = (payment, time) => {

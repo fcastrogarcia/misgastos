@@ -56,7 +56,7 @@ const Table = ({ data, loading }) => {
   const sortedPayments = sortTable(p, sortBy);
 
   const noPayments = !shouldPaymentsRender.length && !loading;
-
+  console.log(sortedPayments);
   return (
     <div className={styles.container}>
       <div className={styles["table-wrapper"]}>

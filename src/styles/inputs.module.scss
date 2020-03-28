@@ -3,7 +3,7 @@
 
 .input {
   color: $gray-800;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   position: relative;
   border: none;
@@ -17,7 +17,6 @@
   box-sizing: border-box;
   &::placeholder {
     color: $gray-600;
-    font-size: medium;
   }
   &:focus {
     border-color: $teal-300;
@@ -90,7 +89,7 @@
 }
 
 .extra-margin-top {
-  margin-top: 35px;
+  margin-top: 30px;
 }
 
 .relative-container {

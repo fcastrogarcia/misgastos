@@ -24,10 +24,10 @@ const Form = ({ initialState, title }) => {
   }, [initialState]);
 
   function updatePayment(newData) {
-    setPayment(prevState => {
+    setPayment((prevState) => {
       return {
         ...prevState,
-        ...newData
+        ...newData,
       };
     });
   }
@@ -36,7 +36,6 @@ const Form = ({ initialState, title }) => {
     const newData = { due_date: getTimestampFromDate(date) };
     updatePayment(newData);
   }
-  console.log(payment);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -61,7 +60,9 @@ const Form = ({ initialState, title }) => {
         </div>
       )}
       <div>
-        <h3 className="section-subheading">Ingresá el monto</h3>
+        <h3 className="section-subheading">
+          {single_payment ? "Ingresá el monto" : "Ingresá el monto inicial"}
+        </h3>
         <Amount
           setter={updatePayment}
           amount={amount}

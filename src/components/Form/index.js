@@ -24,10 +24,10 @@ const Form = ({ initialState, title }) => {
   }, [initialState]);
 
   function updatePayment(newData) {
-    setPayment(prevState => {
+    setPayment((prevState) => {
       return {
         ...prevState,
-        ...newData
+        ...newData,
       };
     });
   }
@@ -36,7 +36,6 @@ const Form = ({ initialState, title }) => {
     const newData = { due_date: getTimestampFromDate(date) };
     updatePayment(newData);
   }
-  console.log(payment);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>

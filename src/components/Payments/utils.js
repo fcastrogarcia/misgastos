@@ -1,8 +1,8 @@
-import { isEqual } from "lodash";
+import { isEqual, get } from "lodash";
 import {
   getTimestampFromDate,
   getMonthAndYear,
-  getDateFromTimestamp
+  getDateFromTimestamp,
 } from "../../utils/time";
 
 const status = [
@@ -10,11 +10,11 @@ const status = [
   "Pendiente",
   "Vencido",
   "Pagado",
-  "Vence pronto"
+  "Vence pronto",
 ];
 
 const hasPaidCurrentMonth = (months_paid, time) => {
-  return months_paid.find(item =>
+  return months_paid.find((item) =>
     isEqual({ month: item.month, year: item.year }, time)
   );
 };
@@ -25,9 +25,9 @@ const currentTime = getMonthAndYear(new Date());
 
 export const shouldPaymentRender = (item, time) => {
   const { paid_at, due_date, single_payment, createdAt } = item;
-
-  const createdAtDate =
-    !single_payment && getDateFromTimestamp(createdAt.seconds);
+  console.log(createdAt);
+  const seconds = get(createdAt, "seconds");
+  const createdAtDate = !single_payment && getDateFromTimestamp(seconds);
   const createdAtMonthAndYear = getMonthAndYear(createdAtDate);
   const wasPaymentCreatedAfter =
     !single_payment && !hasTimeTranscurred(createdAtMonthAndYear, time);
@@ -50,7 +50,6 @@ export const shouldPaymentRender = (item, time) => {
 };
 
 const hasTimeTranscurred = (currentTime, selectedTime) => {
-  console.log("currentTime: ", currentTime, "selectedTime: ", selectedTime);
   if (selectedTime) {
     const hasYearTranscurred = selectedTime.year < currentTime.year;
     const hasMonthTranscurred =
@@ -67,7 +66,7 @@ export const getPaymentStatus = (payment, time) => {
     months_paid,
     automatic_payment,
     due_date,
-    paid_at
+    paid_at,
   } = payment;
 
   if (automatic_payment) return status[0];
@@ -90,7 +89,7 @@ export const getPaymentStatus = (payment, time) => {
   }
 };
 
-export const getStatusClassname = status => {
+export const getStatusClassname = (status) => {
   return status
     .toLowerCase()
     .normalize("NFD")
@@ -99,7 +98,7 @@ export const getStatusClassname = status => {
 };
 
 export const countPaymentStatus = (payments, time) => {
-  const statusArr = Object.values(payments).map(payment =>
+  const statusArr = Object.values(payments).map((payment) =>
     getPaymentStatus(payment, time)
   );
 
@@ -110,7 +109,7 @@ export const countPaymentStatus = (payments, time) => {
 };
 
 export const paymentsPerMonth = (payments, time) => {
-  return Object.values(payments).filter(payment =>
+  return Object.values(payments).filter((payment) =>
     shouldPaymentRender(payment, time)
   );
 };
@@ -136,7 +135,7 @@ export function getLastAmountPaid(arr) {
     return null;
   } else {
     const maxYear = getMaxVal(arr, "year");
-    const monthsPaidInMaxYear = arr.filter(item => item.year === maxYear);
+    const monthsPaidInMaxYear = arr.filter((item) => item.year === maxYear);
 
     const lastAmountPaid = monthsPaidInMaxYear.reduce((acc, curr) =>
       acc.month > curr.month ? acc : curr

@@ -41,8 +41,8 @@ const Table = ({ data, loading }) => {
 
   const ids = Object.keys(data);
   const payments = Object.values(data);
-  const statusArr = payments.map(payment => getPaymentStatus(payment, time));
-  const shouldPaymentsRender = payments.map(payment =>
+  const statusArr = payments.map((payment) => getPaymentStatus(payment, time));
+  const shouldPaymentsRender = payments.map((payment) =>
     shouldPaymentRender(payment, time)
   );
   const p = payments.map((item, index) => {
@@ -50,13 +50,13 @@ const Table = ({ data, loading }) => {
       ...item,
       id: ids[index],
       status: statusArr[index],
-      shouldRender: shouldPaymentsRender[index]
+      shouldRender: shouldPaymentsRender[index],
     };
   });
   const sortedPayments = sortTable(p, sortBy);
 
   const noPayments = !shouldPaymentsRender.length && !loading;
-  console.log(sortedPayments);
+
   return (
     <div className={styles.container}>
       <div className={styles["table-wrapper"]}>
@@ -87,11 +87,11 @@ const Table = ({ data, loading }) => {
 
 Table.propTypes = {
   data: objectOf(object),
-  loading: bool
+  loading: bool,
 };
 
 Table.defaultProps = {
-  data: {}
+  data: {},
 };
 
 export default Table;

@@ -7,11 +7,8 @@ import SelectedMonth from "./SelectedMonth";
 import CreatePayment from "./CreatePayment";
 import Header from "./Table-Header";
 import Loader from "./components/Loader";
-import Total from "./components/Total";
 
-import { shouldPaymentRender, getPaymentStatus } from "./utils";
 import { sortTable } from "./utils";
-import usePayments from "./usePayments";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -35,27 +32,10 @@ const reducer = (state, action) => {
   }
 };
 
-const Table = ({ data, loading }) => {
+const Table = ({ payments, loading, noPayments }) => {
   const [sortBy, dispatch] = useReducer(reducer, "category");
-  const { time } = usePayments();
-
-  const ids = Object.keys(data);
-  const payments = Object.values(data);
-  const statusArr = payments.map((payment) => getPaymentStatus(payment, time));
-  const shouldPaymentsRender = payments.map((payment) =>
-    shouldPaymentRender(payment, time)
-  );
-  const p = payments.map((item, index) => {
-    return {
-      ...item,
-      id: ids[index],
-      status: statusArr[index],
-      shouldRender: shouldPaymentsRender[index],
-    };
-  });
-  const sortedPayments = sortTable(p, sortBy);
-
-  const noPayments = !shouldPaymentsRender.length && !loading;
+  const sortedPayments = sortTable(payments, sortBy);
+  const filteredPayments = payments.filter((payment) => payment.shouldRender);
 
   return (
     <div className={styles.container}>
@@ -73,11 +53,10 @@ const Table = ({ data, loading }) => {
                 timestamp={item.due_date}
               />
             ))}
-            {!loading && <Total payments={p} />}
             {loading && <Loader />}
           </tbody>
         </table>
-        {noPayments && (
+        {(noPayments || !filteredPayments.length) && !loading && (
           <h3 className={styles["no-payments"]}>No hay pagos registrados.</h3>
         )}
       </div>

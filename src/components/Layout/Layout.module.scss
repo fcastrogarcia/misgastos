@@ -29,11 +29,8 @@
 .main {
   grid-area: main;
   box-sizing: border-box;
-  margin: 2rem 3.5rem 2rem;
+  margin: 2em 0 2em;
   @include responsive("md") {
-    margin: 2rem 2.5rem 2rem;
-  }
-  @include responsive("sm") {
-    margin: 2rem 1.5rem 2rem;
+    margin: 2em 0 8em;
   }
 }

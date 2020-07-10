@@ -1,0 +1,58 @@
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/variables.scss";
+
+.footer {
+  display: grid;
+  grid-gap: 0 25px;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 100px);
+  position: fixed;
+  bottom: 0;
+  height: 8vh;
+  min-height: 50px;
+  max-height: 100px;
+  box-shadow: var(--onlyTop);
+  padding: 12px;
+  padding-left: 50px;
+  width: 100%;
+  background: var(--white);
+  @include responsive("md") {
+    grid-template-columns: repeat(3, auto);
+    padding: 12px 0;
+    justify-content: center;
+    justify-items: center;
+    grid-gap: 40px;
+  }
+}
+
+.price-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: var(--gray-500);
+  font-size: 13px;
+}
+
+.value {
+  font-weight: 700;
+  color: var(--gray-700);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+  @include responsive("md") {
+    font-size: 14px;
+  }
+}
+
+.--red {
+  color: var(--red-600);
+}
+
+.hyphen {
+  margin-top: 8px;
+  height: 19px;
+  color: var(--gray-800);
+}

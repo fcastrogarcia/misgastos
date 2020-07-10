@@ -25,7 +25,7 @@ const currentTime = getMonthAndYear(new Date());
 
 export const shouldPaymentRender = (item, time) => {
   const { paid_at, due_date, single_payment, createdAt } = item;
-  console.log(createdAt);
+
   const seconds = get(createdAt, "seconds");
   const createdAtDate = !single_payment && getDateFromTimestamp(seconds);
   const createdAtMonthAndYear = getMonthAndYear(createdAtDate);
@@ -131,18 +131,16 @@ export function getMaxVal(arr, key) {
 }
 
 export function getLastAmountPaid(arr) {
-  if (!arr.length) {
-    return null;
-  } else {
-    const maxYear = getMaxVal(arr, "year");
-    const monthsPaidInMaxYear = arr.filter((item) => item.year === maxYear);
+  if (!arr.length) return null;
 
-    const lastAmountPaid = monthsPaidInMaxYear.reduce((acc, curr) =>
-      acc.month > curr.month ? acc : curr
-    ).amount;
+  const maxYear = getMaxVal(arr, "year");
+  const monthsPaidInMaxYear = arr.filter((item) => item.year === maxYear);
 
-    return lastAmountPaid;
-  }
+  const lastAmountPaid = monthsPaidInMaxYear.reduce((acc, curr) =>
+    acc.month > curr.month ? acc : curr
+  ).amount;
+
+  return lastAmountPaid;
 }
 
 export function sortTable(arr, criteria) {
@@ -151,4 +149,12 @@ export function sortTable(arr, criteria) {
 
 export function getTotalAmount(payments) {
   return Object.values(payments).reduce((acc, curr) => curr.amount + acc, 0);
+}
+
+export function getAmountByStatus(payments, status) {
+  const filteredPayments = payments.filter((p) => p.status === status);
+  if (filteredPayments.length) {
+    return filteredPayments.reduce((acc, curr) => curr.amount + acc, 0);
+  }
+  return null;
 }

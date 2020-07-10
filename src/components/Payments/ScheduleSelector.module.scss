@@ -6,6 +6,10 @@
   align-self: start;
   display: flex;
   align-items: center;
+  padding: 0 50px;
+  @include responsive("md") {
+    padding: 0 30px;
+  }
 }
 
 .icon {
@@ -90,4 +94,3 @@
     display: none;
   }
 }
-

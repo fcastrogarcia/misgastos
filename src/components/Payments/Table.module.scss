@@ -5,6 +5,10 @@
   grid-area: table;
   overflow-x: auto;
   padding-bottom: 4rem;
+  padding: 0 50px;
+  @include responsive("md") {
+    padding: 0 30px;
+  }
 }
 
 .table-wrapper {

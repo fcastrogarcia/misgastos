@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .container {
   display: grid;
   width: 100%;
@@ -10,4 +12,8 @@
 
 .title {
   grid-area: section-title;
+  padding: 0 50px;
+  @include responsive("md") {
+    padding: 0 30px;
+  }
 }

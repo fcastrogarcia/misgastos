@@ -88,8 +88,8 @@
   @include cell;
   line-height: 52px;
   color: $gray-700;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   letter-spacing: 0.5px;
 }
 
@@ -112,6 +112,9 @@
 .status {
   border-radius: 20px;
   padding: 3px 7px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.75px;
   &.pagado {
     color: $green-600;
     background-color: $green-100;

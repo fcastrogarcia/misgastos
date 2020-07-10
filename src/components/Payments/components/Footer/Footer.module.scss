@@ -5,10 +5,11 @@
   display: grid;
   grid-gap: 0 25px;
   grid-auto-flow: column;
-  grid-template-columns: repeat(3, 120px);
+  grid-template-columns: repeat(3, 100px);
   position: fixed;
   bottom: 0;
   height: 8vh;
+  min-height: 50px;
   max-height: 100px;
   box-shadow: var(--onlyTop);
   padding: 12px;
@@ -38,7 +39,7 @@
 
 .value {
   font-weight: 700;
-  color: var(--gray-800);
+  color: var(--gray-700);
   margin-top: 8px;
   letter-spacing: 0.5px;
   @include responsive("md") {

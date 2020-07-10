@@ -4,6 +4,10 @@
   display: grid;
   gap: 30px;
   width: 320px;
+  margin-left: 50px;
+  @include responsive("md") {
+    margin-left: 20px;
+  }
 }
 
 .wrapper {

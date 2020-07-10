@@ -12,6 +12,10 @@ const Footer = ({ payments }) => {
   const totalAmount = getTotalAmount(filteredPayments);
   const paidAmount = getAmountByStatus(filteredPayments, "Pagado");
   const dueAmount = getAmountByStatus(filteredPayments, "Pendiente");
+  const aboutToLapseAmount = getAmountByStatus(
+    filteredPayments,
+    "Vence pronto"
+  );
 
   return (
     <div className={styles.footer}>
@@ -53,7 +57,7 @@ const Footer = ({ payments }) => {
           <NumberFormat
             displayType="text"
             prefix="$"
-            value={dueAmount}
+            value={dueAmount + aboutToLapseAmount}
             decimalSeparator={","}
             thousandSeparator={"."}
             className={cx(styles.value, styles["--red"])}

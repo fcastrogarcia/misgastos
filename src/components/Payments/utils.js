@@ -131,18 +131,16 @@ export function getMaxVal(arr, key) {
 }
 
 export function getLastAmountPaid(arr) {
-  if (!arr.length) {
-    return null;
-  } else {
-    const maxYear = getMaxVal(arr, "year");
-    const monthsPaidInMaxYear = arr.filter((item) => item.year === maxYear);
+  if (!arr.length) return null;
 
-    const lastAmountPaid = monthsPaidInMaxYear.reduce((acc, curr) =>
-      acc.month > curr.month ? acc : curr
-    ).amount;
+  const maxYear = getMaxVal(arr, "year");
+  const monthsPaidInMaxYear = arr.filter((item) => item.year === maxYear);
 
-    return lastAmountPaid;
-  }
+  const lastAmountPaid = monthsPaidInMaxYear.reduce((acc, curr) =>
+    acc.month > curr.month ? acc : curr
+  ).amount;
+
+  return lastAmountPaid;
 }
 
 export function sortTable(arr, criteria) {

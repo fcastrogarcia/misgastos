@@ -1,6 +1,6 @@
 import React from "react";
 
-import PaymentsView from "../../components/Payments";
+import PaymentsView from "../../../components/Payments";
 
 const Payments = () => {
   return (

@@ -25,7 +25,7 @@ const currentTime = getMonthAndYear(new Date());
 
 export const shouldPaymentRender = (item, time) => {
   const { paid_at, due_date, single_payment, createdAt } = item;
-  console.log(createdAt);
+
   const seconds = get(createdAt, "seconds");
   const createdAtDate = !single_payment && getDateFromTimestamp(seconds);
   const createdAtMonthAndYear = getMonthAndYear(createdAtDate);
@@ -151,4 +151,12 @@ export function sortTable(arr, criteria) {
 
 export function getTotalAmount(payments) {
   return Object.values(payments).reduce((acc, curr) => curr.amount + acc, 0);
+}
+
+export function getAmountByStatus(payments, status) {
+  const filteredPayments = payments.filter((p) => p.status === status);
+  if (filteredPayments.length) {
+    return filteredPayments.reduce((acc, curr) => curr.amount + acc, 0);
+  }
+  return null;
 }

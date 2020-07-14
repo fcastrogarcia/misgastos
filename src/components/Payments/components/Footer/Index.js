@@ -10,12 +10,12 @@ import { getTotalAmount, getAmountByStatus } from "../../utils";
 const Footer = ({ payments }) => {
   const filteredPayments = payments.filter((payment) => payment.shouldRender);
   const totalAmount = getTotalAmount(filteredPayments);
-  const paidAmount = getAmountByStatus(filteredPayments, "Pagado");
-  const dueAmount = getAmountByStatus(filteredPayments, "Pendiente");
-  const aboutToLapseAmount = getAmountByStatus(
-    filteredPayments,
-    "Vence pronto"
+  const status = ["Vence pronto", "Pendiente", "Vencido"];
+  const dueAmount = status.reduce(
+    (acc, curr) => getAmountByStatus(filteredPayments, curr) + acc,
+    0
   );
+  const paidAmount = getAmountByStatus(filteredPayments, "Pagado");
 
   return (
     <div className={styles.footer}>
@@ -57,7 +57,7 @@ const Footer = ({ payments }) => {
           <NumberFormat
             displayType="text"
             prefix="$"
-            value={dueAmount + aboutToLapseAmount}
+            value={dueAmount}
             decimalSeparator={","}
             thousandSeparator={"."}
             className={cx(styles.value, styles["--red"])}
